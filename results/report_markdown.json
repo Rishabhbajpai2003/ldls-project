@@ -1,0 +1,263 @@
+{
+ "domain": "markdown",
+ "total": {
+  "docs": 5,
+  "nodes": 68,
+  "nodes_before_merge": 123,
+  "tokens": 2651,
+  "max_depth": 3,
+  "markup_share": 0.18921063070210234,
+  "scoped_question_context_share": 0.24246645726464228,
+  "prefill_flat_tok_s": 112.93399417672398,
+  "prefill_tree_tok_s": 118.61800544949224,
+  "generate_tok_s": 17.17132223381907,
+  "kv_bytes_per_token": 32786.93943357322
+ },
+ "tests": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 10,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 10,
+  "test1_free_length_correct": 10,
+  "test2_pass": 10,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 9,
+  "test2_full_scope_correct": 10
+ },
+ "docs": [
+  {
+   "doc": "lab_safety.md",
+   "nodes": 13,
+   "nodes_before_merge": 24,
+   "tokens_total": 514,
+   "tokens_document": 488,
+   "depth": 3,
+   "subtree_tokens": {
+    "min": 35,
+    "median": 47.0,
+    "max": 488
+   },
+   "leaf_tokens": {
+    "min": 35,
+    "median": 43,
+    "max": 77
+   },
+   "n_leaves": 9,
+   "markup_tokens": 65,
+   "markup_share": 0.13319672131147542,
+   "node_types": {
+    "section": 12
+   },
+   "bench": {
+    "doc": "lab_safety.md",
+    "n_nodes": 13,
+    "n_tokens": 514,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 5248.956298828125,
+    "prefill_tree_one_batch_ms": 5848.76708984375,
+    "prefill_tree_per_node_ms": 5609.344970703125,
+    "prefill_flat_tok_s": 97.92422926339756,
+    "prefill_tree_tok_s": 87.88176928647907,
+    "answer_full_scope": {
+     "text": "The document outlines lab safety procedures and guidelines for handling chemicals, including labeling, spills, and emergency procedures.",
+     "n_generated": 21,
+     "n_context": 514,
+     "n_question": 17,
+     "question_ms": 430.85009765625,
+     "generate_ms": 1870.886962890625
+    },
+    "generate_tok_s": 11.224622554188857,
+    "kv_bytes": 16852441
+   }
+  },
+  {
+   "doc": "orbit_cli.md",
+   "nodes": 16,
+   "nodes_before_merge": 29,
+   "tokens_total": 589,
+   "tokens_document": 563,
+   "depth": 3,
+   "subtree_tokens": {
+    "min": 21,
+    "median": 59,
+    "max": 563
+   },
+   "leaf_tokens": {
+    "min": 21,
+    "median": 43.0,
+    "max": 123
+   },
+   "n_leaves": 10,
+   "markup_tokens": 151,
+   "markup_share": 0.2682060390763766,
+   "node_types": {
+    "merged": 2,
+    "section": 13
+   },
+   "bench": {
+    "doc": "orbit_cli.md",
+    "n_nodes": 16,
+    "n_tokens": 589,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 6231.195068359375,
+    "prefill_tree_one_batch_ms": 4784.52880859375,
+    "prefill_tree_per_node_ms": 6009.420654296875,
+    "prefill_flat_tok_s": 94.52440399287309,
+    "prefill_tree_tok_s": 123.10512143684146,
+    "answer_full_scope": {
+     "text": "The Orbit CLI is a command-line tool for syncing project folders to a self-hosted storage server, with a minimal configuration file that can be used to download remote",
+     "n_generated": 32,
+     "n_context": 589,
+     "n_question": 17,
+     "question_ms": 331.517822265625,
+     "generate_ms": 1680.1201171875
+    },
+    "generate_tok_s": 19.046257272109568,
+    "kv_bytes": 19311537
+   }
+  },
+  {
+   "doc": "port_avelin_guide.md",
+   "nodes": 13,
+   "nodes_before_merge": 24,
+   "tokens_total": 525,
+   "tokens_document": 499,
+   "depth": 3,
+   "subtree_tokens": {
+    "min": 38,
+    "median": 49.5,
+    "max": 499
+   },
+   "leaf_tokens": {
+    "min": 38,
+    "median": 42,
+    "max": 83
+   },
+   "n_leaves": 9,
+   "markup_tokens": 91,
+   "markup_share": 0.18236472945891782,
+   "node_types": {
+    "section": 12
+   },
+   "bench": {
+    "doc": "port_avelin_guide.md",
+    "n_nodes": 13,
+    "n_tokens": 525,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 4069.80810546875,
+    "prefill_tree_one_batch_ms": 3999.614990234375,
+    "prefill_tree_per_node_ms": 4666.52392578125,
+    "prefill_flat_tok_s": 128.99871109267738,
+    "prefill_tree_tok_s": 131.2626343490215,
+    "answer_full_scope": {
+     "text": "The Port Avelin Visitor Guide provides information on getting around, seasonal events, and attractions, including the Greyhook Lighthouse and the Harbour Fish Market.",
+     "n_generated": 31,
+     "n_context": 525,
+     "n_question": 17,
+     "question_ms": 336.044189453125,
+     "generate_ms": 1653.244873046875
+    },
+    "generate_tok_s": 18.75100325753198,
+    "kv_bytes": 17213413
+   }
+  },
+  {
+   "doc": "rye_sourdough.md",
+   "nodes": 12,
+   "nodes_before_merge": 21,
+   "tokens_total": 524,
+   "tokens_document": 498,
+   "depth": 3,
+   "subtree_tokens": {
+    "min": 33,
+    "median": 58,
+    "max": 498
+   },
+   "leaf_tokens": {
+    "min": 33,
+    "median": 48.5,
+    "max": 106
+   },
+   "n_leaves": 8,
+   "markup_tokens": 113,
+   "markup_share": 0.22690763052208834,
+   "node_types": {
+    "section": 11
+   },
+   "bench": {
+    "doc": "rye_sourdough.md",
+    "n_nodes": 12,
+    "n_tokens": 524,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 4200.650146484375,
+    "prefill_tree_one_batch_ms": 4105.145263671875,
+    "prefill_tree_per_node_ms": 4653.7412109375,
+    "prefill_flat_tok_s": 124.74259500961968,
+    "prefill_tree_tok_s": 127.6446913187439,
+    "answer_full_scope": {
+     "text": "The document provides a recipe for a dense, tangy rye loaf called Dark Rye Sourdough, which requires a 1-litre loaf tin,",
+     "n_generated": 32,
+     "n_context": 524,
+     "n_question": 17,
+     "question_ms": 391.37890625,
+     "generate_ms": 1644.6181640625
+    },
+    "generate_tok_s": 19.45740397330545,
+    "kv_bytes": 17180021
+   }
+  },
+  {
+   "doc": "team_handbook.md",
+   "nodes": 14,
+   "nodes_before_merge": 25,
+   "tokens_total": 499,
+   "tokens_document": 473,
+   "depth": 3,
+   "subtree_tokens": {
+    "min": 22,
+    "median": 47,
+    "max": 473
+   },
+   "leaf_tokens": {
+    "min": 22,
+    "median": 44.0,
+    "max": 68
+   },
+   "n_leaves": 10,
+   "markup_tokens": 57,
+   "markup_share": 0.12050739957716702,
+   "node_types": {
+    "section": 13
+   },
+   "bench": {
+    "doc": "team_handbook.md",
+    "n_nodes": 14,
+    "n_tokens": 499,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 4211.68017578125,
+    "prefill_tree_one_batch_ms": 4050.46240234375,
+    "prefill_tree_per_node_ms": 5145.333740234375,
+    "prefill_flat_tok_s": 118.48003152505221,
+    "prefill_tree_tok_s": 123.19581085637527,
+    "answer_full_scope": {
+     "text": "The document provides information on the Platform team's workflow, including on-call shifts, communication channels, and release process.",
+     "n_generated": 23,
+     "n_context": 499,
+     "n_question": 17,
+     "question_ms": 318.2978515625,
+     "generate_ms": 1323.56396484375
+    },
+    "generate_tok_s": 17.37732411195949,
+    "kv_bytes": 16360765
+   }
+  }
+ ]
+}

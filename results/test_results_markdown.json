@@ -1,0 +1,1258 @@
+{
+ "summary": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 10,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 10,
+  "test1_free_length_correct": 10,
+  "test2_pass": 10,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 9,
+  "test2_full_scope_correct": 10
+ },
+ "results": [
+  {
+   "doc": "orbit_cli.md",
+   "question": "What is the default number of upload workers?",
+   "A": "Configuration",
+   "B": "From a release",
+   "n_nodes": 16,
+   "n_tokens": 589,
+   "prefill_ms": 7079.390869140625,
+   "baseline_scoped": {
+    "text": "4",
+    "n_generated": 1,
+    "n_context": 247,
+    "n_question": 17,
+    "question_ms": 294.85205078125,
+    "generate_ms": 59.102783203125
+   },
+   "baseline_full": {
+    "text": "The default number of upload workers is 4.",
+    "n_generated": 10,
+    "n_context": 589,
+    "n_question": 17,
+    "question_ms": 290.937255859375,
+    "generate_ms": 555.677734375
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 19311537,
+    "kv_bytes_after": 16853037,
+    "kv_cells_before": 589,
+    "kv_cells_after": 514,
+    "scoped_answer": {
+     "text": "4",
+     "n_generated": 1,
+     "n_context": 247,
+     "n_question": 17,
+     "question_ms": 221.540771484375,
+     "generate_ms": 52.249267578125
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6441946029663086,
+    "full_answer": {
+     "text": "The default number of upload workers is 4.",
+     "n_generated": 10,
+     "n_context": 514,
+     "n_question": 17,
+     "question_ms": 265.244873046875,
+     "generate_ms": 579.1982421875
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 75,
+     "B_tokens_after": 75,
+     "prefill_ms": 5075.240966796875,
+     "scoped_answer": {
+      "text": "4",
+      "n_generated": 1,
+      "n_context": 247,
+      "n_question": 17,
+      "question_ms": 241.455810546875,
+      "generate_ms": 69.43408203125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "6",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 313.77001953125,
+      "generate_ms": 60.910888671875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.7614421844482422,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 75,
+     "B_tokens_after": 36,
+     "prefill_ms": 4652.194091796875,
+     "scoped_answer": {
+      "text": "4",
+      "n_generated": 1,
+      "n_context": 247,
+      "n_question": 17,
+      "question_ms": 239.735107421875,
+      "generate_ms": 56.97607421875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5760021209716797,
+     "flat_control_answer": {
+      "text": "6",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 311.7392578125,
+      "generate_ms": 79.718994140625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.8729844093322754,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "### From a release\n\nDownload the installer from the website and run it. The current stable release is **3.0.0**, published on 9 September 2026.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "6",
+    "n_generated": 1,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 266.217041015625,
+    "generate_ms": 58.809814453125
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "4",
+   "baseline_correct": true
+  },
+  {
+   "doc": "orbit_cli.md",
+   "question": "What does orbit pull do when a file changed on both sides?",
+   "A": "orbit pull",
+   "B": "orbit push",
+   "n_nodes": 16,
+   "n_tokens": 589,
+   "prefill_ms": 5226.1650390625,
+   "baseline_scoped": {
+    "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
+    "n_generated": 17,
+    "n_context": 98,
+    "n_question": 21,
+    "question_ms": 301.95703125,
+    "generate_ms": 956.47607421875
+   },
+   "baseline_full": {
+    "text": "Orbit keeps the remote copy of the file if the same file changed on both sides.",
+    "n_generated": 18,
+    "n_context": 589,
+    "n_question": 21,
+    "question_ms": 346.080078125,
+    "generate_ms": 1018.708984375
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 19311537,
+    "kv_bytes_after": 18065897,
+    "kv_cells_before": 589,
+    "kv_cells_after": 551,
+    "scoped_answer": {
+     "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
+     "n_generated": 17,
+     "n_context": 98,
+     "n_question": 21,
+     "question_ms": 270.42724609375,
+     "generate_ms": 866.303955078125
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6716508865356445,
+    "full_answer": {
+     "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
+     "n_generated": 17,
+     "n_context": 551,
+     "n_question": 21,
+     "question_ms": 332.709228515625,
+     "generate_ms": 959.00390625
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 38,
+     "B_tokens_after": 38,
+     "prefill_ms": 4907.7802734375,
+     "scoped_answer": {
+      "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
+      "n_generated": 17,
+      "n_context": 98,
+      "n_question": 21,
+      "question_ms": 254.6181640625,
+      "generate_ms": 928.813720703125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
+      "n_generated": 17,
+      "n_context": 0,
+      "n_question": 21,
+      "question_ms": 344.538818359375,
+      "generate_ms": 1010.1162109375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 6.027441501617432,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 38,
+     "B_tokens_after": 16,
+     "prefill_ms": 5051.76806640625,
+     "scoped_answer": {
+      "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
+      "n_generated": 17,
+      "n_context": 98,
+      "n_question": 21,
+      "question_ms": 243.9091796875,
+      "generate_ms": 839.28076171875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.630424976348877,
+     "flat_control_answer": {
+      "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
+      "n_generated": 17,
+      "n_context": 0,
+      "n_question": 21,
+      "question_ms": 348.725830078125,
+      "generate_ms": 976.843017578125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.9770259857177734,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "### orbit push\n\nUploads only files that are larger than 1 MB.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
+    "n_generated": 17,
+    "n_context": 0,
+    "n_question": 21,
+    "question_ms": 348.596923828125,
+    "generate_ms": 1002.852294921875
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "remote",
+   "baseline_correct": true
+  },
+  {
+   "doc": "port_avelin_guide.md",
+   "question": "How tall is the Greyhook Lighthouse?",
+   "A": "Greyhook Lighthouse",
+   "B": "By ferry",
+   "n_nodes": 13,
+   "n_tokens": 525,
+   "prefill_ms": 4303.98876953125,
+   "baseline_scoped": {
+    "text": "The Greyhook Lighthouse is 41 metres tall.",
+    "n_generated": 11,
+    "n_context": 135,
+    "n_question": 17,
+    "question_ms": 254.505859375,
+    "generate_ms": 591.416015625
+   },
+   "baseline_full": {
+    "text": "The Greyhook Lighthouse is 41 metres tall.",
+    "n_generated": 11,
+    "n_context": 525,
+    "n_question": 17,
+    "question_ms": 264.052001953125,
+    "generate_ms": 627.51904296875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 17213413,
+    "kv_bytes_after": 15771093,
+    "kv_cells_before": 525,
+    "kv_cells_after": 481,
+    "scoped_answer": {
+     "text": "The Greyhook Lighthouse is 41 metres tall.",
+     "n_generated": 11,
+     "n_context": 135,
+     "n_question": 17,
+     "question_ms": 195.453857421875,
+     "generate_ms": 587.926025390625
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.4579339027404785,
+    "full_answer": {
+     "text": "The Greyhook Lighthouse is 41 metres tall.",
+     "n_generated": 11,
+     "n_context": 481,
+     "n_question": 17,
+     "question_ms": 252.016845703125,
+     "generate_ms": 622.287109375
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 44,
+     "B_tokens_after": 44,
+     "prefill_ms": 4880.767822265625,
+     "scoped_answer": {
+      "text": "The Greyhook Lighthouse is 41 metres tall.",
+      "n_generated": 11,
+      "n_context": 135,
+      "n_question": 17,
+      "question_ms": 263.31884765625,
+      "generate_ms": 655.881103515625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The Greyhook Lighthouse is 41 metres tall.",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 252.550048828125,
+      "generate_ms": 595.7021484375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 0.8978526592254639,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 44,
+     "B_tokens_after": 22,
+     "prefill_ms": 4202.093994140625,
+     "scoped_answer": {
+      "text": "The Greyhook Lighthouse is 41 metres tall.",
+      "n_generated": 11,
+      "n_context": 135,
+      "n_question": 17,
+      "question_ms": 203.848876953125,
+      "generate_ms": 554.85009765625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5971040725708008,
+     "flat_control_answer": {
+      "text": "The Greyhook Lighthouse is 41 metres tall.",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 275.838134765625,
+      "generate_ms": 624.701904296875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.1214239597320557,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "### By ferry\n\nThe ferry from Skerra Island no longer runs; the route closed in 2025.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The Greyhook Lighthouse is 41 metres tall.",
+    "n_generated": 11,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 344.803955078125,
+    "generate_ms": 752.738037109375
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "41",
+   "baseline_correct": true
+  },
+  {
+   "doc": "port_avelin_guide.md",
+   "question": "What time does the fish market open?",
+   "A": "Harbour Fish Market",
+   "B": "Getting around",
+   "n_nodes": 13,
+   "n_tokens": 525,
+   "prefill_ms": 4683.087158203125,
+   "baseline_scoped": {
+    "text": "05:00",
+    "n_generated": 3,
+    "n_context": 122,
+    "n_question": 16,
+    "question_ms": 237.94580078125,
+    "generate_ms": 171.110107421875
+   },
+   "baseline_full": {
+    "text": "The fish market opens at 05:00.",
+    "n_generated": 10,
+    "n_context": 525,
+    "n_question": 16,
+    "question_ms": 235.092041015625,
+    "generate_ms": 636.26123046875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 17213413,
+    "kv_bytes_after": 15836653,
+    "kv_cells_before": 525,
+    "kv_cells_after": 483,
+    "scoped_answer": {
+     "text": "05:00",
+     "n_generated": 3,
+     "n_context": 122,
+     "n_question": 16,
+     "question_ms": 173.797119140625,
+     "generate_ms": 174.18505859375
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.864032506942749,
+    "full_answer": {
+     "text": "The fish market opens at 05:00.",
+     "n_generated": 10,
+     "n_context": 483,
+     "n_question": 16,
+     "question_ms": 246.4970703125,
+     "generate_ms": 580.9521484375
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 42,
+     "B_tokens_after": 42,
+     "prefill_ms": 3931.145263671875,
+     "scoped_answer": {
+      "text": "05:00",
+      "n_generated": 3,
+      "n_context": 122,
+      "n_question": 16,
+      "question_ms": 171.609130859375,
+      "generate_ms": 164.736572265625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The fish market opens at 05:00.",
+      "n_generated": 10,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 227.888916015625,
+      "generate_ms": 614.861083984375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.182681083679199,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 42,
+     "B_tokens_after": 21,
+     "prefill_ms": 3617.85693359375,
+     "scoped_answer": {
+      "text": "05:00",
+      "n_generated": 3,
+      "n_context": 122,
+      "n_question": 16,
+      "question_ms": 159.498779296875,
+      "generate_ms": 153.759033203125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6539134979248047,
+     "flat_control_answer": {
+      "text": "The fish market opens at 05:00.",
+      "n_generated": 10,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 208.701904296875,
+      "generate_ms": 526.119873046875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.1318416595458984,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "## Getting around\n\nThe old town is closed to visitors on Sundays. Buses are free for everyone.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The fish market opens at 05:00.",
+    "n_generated": 10,
+    "n_context": 0,
+    "n_question": 16,
+    "question_ms": 232.627197265625,
+    "generate_ms": 540.761962890625
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "05:00",
+   "baseline_correct": true
+  },
+  {
+   "doc": "lab_safety.md",
+   "question": "Which extension should you call for a large spill?",
+   "A": "Spills",
+   "B": "Flammables",
+   "n_nodes": 13,
+   "n_tokens": 514,
+   "prefill_ms": 3904.297119140625,
+   "baseline_scoped": {
+    "text": "4471.",
+    "n_generated": 3,
+    "n_context": 112,
+    "n_question": 18,
+    "question_ms": 257.5859375,
+    "generate_ms": 142.665283203125
+   },
+   "baseline_full": {
+    "text": "You should call the building safety officer on extension 4471.",
+    "n_generated": 13,
+    "n_context": 514,
+    "n_question": 18,
+    "question_ms": 246.579833984375,
+    "generate_ms": 680.947998046875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 16852441,
+    "kv_bytes_after": 15442901,
+    "kv_cells_before": 514,
+    "kv_cells_after": 471,
+    "scoped_answer": {
+     "text": "4471.",
+     "n_generated": 3,
+     "n_context": 112,
+     "n_question": 18,
+     "question_ms": 199.19677734375,
+     "generate_ms": 151.9111328125
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.7311575412750244,
+    "full_answer": {
+     "text": "You should call the building safety officer on extension 4471.",
+     "n_generated": 13,
+     "n_context": 471,
+     "n_question": 18,
+     "question_ms": 249.69580078125,
+     "generate_ms": 680.4013671875
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 43,
+     "B_tokens_after": 43,
+     "prefill_ms": 4096.88720703125,
+     "scoped_answer": {
+      "text": "4471.",
+      "n_generated": 3,
+      "n_context": 112,
+      "n_question": 18,
+      "question_ms": 211.276123046875,
+      "generate_ms": 150.071044921875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "You should call the building safety officer on extension 4471.",
+      "n_generated": 13,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 256.61279296875,
+      "generate_ms": 693.522216796875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.5175482034683228,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 43,
+     "B_tokens_after": 24,
+     "prefill_ms": 3852.15625,
+     "scoped_answer": {
+      "text": "4471.",
+      "n_generated": 3,
+      "n_context": 112,
+      "n_question": 18,
+      "question_ms": 198.994140625,
+      "generate_ms": 146.43115234375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5221052169799805,
+     "flat_control_answer": {
+      "text": "You should call the building safety officer on extension 4471.",
+      "n_generated": 13,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 254.727294921875,
+      "generate_ms": 691.2421875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.0803227424621582,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "### Flammables\n\nFlammable solvents are now stored in the basement store room. Ask staff before taking any.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "You should call the building safety officer on extension 4471.",
+    "n_generated": 13,
+    "n_context": 0,
+    "n_question": 18,
+    "question_ms": 265.653076171875,
+    "generate_ms": 688.039794921875
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "4471",
+   "baseline_correct": true
+  },
+  {
+   "doc": "lab_safety.md",
+   "question": "Where is the assembly point in case of fire?",
+   "A": "Fire",
+   "B": "Personal protective equipment",
+   "n_nodes": 13,
+   "n_tokens": 514,
+   "prefill_ms": 4151.84326171875,
+   "baseline_scoped": {
+    "text": "The assembly point is the car park beside the library.",
+    "n_generated": 11,
+    "n_context": 120,
+    "n_question": 18,
+    "question_ms": 260.289794921875,
+    "generate_ms": 521.939208984375
+   },
+   "baseline_full": {
+    "text": "The assembly point is the car park beside the library.",
+    "n_generated": 11,
+    "n_context": 514,
+    "n_question": 18,
+    "question_ms": 265.078125,
+    "generate_ms": 605.224853515625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 16852441,
+    "kv_bytes_after": 14557841,
+    "kv_cells_before": 514,
+    "kv_cells_after": 444,
+    "scoped_answer": {
+     "text": "The assembly point is the car park beside the library.",
+     "n_generated": 11,
+     "n_context": 120,
+     "n_question": 18,
+     "question_ms": 202.576171875,
+     "generate_ms": 550.036865234375
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5848145484924316,
+    "full_answer": {
+     "text": "The assembly point is the car park beside the library.",
+     "n_generated": 11,
+     "n_context": 444,
+     "n_question": 18,
+     "question_ms": 252.81396484375,
+     "generate_ms": 590.253173828125
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 70,
+     "B_tokens_after": 70,
+     "prefill_ms": 4177.16015625,
+     "scoped_answer": {
+      "text": "The assembly point is the car park beside the library.",
+      "n_generated": 11,
+      "n_context": 120,
+      "n_question": 18,
+      "question_ms": 198.35205078125,
+      "generate_ms": 532.903076171875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The assembly point is the car park beside the library.",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 255.044921875,
+      "generate_ms": 588.3349609375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.6239204406738281,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 70,
+     "B_tokens_after": 15,
+     "prefill_ms": 3741.486083984375,
+     "scoped_answer": {
+      "text": "The assembly point is the car park beside the library.",
+      "n_generated": 11,
+      "n_context": 120,
+      "n_question": 18,
+      "question_ms": 208.48291015625,
+      "generate_ms": 532.69921875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.9535598754882812,
+     "flat_control_answer": {
+      "text": "The assembly point is the car park beside the library.",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 244.73291015625,
+      "generate_ms": 559.860107421875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.2653732299804688,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "## Personal protective equipment\n\nGoggles are optional for visitors who only observe.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The assembly point is the car park beside the library.",
+    "n_generated": 11,
+    "n_context": 0,
+    "n_question": 18,
+    "question_ms": 266.5791015625,
+    "generate_ms": 579.72802734375
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "car park",
+   "baseline_correct": true
+  },
+  {
+   "doc": "team_handbook.md",
+   "question": "Within how many minutes must a page be acknowledged?",
+   "A": "Responding to pages",
+   "B": "Communication",
+   "n_nodes": 14,
+   "n_tokens": 499,
+   "prefill_ms": 3960.302978515625,
+   "baseline_scoped": {
+    "text": "Within 10 minutes.",
+    "n_generated": 5,
+    "n_context": 115,
+    "n_question": 18,
+    "question_ms": 257.376220703125,
+    "generate_ms": 236.531005859375
+   },
+   "baseline_full": {
+    "text": "Within 10 minutes.",
+    "n_generated": 5,
+    "n_context": 499,
+    "n_question": 18,
+    "question_ms": 249.92724609375,
+    "generate_ms": 270.2080078125
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 16360765,
+    "kv_bytes_after": 14820105,
+    "kv_cells_before": 499,
+    "kv_cells_after": 452,
+    "scoped_answer": {
+     "text": "Within 10 minutes.",
+     "n_generated": 5,
+     "n_context": 115,
+     "n_question": 18,
+     "question_ms": 191.323974609375,
+     "generate_ms": 248.342041015625
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.45990657806396484,
+    "full_answer": {
+     "text": "Within 10 minutes.",
+     "n_generated": 5,
+     "n_context": 452,
+     "n_question": 18,
+     "question_ms": 258.27197265625,
+     "generate_ms": 269.677978515625
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 47,
+     "B_tokens_after": 47,
+     "prefill_ms": 4019.232177734375,
+     "scoped_answer": {
+      "text": "Within 10 minutes.",
+      "n_generated": 5,
+      "n_context": 115,
+      "n_question": 18,
+      "question_ms": 202.76611328125,
+      "generate_ms": 243.3759765625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Every page that wakes someone up at night gets a short review the next day.",
+      "n_generated": 16,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 258.7109375,
+      "generate_ms": 836.03515625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.7410314083099365,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 47,
+     "B_tokens_after": 23,
+     "prefill_ms": 3867.2021484375,
+     "scoped_answer": {
+      "text": "Within 10 minutes.",
+      "n_generated": 5,
+      "n_context": 115,
+      "n_question": 18,
+      "question_ms": 200.842041015625,
+      "generate_ms": 247.182861328125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5804054737091064,
+     "flat_control_answer": {
+      "text": "Every page that wakes someone up at night gets a short review the next day.",
+      "n_generated": 16,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 266.904052734375,
+      "generate_ms": 881.50390625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 4.114377975463867,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "## Communication\n\nWe now use email for everything. Stand-up has moved to 11:00 on Mondays only.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Every page that wakes someone up at night gets a short review the next day.",
+    "n_generated": 16,
+    "n_context": 0,
+    "n_question": 18,
+    "question_ms": 265.575927734375,
+    "generate_ms": 841.403076171875
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "10",
+   "baseline_correct": true
+  },
+  {
+   "doc": "team_handbook.md",
+   "question": "How many approvals do database schema changes need?",
+   "A": "Code review",
+   "B": "Compensation",
+   "n_nodes": 14,
+   "n_tokens": 499,
+   "prefill_ms": 3980.47900390625,
+   "baseline_scoped": {
+    "text": "Two approvals.",
+    "n_generated": 3,
+    "n_context": 116,
+    "n_question": 17,
+    "question_ms": 245.287841796875,
+    "generate_ms": 144.119140625
+   },
+   "baseline_full": {
+    "text": "Database schema changes need two approvals.",
+    "n_generated": 7,
+    "n_context": 499,
+    "n_question": 17,
+    "question_ms": 236.51025390625,
+    "generate_ms": 369.806884765625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 16360765,
+    "kv_bytes_after": 15639605,
+    "kv_cells_before": 499,
+    "kv_cells_after": 477,
+    "scoped_answer": {
+     "text": "Two approvals.",
+     "n_generated": 3,
+     "n_context": 116,
+     "n_question": 17,
+     "question_ms": 187.220947265625,
+     "generate_ms": 147.333740234375
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.4725041389465332,
+    "full_answer": {
+     "text": "Database schema changes need two approvals.",
+     "n_generated": 7,
+     "n_context": 477,
+     "n_question": 17,
+     "question_ms": 242.572021484375,
+     "generate_ms": 357.116943359375
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 22,
+     "B_tokens_after": 22,
+     "prefill_ms": 3904.300048828125,
+     "scoped_answer": {
+      "text": "Two approvals.",
+      "n_generated": 3,
+      "n_context": 116,
+      "n_question": 17,
+      "question_ms": 195.354736328125,
+      "generate_ms": 151.781982421875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Database schema changes need two approvals, one of them from the data lead.",
+      "n_generated": 15,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 244.787841796875,
+      "generate_ms": 786.4150390625
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 3.1765575408935547,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 22,
+     "B_tokens_after": 18,
+     "prefill_ms": 3912.9609375,
+     "scoped_answer": {
+      "text": "Two approvals.",
+      "n_generated": 3,
+      "n_context": 116,
+      "n_question": 17,
+      "question_ms": 195.643798828125,
+      "generate_ms": 153.14208984375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5996036529541016,
+     "flat_control_answer": {
+      "text": "Database schema changes need two approvals.",
+      "n_generated": 7,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 269.6220703125,
+      "generate_ms": 434.486083984375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.037238597869873,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "### Compensation\n\nOn-call work is paid at double the hourly rate instead of time off.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Database schema changes need two approvals.",
+    "n_generated": 7,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 249.77783203125,
+    "generate_ms": 366.014892578125
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "two",
+   "baseline_correct": true
+  },
+  {
+   "doc": "rye_sourdough.md",
+   "question": "At what oven temperature does baking start?",
+   "A": "Day two: bake",
+   "B": "Levain",
+   "n_nodes": 12,
+   "n_tokens": 524,
+   "prefill_ms": 4661.79296875,
+   "baseline_scoped": {
+    "text": "At 250 °C.",
+    "n_generated": 6,
+    "n_context": 122,
+    "n_question": 16,
+    "question_ms": 232.84716796875,
+    "generate_ms": 295.076904296875
+   },
+   "baseline_full": {
+    "text": "250 °C.",
+    "n_generated": 4,
+    "n_context": 524,
+    "n_question": 16,
+    "question_ms": 219.859130859375,
+    "generate_ms": 214.06298828125
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 17180021,
+    "kv_bytes_after": 16098281,
+    "kv_cells_before": 524,
+    "kv_cells_after": 491,
+    "scoped_answer": {
+     "text": "At 250 °C.",
+     "n_generated": 6,
+     "n_context": 122,
+     "n_question": 16,
+     "question_ms": 172.62109375,
+     "generate_ms": 302.7080078125
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5687012672424316,
+    "full_answer": {
+     "text": "250 °C.",
+     "n_generated": 4,
+     "n_context": 491,
+     "n_question": 16,
+     "question_ms": 227.633056640625,
+     "generate_ms": 209.259033203125
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 33,
+     "B_tokens_after": 33,
+     "prefill_ms": 5027.14990234375,
+     "scoped_answer": {
+      "text": "At 250 °C.",
+      "n_generated": 6,
+      "n_context": 122,
+      "n_question": 16,
+      "question_ms": 186.657958984375,
+      "generate_ms": 289.0
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "250 °C.",
+      "n_generated": 4,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 220.47216796875,
+      "generate_ms": 210.514892578125
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 1.6126856803894043,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 33,
+     "B_tokens_after": 26,
+     "prefill_ms": 4404.371826171875,
+     "scoped_answer": {
+      "text": "At 250 °C.",
+      "n_generated": 6,
+      "n_context": 122,
+      "n_question": 16,
+      "question_ms": 185.822265625,
+      "generate_ms": 294.20703125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.46520715951919556,
+     "flat_control_answer": {
+      "text": "The loaf is baked at 250 °C.",
+      "n_generated": 10,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 244.0791015625,
+      "generate_ms": 525.905029296875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.505892276763916,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "### Levain\n\n- 100 g white starter\n- 100 g spelt flour\n- 100 g cold water\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The loaf is baked at 250 °C.",
+    "n_generated": 10,
+    "n_context": 0,
+    "n_question": 16,
+    "question_ms": 297.958740234375,
+    "generate_ms": 592.56787109375
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "250",
+   "baseline_correct": true
+  },
+  {
+   "doc": "rye_sourdough.md",
+   "question": "How long should the loaf cool before slicing?",
+   "A": "Cooling and storage",
+   "B": "Equipment",
+   "n_nodes": 12,
+   "n_tokens": 524,
+   "prefill_ms": 4276.26123046875,
+   "baseline_scoped": {
+    "text": "At least 24 hours.",
+    "n_generated": 6,
+    "n_context": 106,
+    "n_question": 17,
+    "question_ms": 247.098876953125,
+    "generate_ms": 295.634033203125
+   },
+   "baseline_full": {
+    "text": "The loaf should cool for at least 24 hours before slicing.",
+    "n_generated": 13,
+    "n_context": 524,
+    "n_question": 17,
+    "question_ms": 252.878173828125,
+    "generate_ms": 681.3466796875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 17180021,
+    "kv_bytes_after": 15967161,
+    "kv_cells_before": 524,
+    "kv_cells_after": 487,
+    "scoped_answer": {
+     "text": "At least 24 hours.",
+     "n_generated": 6,
+     "n_context": 106,
+     "n_question": 17,
+     "question_ms": 186.10986328125,
+     "generate_ms": 297.886962890625
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6323165893554688,
+    "full_answer": {
+     "text": "The loaf should cool for at least 24 hours before slicing.",
+     "n_generated": 13,
+     "n_context": 487,
+     "n_question": 17,
+     "question_ms": 247.47119140625,
+     "generate_ms": 688.919677734375
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 37,
+     "B_tokens_after": 37,
+     "prefill_ms": 4328.91015625,
+     "scoped_answer": {
+      "text": "At least 24 hours.",
+      "n_generated": 6,
+      "n_context": 106,
+      "n_question": 17,
+      "question_ms": 195.59814453125,
+      "generate_ms": 294.6220703125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The loaf should cool for at least 24 hours before slicing.",
+      "n_generated": 13,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 244.76904296875,
+      "generate_ms": 680.93310546875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.7940239906311035,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 37,
+     "B_tokens_after": 12,
+     "prefill_ms": 4091.6611328125,
+     "scoped_answer": {
+      "text": "At least 24 hours.",
+      "n_generated": 6,
+      "n_context": 106,
+      "n_question": 17,
+      "question_ms": 195.6328125,
+      "generate_ms": 295.373046875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.7770347595214844,
+     "flat_control_answer": {
+      "text": "The loaf should cool for at least 24 hours before slicing.",
+      "n_generated": 13,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 238.40185546875,
+      "generate_ms": 679.06396484375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.6904287338256836,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "## Equipment\n\nYou only need a cast-iron pot.\n\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The loaf should cool for at least 24 hours before slicing.",
+    "n_generated": 13,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 245.59521484375,
+    "generate_ms": 679.73193359375
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "24",
+   "baseline_correct": true
+  }
+ ]
+}

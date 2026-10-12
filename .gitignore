@@ -1,0 +1,9 @@
+build/
+llama.cpp/
+models/
+*.gguf
+__pycache__/
+*.pyc
+.venv/
+.vscode/
+instn.md

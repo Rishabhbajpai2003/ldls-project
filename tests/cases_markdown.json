@@ -1,0 +1,82 @@
+[
+  {
+    "doc": "orbit_cli.json",
+    "question": "What is the default number of upload workers?",
+    "A": "Configuration",
+    "B": "From a release",
+    "edit_text": "### From a release\n\nDownload the installer from the website and run it. The current stable release is **3.0.0**, published on 9 September 2026.\n\n",
+    "expect": "4"
+  },
+  {
+    "doc": "orbit_cli.json",
+    "question": "What does orbit pull do when a file changed on both sides?",
+    "A": "orbit pull",
+    "B": "orbit push",
+    "edit_text": "### orbit push\n\nUploads only files that are larger than 1 MB.\n\n",
+    "expect": "remote"
+  },
+  {
+    "doc": "port_avelin_guide.json",
+    "question": "How tall is the Greyhook Lighthouse?",
+    "A": "Greyhook Lighthouse",
+    "B": "By ferry",
+    "edit_text": "### By ferry\n\nThe ferry from Skerra Island no longer runs; the route closed in 2025.\n\n",
+    "expect": "41"
+  },
+  {
+    "doc": "port_avelin_guide.json",
+    "question": "What time does the fish market open?",
+    "A": "Harbour Fish Market",
+    "B": "Getting around",
+    "edit_text": "## Getting around\n\nThe old town is closed to visitors on Sundays. Buses are free for everyone.\n\n",
+    "expect": "05:00"
+  },
+  {
+    "doc": "lab_safety.json",
+    "question": "Which extension should you call for a large spill?",
+    "A": "Spills",
+    "B": "Flammables",
+    "edit_text": "### Flammables\n\nFlammable solvents are now stored in the basement store room. Ask staff before taking any.\n\n",
+    "expect": "4471"
+  },
+  {
+    "doc": "lab_safety.json",
+    "question": "Where is the assembly point in case of fire?",
+    "A": "Fire",
+    "B": "Personal protective equipment",
+    "edit_text": "## Personal protective equipment\n\nGoggles are optional for visitors who only observe.\n\n",
+    "expect": "car park"
+  },
+  {
+    "doc": "team_handbook.json",
+    "question": "Within how many minutes must a page be acknowledged?",
+    "A": "Responding to pages",
+    "B": "Communication",
+    "edit_text": "## Communication\n\nWe now use email for everything. Stand-up has moved to 11:00 on Mondays only.\n\n",
+    "expect": "10"
+  },
+  {
+    "doc": "team_handbook.json",
+    "question": "How many approvals do database schema changes need?",
+    "A": "Code review",
+    "B": "Compensation",
+    "edit_text": "### Compensation\n\nOn-call work is paid at double the hourly rate instead of time off.\n\n",
+    "expect": "two"
+  },
+  {
+    "doc": "rye_sourdough.json",
+    "question": "At what oven temperature does baking start?",
+    "A": "Day two: bake",
+    "B": "Levain",
+    "edit_text": "### Levain\n\n- 100 g white starter\n- 100 g spelt flour\n- 100 g cold water\n\n",
+    "expect": "250"
+  },
+  {
+    "doc": "rye_sourdough.json",
+    "question": "How long should the loaf cool before slicing?",
+    "A": "Cooling and storage",
+    "B": "Equipment",
+    "edit_text": "## Equipment\n\nYou only need a cast-iron pot.\n\n",
+    "expect": "24"
+  }
+]

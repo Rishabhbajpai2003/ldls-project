@@ -1,0 +1,19 @@
+{
+  "sequences": [
+    {
+      "prompt": "The three primary colors are",
+      "joint": " red, blue, and yellow. These colors are combined in different ways to create various shades and hues of colors. The primary colors are the base colors that cannot",
+      "separate": " red, blue, and yellow. These colors are combined in different ways to create various shades and hues of colors. The primary colors are the base colors that cannot",
+      "tokens_match": true,
+      "first_logits_max_diff": 0.5108740329742432
+    },
+    {
+      "prompt": "To make a cup of tea, first",
+      "joint": " boil water in a kettle or on the stovetop. Then, add one teaspoon of loose-leaf tea or one tea bag for every 8 ounces",
+      "separate": " boil water in a kettle or on the stovetop. Then, add one teaspoon of loose-leaf tea or one tea bag for every 8 ounces",
+      "tokens_match": true,
+      "first_logits_max_diff": 0.41459882259368896
+    }
+  ],
+  "pass": true
+}
