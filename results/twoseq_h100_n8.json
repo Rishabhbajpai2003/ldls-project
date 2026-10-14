@@ -1,0 +1,19 @@
+{
+  "sequences": [
+    {
+      "prompt": "The three primary colors are",
+      "joint": " red, blue, and yellow. These",
+      "separate": " red, blue, and yellow. These",
+      "tokens_match": true,
+      "first_logits_max_diff": 0.5352692604064941
+    },
+    {
+      "prompt": "To make a cup of tea, first",
+      "joint": " boil water in a kettle or on the",
+      "separate": " boil water in a kettle or on the",
+      "tokens_match": true,
+      "first_logits_max_diff": 0.33341026306152344
+    }
+  ],
+  "pass": true
+}

@@ -1,0 +1,267 @@
+{
+ "domain": "chatlogs",
+ "total": {
+  "docs": 5,
+  "nodes": 45,
+  "nodes_before_merge": 85,
+  "tokens": 1058,
+  "max_depth": 2,
+  "markup_share": 0.27450980392156865,
+  "scoped_question_context_share": 0.2914595681325774,
+  "prefill_flat_tok_s": 820.6003532726758,
+  "prefill_tree_tok_s": 902.7736714086856,
+  "generate_tok_s": 58.7321766528196,
+  "kv_bytes_per_token": 32786.693394333255
+ },
+ "tests": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 10,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 10,
+  "test1_free_length_correct": 10,
+  "test2_pass": 10,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 6,
+  "test2_full_scope_correct": 7
+ },
+ "docs": [
+  {
+   "doc": "flight_booking.json",
+   "nodes": 9,
+   "nodes_before_merge": 17,
+   "tokens_total": 239,
+   "tokens_document": 211,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 18,
+    "median": 34.5,
+    "max": 69
+   },
+   "leaf_tokens": {
+    "min": 18,
+    "median": 25.5,
+    "max": 56
+   },
+   "n_leaves": 6,
+   "markup_tokens": 59,
+   "markup_share": 0.2796208530805687,
+   "node_types": {
+    "tool_call": 2,
+    "turn": 6
+   },
+   "bench": {
+    "doc": "flight_booking.json",
+    "n_nodes": 9,
+    "n_tokens": 239,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 1585.3087849617004,
+    "prefill_tree_one_batch_ms": 1457.560621023178,
+    "prefill_tree_per_node_ms": 12320.445595026016,
+    "prefill_flat_tok_s": 150.75927306223437,
+    "prefill_tree_tok_s": 163.97259678450067,
+    "answer_full_scope": {
+     "text": "The document is a booking confirmation for a morning flight from BLR to DEL on November 2, with a confirmed booking of OX-209.",
+     "n_generated": 30,
+     "n_context": 239,
+     "n_question": 17,
+     "question_ms": 1359.8354630470276,
+     "generate_ms": 25455.638198018074
+    },
+    "generate_tok_s": 1.178520835605518,
+    "kv_bytes": 7835825
+   }
+  },
+  {
+   "doc": "repo_issue.json",
+   "nodes": 9,
+   "nodes_before_merge": 17,
+   "tokens_total": 207,
+   "tokens_document": 179,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 17,
+    "median": 27.0,
+    "max": 58
+   },
+   "leaf_tokens": {
+    "min": 17,
+    "median": 20.5,
+    "max": 44
+   },
+   "n_leaves": 6,
+   "markup_tokens": 45,
+   "markup_share": 0.25139664804469275,
+   "node_types": {
+    "tool_call": 2,
+    "turn": 6
+   },
+   "bench": {
+    "doc": "repo_issue.json",
+    "n_nodes": 9,
+    "n_tokens": 207,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 227.20689499378204,
+    "prefill_tree_one_batch_ms": 279.15104496479034,
+    "prefill_tree_per_node_ms": 346.92243707180023,
+    "prefill_flat_tok_s": 911.0639006165062,
+    "prefill_tree_tok_s": 741.5340323232864,
+    "answer_full_scope": {
+     "text": "The document is a report on the issue 412, which is open and assigned to aditya, and its title is \"Crash on empty config file",
+     "n_generated": 32,
+     "n_context": 207,
+     "n_question": 17,
+     "question_ms": 41.006446957588196,
+     "generate_ms": 669.6993989944458
+    },
+    "generate_tok_s": 47.782632100384184,
+    "kv_bytes": 6786873
+   }
+  },
+  {
+   "doc": "restaurant_reserve.json",
+   "nodes": 9,
+   "nodes_before_merge": 17,
+   "tokens_total": 201,
+   "tokens_document": 173,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 13,
+    "median": 29.0,
+    "max": 55
+   },
+   "leaf_tokens": {
+    "min": 13,
+    "median": 20.5,
+    "max": 44
+   },
+   "n_leaves": 6,
+   "markup_tokens": 50,
+   "markup_share": 0.28901734104046245,
+   "node_types": {
+    "tool_call": 2,
+    "turn": 6
+   },
+   "bench": {
+    "doc": "restaurant_reserve.json",
+    "n_nodes": 9,
+    "n_tokens": 201,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 197.05728697776794,
+    "prefill_tree_one_batch_ms": 129.41606307029724,
+    "prefill_tree_per_node_ms": 608.9584759473801,
+    "prefill_flat_tok_s": 1020.0079534367936,
+    "prefill_tree_tok_s": 1553.130231529445,
+    "answer_full_scope": {
+     "text": "The document is a reservation request for a table at Harbour Fish Market for 8pm under the name Aditya.",
+     "n_generated": 24,
+     "n_context": 201,
+     "n_question": 17,
+     "question_ms": 23.260637044906616,
+     "generate_ms": 200.87058103084564
+    },
+    "generate_tok_s": 119.4799152610335,
+    "kv_bytes": 6590189
+   }
+  },
+  {
+   "doc": "shopping_return.json",
+   "nodes": 9,
+   "nodes_before_merge": 17,
+   "tokens_total": 207,
+   "tokens_document": 179,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 11,
+    "median": 31.5,
+    "max": 58
+   },
+   "leaf_tokens": {
+    "min": 11,
+    "median": 22.5,
+    "max": 44
+   },
+   "n_leaves": 6,
+   "markup_tokens": 48,
+   "markup_share": 0.2681564245810056,
+   "node_types": {
+    "tool_call": 2,
+    "turn": 6
+   },
+   "bench": {
+    "doc": "shopping_return.json",
+    "n_nodes": 9,
+    "n_tokens": 207,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 226.24629604816437,
+    "prefill_tree_one_batch_ms": 270.53498697280884,
+    "prefill_tree_per_node_ms": 282.9863040447235,
+    "prefill_flat_tok_s": 914.9321054782389,
+    "prefill_tree_tok_s": 765.1505718955506,
+    "answer_full_scope": {
+     "text": "The document is a refund request for a return order, with the order number being 7710 and the reason for the return being a leak in the lid of",
+     "n_generated": 32,
+     "n_context": 207,
+     "n_question": 17,
+     "question_ms": 44.984720945358276,
+     "generate_ms": 429.36693596839905
+    },
+    "generate_tok_s": 74.52832838147361,
+    "kv_bytes": 6786877
+   }
+  },
+  {
+   "doc": "weather_lookup.json",
+   "nodes": 9,
+   "nodes_before_merge": 17,
+   "tokens_total": 204,
+   "tokens_document": 176,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 11,
+    "median": 29.0,
+    "max": 56
+   },
+   "leaf_tokens": {
+    "min": 11,
+    "median": 20.5,
+    "max": 44
+   },
+   "n_leaves": 6,
+   "markup_tokens": 50,
+   "markup_share": 0.2840909090909091,
+   "node_types": {
+    "tool_call": 2,
+    "turn": 6
+   },
+   "bench": {
+    "doc": "weather_lookup.json",
+    "n_nodes": 9,
+    "n_tokens": 204,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 184.40869104862213,
+    "prefill_tree_one_batch_ms": 158.12961506843567,
+    "prefill_tree_per_node_ms": 283.6430640220642,
+    "prefill_flat_tok_s": 1106.238533769606,
+    "prefill_tree_tok_s": 1290.0809245106454,
+    "answer_full_scope": {
+     "text": "The document is a weather forecast for Port Avelin, with the current conditions being partly cloudy and 32C, and a note that Skerra Island is",
+     "n_generated": 32,
+     "n_context": 204,
+     "n_question": 17,
+     "question_ms": 24.808523058891296,
+     "generate_ms": 631.2697080373764
+    },
+    "generate_tok_s": 50.69148668560117,
+    "kv_bytes": 6688529
+   }
+  }
+ ]
+}

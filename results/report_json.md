@@ -1,0 +1,41 @@
+# Report: json
+
+| Document | Nodes (raw) | Tokens | Depth | Subtree tokens min/med/max | Markup | Prefill flat / tree (ms) | Gen tok/s |
+|---|---|---|---|---|---|---|---|
+| flight_search.json | 9 (39) | 251 | 2 | 20/34.5/67 | 54% | 1487 / 1510 | 0.7 |
+| github_repo.json | 11 (48) | 294 | 2 | 20/34.5/108 | 52% | 272 / 322 | 44.7 |
+| movie_db.json | 9 (35) | 209 | 2 | 18/28.5/62 | 54% | 179 / 150 | 90.6 |
+| product_catalog.json | 10 (39) | 230 | 2 | 18/26/68 | 54% | 146 / 254 | 55.3 |
+| weather_api.json | 14 (60) | 361 | 3 | 13/30/117 | 57% | 425 / 231 | 117.7 |
+
+```json
+{
+ "total": {
+  "docs": 5,
+  "nodes": 53,
+  "nodes_before_merge": 221,
+  "tokens": 1345,
+  "max_depth": 3,
+  "markup_share": 0.5443983402489626,
+  "scoped_question_context_share": 0.25289067718473307,
+  "prefill_flat_tok_s": 968.9783961817498,
+  "prefill_tree_tok_s": 987.8697065671927,
+  "generate_tok_s": 61.79088638210819,
+  "kv_bytes_per_token": 32786.22846840721
+ },
+ "tests": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 10,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 10,
+  "test1_free_length_correct": 10,
+  "test2_pass": 10,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 7,
+  "test2_full_scope_correct": 8
+ }
+}
+```

@@ -1,0 +1,1258 @@
+{
+ "summary": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 10,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 10,
+  "test1_free_length_correct": 10,
+  "test2_pass": 10,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 7,
+  "test2_full_scope_correct": 8
+ },
+ "results": [
+  {
+   "doc": "weather_api.json",
+   "question": "What is the forecast temperature at 15:00?",
+   "A": "hourly_forecast[1]",
+   "B": "current",
+   "n_nodes": 14,
+   "n_tokens": 361,
+   "prefill_ms": 293.49516093730927,
+   "baseline_scoped": {
+    "text": "\"temp_c\": 31",
+    "n_generated": 6,
+    "n_context": 63,
+    "n_question": 19,
+    "question_ms": 23.73520803451538,
+    "generate_ms": 54.46573305130005
+   },
+   "baseline_full": {
+    "text": "\"temp_c\": 31",
+    "n_generated": 6,
+    "n_context": 361,
+    "n_question": 19,
+    "question_ms": 25.784894943237305,
+    "generate_ms": 53.7214070558548
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 11835901,
+    "kv_bytes_after": 10426361,
+    "kv_cells_before": 361,
+    "kv_cells_after": 318,
+    "scoped_answer": {
+     "text": "\"temp_c\": 31",
+     "n_generated": 6,
+     "n_context": 63,
+     "n_question": 19,
+     "question_ms": 23.49855601787567,
+     "generate_ms": 52.615368008613586
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5615246295928955,
+    "full_answer": {
+     "text": "\"temp_c\": 30",
+     "n_generated": 6,
+     "n_context": 318,
+     "n_question": 19,
+     "question_ms": 25.44486093521118,
+     "generate_ms": 53.791247963905334
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": false
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 43,
+     "B_tokens_after": 43,
+     "prefill_ms": 230.92480099201202,
+     "scoped_answer": {
+      "text": "\"temp_c\": 31",
+      "n_generated": 6,
+      "n_context": 63,
+      "n_question": 19,
+      "question_ms": 23.439205050468445,
+      "generate_ms": 54.553054094314575
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"0\": {\n\"condition\": \"sunny\",\n\"hour\": \"15:00\",\n\"temp_c\": 31,\n}",
+      "n_generated": 27,
+      "n_context": 0,
+      "n_question": 19,
+      "question_ms": 25.37165105342865,
+      "generate_ms": 229.16940701007843
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.4314675331115723,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 43,
+     "B_tokens_after": 32,
+     "prefill_ms": 257.95798695087433,
+     "scoped_answer": {
+      "text": "\"temp_c\": 31",
+      "n_generated": 6,
+      "n_context": 63,
+      "n_question": 19,
+      "question_ms": 23.456965923309326,
+      "generate_ms": 54.48922300338745
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.9226570129394531,
+     "flat_control_answer": {
+      "text": "\"0\": {\"condition\": \"sunny\", \"hour\": \"15:00\", \"temp_c\": 31}",
+      "n_generated": 25,
+      "n_context": 0,
+      "n_question": 19,
+      "question_ms": 25.318650007247925,
+      "generate_ms": 212.74058091640472
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 1.4493335485458374,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"current\": {\"condition\": \"rainy\", \"temp_c\": 18, \"humidity_pct\": 91, \"wind_kph\": 40}\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"0\": {\n\"condition\": \"sunny\",\n\"hour\": \"15:00\",\n\"temp_c\": 31,\n}",
+    "n_generated": 27,
+    "n_context": 0,
+    "n_question": 19,
+    "question_ms": 25.783205032348633,
+    "generate_ms": 233.15501999855042
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "31",
+   "baseline_correct": true
+  },
+  {
+   "doc": "weather_api.json",
+   "question": "What is the current temperature in degrees?",
+   "A": "current",
+   "B": "alerts",
+   "n_nodes": 14,
+   "n_tokens": 361,
+   "prefill_ms": 294.75716292858124,
+   "baseline_scoped": {
+    "text": "\"temp_c\": 31",
+    "n_generated": 6,
+    "n_context": 71,
+    "n_question": 16,
+    "question_ms": 19.43493103981018,
+    "generate_ms": 55.10270893573761
+   },
+   "baseline_full": {
+    "text": "\"temp_c\": 31",
+    "n_generated": 6,
+    "n_context": 361,
+    "n_question": 16,
+    "question_ms": 20.817402958869934,
+    "generate_ms": 54.173160910606384
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 11835901,
+    "kv_bytes_after": 8655921,
+    "kv_cells_before": 361,
+    "kv_cells_after": 264,
+    "scoped_answer": {
+     "text": "\"temp_c\": 31",
+     "n_generated": 6,
+     "n_context": 71,
+     "n_question": 16,
+     "question_ms": 18.763646006584167,
+     "generate_ms": 52.96359097957611
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5800628662109375,
+    "full_answer": {
+     "text": "\"temp_c\": 31",
+     "n_generated": 6,
+     "n_context": 264,
+     "n_question": 16,
+     "question_ms": 20.124057054519653,
+     "generate_ms": 53.37844407558441
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 5,
+     "B_tokens_after": 5,
+     "prefill_ms": 235.0102959871292,
+     "scoped_answer": {
+      "text": "\"temp_c\": 31",
+      "n_generated": 6,
+      "n_context": 71,
+      "n_question": 16,
+      "question_ms": 19.280889987945557,
+      "generate_ms": 54.89247691631317
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"current\": {\"condition\": \"sunny\", \"temp_c\": 31}",
+      "n_generated": 17,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 20.973644018173218,
+      "generate_ms": 147.3315360546112
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.7378194332122803,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 5,
+     "B_tokens_after": 20,
+     "prefill_ms": 244.17554199695587,
+     "scoped_answer": {
+      "text": "\"temp_c\": 31",
+      "n_generated": 6,
+      "n_context": 71,
+      "n_question": 16,
+      "question_ms": 19.178410053253174,
+      "generate_ms": 55.40029203891754
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5939106941223145,
+     "flat_control_answer": {
+      "text": "\"current\": {\"condition\": \"sunny\", \"temp_c\": 31}",
+      "n_generated": 17,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 21.01843500137329,
+      "generate_ms": 146.95431303977966
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.125391960144043,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"alerts\": [{\"headline\": \"All clear, no warnings\", \"severity\": \"none\"}]\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"current\": {\"condition\": \"sunny\", \"temp_c\": 31}",
+    "n_generated": 17,
+    "n_context": 0,
+    "n_question": 16,
+    "question_ms": 21.020125031471252,
+    "generate_ms": 146.87812209129333
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "31",
+   "baseline_correct": true
+  },
+  {
+   "doc": "github_repo.json",
+   "question": "How many stars does the repository have?",
+   "A": "stats",
+   "B": "issues",
+   "n_nodes": 11,
+   "n_tokens": 294,
+   "prefill_ms": 240.58307194709778,
+   "baseline_scoped": {
+    "text": "\"stats\": {\n\"forks\": 41,\n\"open_issues\": 17,\n\"stars\": 1284,\n\"watchers\": 96,\n}",
+    "n_generated": 33,
+    "n_context": 61,
+    "n_question": 16,
+    "question_ms": 19.36798095703125,
+    "generate_ms": 278.2662159204483
+   },
+   "baseline_full": {
+    "text": "\"1284\"",
+    "n_generated": 4,
+    "n_context": 294,
+    "n_question": 16,
+    "question_ms": 20.36471998691559,
+    "generate_ms": 36.28564202785492
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 9638965,
+    "kv_bytes_after": 6098665,
+    "kv_cells_before": 294,
+    "kv_cells_after": 186,
+    "scoped_answer": {
+     "text": "\"stats\": {\n\"forks\": 41,\n\"open_issues\": 17,\n\"stars\": 1284,\n\"watchers\": 96,\n}",
+     "n_generated": 33,
+     "n_context": 61,
+     "n_question": 16,
+     "question_ms": 18.65224599838257,
+     "generate_ms": 276.71619296073914
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5748481750488281,
+    "full_answer": {
+     "text": "\"1284\"",
+     "n_generated": 4,
+     "n_context": 186,
+     "n_question": 16,
+     "question_ms": 19.759014010429382,
+     "generate_ms": 36.02429008483887
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 5,
+     "B_tokens_after": 5,
+     "prefill_ms": 188.59378898143768,
+     "scoped_answer": {
+      "text": "\"stats\": {\n\"forks\": 41,\n\"open_issues\": 17,\n\"stars\": 1284,\n\"watchers\": 96,\n}",
+      "n_generated": 33,
+      "n_context": 61,
+      "n_question": 16,
+      "question_ms": 19.01118791103363,
+      "generate_ms": 277.60307097435
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"stats\": {\"forks\": 41, \"open_issues\": 17, \"stars\": 1284}",
+      "n_generated": 24,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 20.541980981826782,
+      "generate_ms": 206.06558501720428
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 2.4437804222106934,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 5,
+     "B_tokens_after": 24,
+     "prefill_ms": 233.6055450439453,
+     "scoped_answer": {
+      "text": "\"stats\": {\n\"forks\": 41,\n\"open_issues\": 17,\n\"stars\": 1284,\n\"watchers\": 96,\n}",
+      "n_generated": 33,
+      "n_context": 61,
+      "n_question": 16,
+      "question_ms": 18.98232901096344,
+      "generate_ms": 278.20450508594513
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5773453712463379,
+     "flat_control_answer": {
+      "text": "\"stats\": {\"forks\": 41, \"open_issues\": 17, \"stars\": 1284}",
+      "n_generated": 24,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 20.640511989593506,
+      "generate_ms": 228.22341895103455
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 3.248643398284912,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"issues\": [{\"id\": 500, \"title\": \"Homepage banner typo\", \"state\": \"open\"}]\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"stats\": {\"stars\": 1284}",
+    "n_generated": 10,
+    "n_context": 0,
+    "n_question": 16,
+    "question_ms": 20.804103016853333,
+    "generate_ms": 88.38275599479675
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "1284",
+   "baseline_correct": true
+  },
+  {
+   "doc": "github_repo.json",
+   "question": "What is the latest release tag?",
+   "A": "releases[0]",
+   "B": "owner",
+   "n_nodes": 11,
+   "n_tokens": 294,
+   "prefill_ms": 240.11601793766022,
+   "baseline_scoped": {
+    "text": "\"v3.0.0\"",
+    "n_generated": 8,
+    "n_context": 72,
+    "n_question": 15,
+    "question_ms": 22.43157696723938,
+    "generate_ms": 70.77764904499054
+   },
+   "baseline_full": {
+    "text": "\"v3.0.0\"",
+    "n_generated": 8,
+    "n_context": 294,
+    "n_question": 15,
+    "question_ms": 23.196602940559387,
+    "generate_ms": 68.99924504756927
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 9638965,
+    "kv_bytes_after": 8983365,
+    "kv_cells_before": 294,
+    "kv_cells_after": 274,
+    "scoped_answer": {
+     "text": "\"v3.0.0\"",
+     "n_generated": 8,
+     "n_context": 72,
+     "n_question": 15,
+     "question_ms": 21.616909980773926,
+     "generate_ms": 68.64990091323853
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5557670593261719,
+    "full_answer": {
+     "text": "\"v3.0.0\"",
+     "n_generated": 8,
+     "n_context": 274,
+     "n_question": 15,
+     "question_ms": 22.995782017707825,
+     "generate_ms": 69.33908700942993
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 20,
+     "B_tokens_after": 20,
+     "prefill_ms": 191.45966398715973,
+     "scoped_answer": {
+      "text": "\"v3.0.0\"",
+      "n_generated": 8,
+      "n_context": 72,
+      "n_question": 15,
+      "question_ms": 22.355237007141113,
+      "generate_ms": 70.49521601200104
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"tag\": \"v3.0.0\"",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 23.501976013183594,
+      "generate_ms": 96.42339301109314
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 2.0072033405303955,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 20,
+     "B_tokens_after": 16,
+     "prefill_ms": 184.87412798404694,
+     "scoped_answer": {
+      "text": "\"v3.0.0\"",
+      "n_generated": 8,
+      "n_context": 72,
+      "n_question": 15,
+      "question_ms": 22.090484023094177,
+      "generate_ms": 70.20357501506805
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6260743141174316,
+     "flat_control_answer": {
+      "text": "\"0\": {\n\"published\": \"2026-09-12\",\n\"tag\": \"v3.0.0\",\n}",
+      "n_generated": 27,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 23.421774983406067,
+      "generate_ms": 228.15771996974945
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 1.5326910018920898,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"owner\": {\"login\": \"orb-sync\", \"type\": \"user\"}\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"0\": { \"tag\": \"v3.0.0\" }",
+    "n_generated": 16,
+    "n_context": 0,
+    "n_question": 15,
+    "question_ms": 23.366074919700623,
+    "generate_ms": 137.0556709766388
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "v3.0.0",
+   "baseline_correct": true
+  },
+  {
+   "doc": "flight_search.json",
+   "question": "How much check-in baggage is included?",
+   "A": "policies",
+   "B": "inbound",
+   "n_nodes": 9,
+   "n_tokens": 251,
+   "prefill_ms": 200.00959503650665,
+   "baseline_scoped": {
+    "text": "\"baggage\": \"15kg check-in included\"",
+    "n_generated": 11,
+    "n_context": 68,
+    "n_question": 16,
+    "question_ms": 19.19760000705719,
+    "generate_ms": 96.9150869846344
+   },
+   "baseline_full": {
+    "text": "\"arrive\": \"21:40\",",
+    "n_generated": 9,
+    "n_context": 251,
+    "n_question": 16,
+    "question_ms": 20.01129698753357,
+    "generate_ms": 78.70692491531372
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 8229165,
+    "kv_bytes_after": 6819625,
+    "kv_cells_before": 251,
+    "kv_cells_after": 208,
+    "scoped_answer": {
+     "text": "\"baggage\": \"15kg check-in included\"",
+     "n_generated": 11,
+     "n_context": 68,
+     "n_question": 16,
+     "question_ms": 18.61157488822937,
+     "generate_ms": 90.33196198940277
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6032240390777588,
+    "full_answer": {
+     "text": "\"15kg check-in included\"",
+     "n_generated": 7,
+     "n_context": 208,
+     "n_question": 16,
+     "question_ms": 19.456491947174072,
+     "generate_ms": 59.690926909446716
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 43,
+     "B_tokens_after": 43,
+     "prefill_ms": 156.38184201717377,
+     "scoped_answer": {
+      "text": "\"baggage\": \"15kg check-in included\"",
+      "n_generated": 11,
+      "n_context": 68,
+      "n_question": 16,
+      "question_ms": 19.343690991401672,
+      "generate_ms": 96.90298700332642
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"baggage\": \"15kg check-in included\"",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 20.165267944335938,
+      "generate_ms": 95.99351906776428
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.5843286514282227,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 43,
+     "B_tokens_after": 41,
+     "prefill_ms": 152.38606905937195,
+     "scoped_answer": {
+      "text": "\"baggage\": \"15kg check-in included\"",
+      "n_generated": 11,
+      "n_context": 68,
+      "n_question": 16,
+      "question_ms": 18.978528022766113,
+      "generate_ms": 94.66585791110992
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5606570243835449,
+     "flat_control_answer": {
+      "text": "\"baggage\": \"15kg check-in included\"",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 20.133437037467957,
+      "generate_ms": 95.92616903781891
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.071274757385254,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"inbound\": {\"flight\": \"OX-999\", \"from\": \"DEL\", \"to\": \"BLR\", \"depart\": \"23:00\", \"arrive\": \"01:30\"}\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"baggage\": \"15kg check-in included\"",
+    "n_generated": 11,
+    "n_context": 0,
+    "n_question": 16,
+    "question_ms": 20.17106807231903,
+    "generate_ms": 97.6253319978714
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "15kg",
+   "baseline_correct": true
+  },
+  {
+   "doc": "flight_search.json",
+   "question": "What is the inbound flight number?",
+   "A": "inbound",
+   "B": "fares",
+   "n_nodes": 9,
+   "n_tokens": 251,
+   "prefill_ms": 201.5298079252243,
+   "baseline_scoped": {
+    "text": "\"flight\": \"OX-214\"",
+    "n_generated": 8,
+    "n_context": 71,
+    "n_question": 15,
+    "question_ms": 22.42889702320099,
+    "generate_ms": 72.00048899650574
+   },
+   "baseline_full": {
+    "text": "\"flight\": \"OX-209\"",
+    "n_generated": 8,
+    "n_context": 251,
+    "n_question": 15,
+    "question_ms": 22.85371994972229,
+    "generate_ms": 70.52595698833466
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 8229165,
+    "kv_bytes_after": 6032833,
+    "kv_cells_before": 251,
+    "kv_cells_after": 184,
+    "scoped_answer": {
+     "text": "\"flight\": \"OX-214\"",
+     "n_generated": 8,
+     "n_context": 71,
+     "n_question": 15,
+     "question_ms": 21.559298992156982,
+     "generate_ms": 66.50293409824371
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.7725021839141846,
+    "full_answer": {
+     "text": "\"flight\": \"OX-209\"",
+     "n_generated": 8,
+     "n_context": 184,
+     "n_question": 15,
+     "question_ms": 22.304466009140015,
+     "generate_ms": 67.63796293735504
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": false
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 6,
+     "B_tokens_after": 6,
+     "prefill_ms": 157.7663940191269,
+     "scoped_answer": {
+      "text": "\"flight\": \"OX-214\"",
+      "n_generated": 8,
+      "n_context": 71,
+      "n_question": 15,
+      "question_ms": 24.613335013389587,
+      "generate_ms": 71.67298698425293
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"flight\": \"OX-214\"",
+      "n_generated": 8,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 23.206183075904846,
+      "generate_ms": 70.91322100162506
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 4.249991416931152,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 6,
+     "B_tokens_after": 20,
+     "prefill_ms": 174.15415108203888,
+     "scoped_answer": {
+      "text": "\"flight\": \"OX-214\"",
+      "n_generated": 8,
+      "n_context": 71,
+      "n_question": 15,
+      "question_ms": 22.213474988937378,
+      "generate_ms": 71.07863199710846
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.7066991329193115,
+     "flat_control_answer": {
+      "text": "\"flight\": \"OX-214\"",
+      "n_generated": 8,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 23.34144401550293,
+      "generate_ms": 71.28969299793243
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.5675435066223145,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"fares\": [{\"cabin\": \"economy\", \"price_inr\": 100}]\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"flight\": \"OX-214\"",
+    "n_generated": 8,
+    "n_context": 0,
+    "n_question": 15,
+    "question_ms": 23.12997305393219,
+    "generate_ms": 71.4450249671936
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "OX-214",
+   "baseline_correct": true
+  },
+  {
+   "doc": "product_catalog.json",
+   "question": "How many days does delivery take?",
+   "A": "shipping",
+   "B": "reviews",
+   "n_nodes": 10,
+   "n_tokens": 230,
+   "prefill_ms": 187.67585396766663,
+   "baseline_scoped": {
+    "text": "\"delivery_days\": 3",
+    "n_generated": 6,
+    "n_context": 56,
+    "n_question": 15,
+    "question_ms": 22.481287956237793,
+    "generate_ms": 52.55112707614899
+   },
+   "baseline_full": {
+    "text": "\"delivery_days\": 3",
+    "n_generated": 6,
+    "n_context": 230,
+    "n_question": 15,
+    "question_ms": 22.549587965011597,
+    "generate_ms": 51.247686982154846
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 7541017,
+    "kv_bytes_after": 5311917,
+    "kv_cells_before": 230,
+    "kv_cells_after": 162,
+    "scoped_answer": {
+     "text": "\"delivery_days\": 3",
+     "n_generated": 6,
+     "n_context": 56,
+     "n_question": 15,
+     "question_ms": 21.349078059196472,
+     "generate_ms": 50.6052520275116
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5549196004867554,
+    "full_answer": {
+     "text": "\"delivery_days\": 3",
+     "n_generated": 6,
+     "n_context": 162,
+     "n_question": 15,
+     "question_ms": 22.010064005851746,
+     "generate_ms": 50.9920939207077
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 5,
+     "B_tokens_after": 5,
+     "prefill_ms": 145.4206520318985,
+     "scoped_answer": {
+      "text": "\"delivery_days\": 3",
+      "n_generated": 6,
+      "n_context": 56,
+      "n_question": 15,
+      "question_ms": 21.86520206928253,
+      "generate_ms": 52.060693979263306
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"shipping\": {\n\"delivery_days\": 3,\n}",
+      "n_generated": 12,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 23.194533944129944,
+      "generate_ms": 102.58721399307251
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.5408210754394531,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 5,
+     "B_tokens_after": 21,
+     "prefill_ms": 156.56229400634766,
+     "scoped_answer": {
+      "text": "\"delivery_days\": 3",
+      "n_generated": 6,
+      "n_context": 56,
+      "n_question": 15,
+      "question_ms": 22.023643970489502,
+      "generate_ms": 54.07202994823456
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"shipping\": {\n\"delivery_days\": 3,\n}",
+      "n_generated": 12,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 23.142173051834106,
+      "generate_ms": 104.85561299324036
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.604957103729248,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"reviews\": [{\"rating\": 2, \"text\": \"Arrived late and dented.\"}]\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"shipping\": {\n\"delivery_days\": 3,\n}",
+    "n_generated": 12,
+    "n_context": 0,
+    "n_question": 15,
+    "question_ms": 22.787569999694824,
+    "generate_ms": 102.30151200294495
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "3",
+   "baseline_correct": true
+  },
+  {
+   "doc": "product_catalog.json",
+   "question": "What is the product brand?",
+   "A": "product",
+   "B": "pricing",
+   "n_nodes": 10,
+   "n_tokens": 230,
+   "prefill_ms": 186.74492502212524,
+   "baseline_scoped": {
+    "text": "\"Orbit\"",
+    "n_generated": 4,
+    "n_context": 79,
+    "n_question": 14,
+    "question_ms": 21.535648941993713,
+    "generate_ms": 36.04350996017456
+   },
+   "baseline_full": {
+    "text": "\"Harbour Stores\"",
+    "n_generated": 5,
+    "n_context": 230,
+    "n_question": 14,
+    "question_ms": 21.578800082206726,
+    "generate_ms": 43.03120803833008
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 7541017,
+    "kv_bytes_after": 6688737,
+    "kv_cells_before": 230,
+    "kv_cells_after": 204,
+    "scoped_answer": {
+     "text": "\"Orbit\"",
+     "n_generated": 4,
+     "n_context": 79,
+     "n_question": 14,
+     "question_ms": 20.503331065177917,
+     "generate_ms": 34.213545083999634
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.9856033325195312,
+    "full_answer": {
+     "text": "\"Orbit\"",
+     "n_generated": 4,
+     "n_context": 204,
+     "n_question": 14,
+     "question_ms": 21.279688000679016,
+     "generate_ms": 35.25733304023743
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 26,
+     "B_tokens_after": 26,
+     "prefill_ms": 144.59119403362274,
+     "scoped_answer": {
+      "text": "\"Orbit\"",
+      "n_generated": 4,
+      "n_context": 79,
+      "n_question": 14,
+      "question_ms": 21.122715950012207,
+      "generate_ms": 35.66902697086334
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"Orbit\"",
+      "n_generated": 4,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 22.22599506378174,
+      "generate_ms": 36.441344022750854
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 4.5785322189331055,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 26,
+     "B_tokens_after": 23,
+     "prefill_ms": 143.3602739572525,
+     "scoped_answer": {
+      "text": "\"Orbit\"",
+      "n_generated": 4,
+      "n_context": 79,
+      "n_question": 14,
+      "question_ms": 21.097205996513367,
+      "generate_ms": 35.13205301761627
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5480895042419434,
+     "flat_control_answer": {
+      "text": "\"Orbit\"",
+      "n_generated": 4,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 22.330495953559875,
+      "generate_ms": 35.8799889087677
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 4.316836357116699,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"pricing\": {\"price\": 9999, \"currency\": \"USD\", \"discount_pct\": 0}\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"brand\": \"Orbit\"",
+    "n_generated": 7,
+    "n_context": 0,
+    "n_question": 14,
+    "question_ms": 21.871482014656067,
+    "generate_ms": 61.28214108943939
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "Orbit",
+   "baseline_correct": true
+  },
+  {
+   "doc": "movie_db.json",
+   "question": "Who directed the film?",
+   "A": "crew",
+   "B": "cast",
+   "n_nodes": 9,
+   "n_tokens": 209,
+   "prefill_ms": 171.8850620985031,
+   "baseline_scoped": {
+    "text": "\"director\": \"Meera Krishnan\"",
+    "n_generated": 9,
+    "n_context": 59,
+    "n_question": 13,
+    "question_ms": 20.447721004486084,
+    "generate_ms": 75.75178098678589
+   },
+   "baseline_full": {
+    "text": "\"director\": \"Meera Krishnan\"",
+    "n_generated": 9,
+    "n_context": 209,
+    "n_question": 13,
+    "question_ms": 20.468599915504456,
+    "generate_ms": 75.48780906200409
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6852393,
+    "kv_bytes_after": 4819973,
+    "kv_cells_before": 209,
+    "kv_cells_after": 147,
+    "scoped_answer": {
+     "text": "\"director\": \"Meera Krishnan\"",
+     "n_generated": 9,
+     "n_context": 59,
+     "n_question": 13,
+     "question_ms": 19.647204041481018,
+     "generate_ms": 73.56958293914795
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6732602119445801,
+    "full_answer": {
+     "text": "\"director\": \"Meera Krishnan\"",
+     "n_generated": 9,
+     "n_context": 147,
+     "n_question": 13,
+     "question_ms": 20.075127959251404,
+     "generate_ms": 74.77743303775787
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 5,
+     "B_tokens_after": 5,
+     "prefill_ms": 131.88273000717163,
+     "scoped_answer": {
+      "text": "\"director\": \"Meera Krishnan\"",
+      "n_generated": 9,
+      "n_context": 59,
+      "n_question": 13,
+      "question_ms": 20.469350934028625,
+      "generate_ms": 78.18672096729279
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "\"director\": \"Meera Krishnan\"",
+      "n_generated": 9,
+      "n_context": 0,
+      "n_question": 13,
+      "question_ms": 20.778892993927002,
+      "generate_ms": 77.37473392486572
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.7263336181640625,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 5,
+     "B_tokens_after": 18,
+     "prefill_ms": 144.99115800857544,
+     "scoped_answer": {
+      "text": "\"director\": \"Meera Krishnan\"",
+      "n_generated": 9,
+      "n_context": 59,
+      "n_question": 13,
+      "question_ms": 20.236999034881592,
+      "generate_ms": 75.0652049779892
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.7772836685180664,
+     "flat_control_answer": {
+      "text": "\"director\": \"Meera Krishnan\"",
+      "n_generated": 9,
+      "n_context": 0,
+      "n_question": 13,
+      "question_ms": 20.98131501674652,
+      "generate_ms": 76.6675990819931
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.6401153802871704,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"cast\": [{\"name\": \"X. Extra\", \"role\": \"lead\"}]\n"
+   },
+   "flat_baseline_answer": {
+    "text": "\"director\": \"Meera Krishnan\"",
+    "n_generated": 9,
+    "n_context": 0,
+    "n_question": 13,
+    "question_ms": 20.79472303390503,
+    "generate_ms": 76.75561904907227
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "Meera Krishnan",
+   "baseline_correct": true
+  },
+  {
+   "doc": "movie_db.json",
+   "question": "What is the IMDb rating? Reply with the number only.",
+   "A": "ratings",
+   "B": "crew",
+   "n_nodes": 9,
+   "n_tokens": 209,
+   "prefill_ms": 174.13758099079132,
+   "baseline_scoped": {
+    "text": "8.1",
+    "n_generated": 3,
+    "n_context": 59,
+    "n_question": 20,
+    "question_ms": 23.51102602481842,
+    "generate_ms": 28.180835008621216
+   },
+   "baseline_full": {
+    "text": "\"8.1\"",
+    "n_generated": 5,
+    "n_context": 209,
+    "n_question": 20,
+    "question_ms": 24.545794010162354,
+    "generate_ms": 44.01096701622009
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6852393,
+    "kv_bytes_after": 5836213,
+    "kv_cells_before": 209,
+    "kv_cells_after": 178,
+    "scoped_answer": {
+     "text": "8.1",
+     "n_generated": 3,
+     "n_context": 59,
+     "n_question": 20,
+     "question_ms": 23.316894054412842,
+     "generate_ms": 26.565441012382507
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5787298679351807,
+    "full_answer": {
+     "text": "\"8.1\"",
+     "n_generated": 5,
+     "n_context": 178,
+     "n_question": 20,
+     "question_ms": 24.15956199169159,
+     "generate_ms": 43.70586407184601
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 31,
+     "B_tokens_after": 31,
+     "prefill_ms": 134.46618008613586,
+     "scoped_answer": {
+      "text": "8.1",
+      "n_generated": 3,
+      "n_context": 59,
+      "n_question": 20,
+      "question_ms": 23.187664031982422,
+      "generate_ms": 27.590438961982727
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "92",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 20,
+      "question_ms": 24.49118399620056,
+      "generate_ms": 10.382435917854309
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 4.197933197021484,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 31,
+     "B_tokens_after": 20,
+     "prefill_ms": 131.22962403297424,
+     "scoped_answer": {
+      "text": "8.1",
+      "n_generated": 3,
+      "n_context": 59,
+      "n_question": 20,
+      "question_ms": 23.548396944999695,
+      "generate_ms": 27.591778993606567
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6402547359466553,
+     "flat_control_answer": {
+      "text": "\"92\"",
+      "n_generated": 3,
+      "n_context": 0,
+      "n_question": 20,
+      "question_ms": 24.20230197906494,
+      "generate_ms": 27.88971209526062
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 2.3296918869018555,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "\"crew\": {\"director\": \"A. Nother\", \"music\": \"B. Flat\"}\n"
+   },
+   "flat_baseline_answer": {
+    "text": "8.1",
+    "n_generated": 3,
+    "n_context": 0,
+    "n_question": 20,
+    "question_ms": 24.566025018692017,
+    "generate_ms": 28.173664093017578
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "8.1",
+   "baseline_correct": true
+  }
+ ]
+}

@@ -1,0 +1,1258 @@
+{
+ "summary": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 10,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 10,
+  "test1_free_length_correct": 10,
+  "test2_pass": 10,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 6,
+  "test2_full_scope_correct": 7
+ },
+ "results": [
+  {
+   "doc": "flight_booking.json",
+   "question": "What is the booking confirmation code?",
+   "A": "turn 8 assistant",
+   "B": "turn 2 search_flights",
+   "n_nodes": 9,
+   "n_tokens": 239,
+   "prefill_ms": 195.8721319437027,
+   "baseline_scoped": {
+    "text": "OX9K2Q",
+    "n_generated": 5,
+    "n_context": 56,
+    "n_question": 15,
+    "question_ms": 22.50640606880188,
+    "generate_ms": 46.02025902271271
+   },
+   "baseline_full": {
+    "text": "### turn 5 [assistant]\nOx-209 confirmation code is OX9K2Q.",
+    "n_generated": 21,
+    "n_context": 239,
+    "n_question": 15,
+    "question_ms": 22.75003707408905,
+    "generate_ms": 177.47530102729797
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 7835825,
+    "kv_bytes_after": 6000145,
+    "kv_cells_before": 239,
+    "kv_cells_after": 183,
+    "scoped_answer": {
+     "text": "OX9K2Q",
+     "n_generated": 5,
+     "n_context": 56,
+     "n_question": 15,
+     "question_ms": 21.4757159948349,
+     "generate_ms": 41.77989399433136
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.7917118072509766,
+    "full_answer": {
+     "text": "### turn 5 [assistant]\nOx-209 at 06:40 looks good. Book one economy seat?\n\n### turn 6 [assistant]\nBooking now.\n\n### turn 7 [assistant]\nConfirmation code OX9K2",
+     "n_generated": 48,
+     "n_context": 183,
+     "n_question": 15,
+     "question_ms": 22.149423003196716,
+     "generate_ms": 387.2583680152893
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": false
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 56,
+     "B_tokens_after": 56,
+     "prefill_ms": 151.6209980249405,
+     "scoped_answer": {
+      "text": "OX9K2Q",
+      "n_generated": 5,
+      "n_context": 56,
+      "n_question": 15,
+      "question_ms": 21.99032998085022,
+      "generate_ms": 44.989630937576294
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "OX9K2Q",
+      "n_generated": 5,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 23.040979981422424,
+      "generate_ms": 46.03449904918671
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.4853668212890625,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 56,
+     "B_tokens_after": 39,
+     "prefill_ms": 142.86877596378326,
+     "scoped_answer": {
+      "text": "OX9K2Q",
+      "n_generated": 5,
+      "n_context": 56,
+      "n_question": 15,
+      "question_ms": 21.938111066818237,
+      "generate_ms": 43.19968509674072
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5245401859283447,
+     "flat_control_answer": {
+      "text": "OX9K2Q",
+      "n_generated": 5,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 22.843057990074158,
+      "generate_ms": 45.62462496757507
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.809823989868164,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "call c9 search_flights({\"from\": \"DEL\", \"to\": \"MAA\"}) result: Found OX-300 departing 18:00, price INR 5000.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "OX9K2Q",
+    "n_generated": 5,
+    "n_context": 0,
+    "n_question": 15,
+    "question_ms": 23.320312023162842,
+    "generate_ms": 46.770524978637695
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "OX9K2Q",
+   "baseline_correct": true
+  },
+  {
+   "doc": "flight_booking.json",
+   "question": "Under what passenger name was the flight booked?",
+   "A": "turn 6 book_flight",
+   "B": "turn 4 assistant",
+   "n_nodes": 9,
+   "n_tokens": 239,
+   "prefill_ms": 196.30068695545197,
+   "baseline_scoped": {
+    "text": "\"Aditya Sai\"",
+    "n_generated": 6,
+    "n_context": 79,
+    "n_question": 17,
+    "question_ms": 22.139523029327393,
+    "generate_ms": 54.752710938453674
+   },
+   "baseline_full": {
+    "text": "Aditya Sai.",
+    "n_generated": 5,
+    "n_context": 239,
+    "n_question": 17,
+    "question_ms": 22.998018980026245,
+    "generate_ms": 45.04712092876434
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 7835825,
+    "kv_bytes_after": 7081885,
+    "kv_cells_before": 239,
+    "kv_cells_after": 216,
+    "scoped_answer": {
+     "text": "\"Aditya Sai\"",
+     "n_generated": 6,
+     "n_context": 79,
+     "n_question": 17,
+     "question_ms": 21.820308923721313,
+     "generate_ms": 50.993549942970276
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 1.1342039108276367,
+    "full_answer": {
+     "text": "Aditya Sai.",
+     "n_generated": 5,
+     "n_context": 216,
+     "n_question": 17,
+     "question_ms": 22.82757794857025,
+     "generate_ms": 43.79569101333618
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 23,
+     "B_tokens_after": 23,
+     "prefill_ms": 151.17297494411469,
+     "scoped_answer": {
+      "text": "\"Aditya Sai\"",
+      "n_generated": 6,
+      "n_context": 79,
+      "n_question": 17,
+      "question_ms": 21.98073101043701,
+      "generate_ms": 54.10403597354889
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Aditya Sai.",
+      "n_generated": 5,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 23.16883099079132,
+      "generate_ms": 46.39976191520691
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.364302158355713,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 23,
+     "B_tokens_after": 16,
+     "prefill_ms": 145.446387052536,
+     "scoped_answer": {
+      "text": "\"Aditya Sai\"",
+      "n_generated": 6,
+      "n_context": 79,
+      "n_question": 17,
+      "question_ms": 21.66223907470703,
+      "generate_ms": 51.960968017578125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5286641120910645,
+     "flat_control_answer": {
+      "text": "Aditya Sai.",
+      "n_generated": 5,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 22.81082797050476,
+      "generate_ms": 44.23469400405884
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.2390542030334473,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "The 06:40 flight is full. Only the evening flight is available.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Aditya Sai.",
+    "n_generated": 5,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 22.731666922569275,
+    "generate_ms": 46.2692209482193
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "Aditya",
+   "baseline_correct": true
+  },
+  {
+   "doc": "weather_lookup.json",
+   "question": "What is the forecast for tomorrow at 15:00?",
+   "A": "turn 8 assistant",
+   "B": "turn 2 get_weather",
+   "n_nodes": 9,
+   "n_tokens": 204,
+   "prefill_ms": 168.98488199710846,
+   "baseline_scoped": {
+    "text": "The forecast for tomorrow at 15:00 is partly cloudy and 32C.",
+    "n_generated": 17,
+    "n_context": 49,
+    "n_question": 20,
+    "question_ms": 23.369712948799133,
+    "generate_ms": 139.8612220287323
+   },
+   "baseline_full": {
+    "text": "### turn 9 [assistant]\nC2: Port Avelin is expected to be partly cloudy tomorrow at 15:00 with a temperature of 32C and humidity of 38%.",
+    "n_generated": 39,
+    "n_context": 204,
+    "n_question": 20,
+    "question_ms": 24.513942003250122,
+    "generate_ms": 322.8973990678787
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6688529,
+    "kv_bytes_after": 5246209,
+    "kv_cells_before": 204,
+    "kv_cells_after": 160,
+    "scoped_answer": {
+     "text": "The forecast for tomorrow at 15:00 is partly cloudy and 32C.",
+     "n_generated": 17,
+     "n_context": 49,
+     "n_question": 20,
+     "question_ms": 23.403421998023987,
+     "generate_ms": 137.68617498874664
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.8588128089904785,
+    "full_answer": {
+     "text": "### turn 9 [assistant]\nIt is partly cloudy and 32C in Port Avelin.",
+     "n_generated": 21,
+     "n_context": 160,
+     "n_question": 20,
+     "question_ms": 24.22106897830963,
+     "generate_ms": 175.69108700752258
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 44,
+     "B_tokens_after": 44,
+     "prefill_ms": 130.88091897964478,
+     "scoped_answer": {
+      "text": "The forecast for tomorrow at 15:00 is partly cloudy and 32C.",
+      "n_generated": 17,
+      "n_context": 49,
+      "n_question": 20,
+      "question_ms": 23.556145071983337,
+      "generate_ms": 139.42715895175934
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Tomorrow at 15:00 expect partly cloudy and 32C.",
+      "n_generated": 14,
+      "n_context": 0,
+      "n_question": 20,
+      "question_ms": 24.424800992012024,
+      "generate_ms": 119.01583993434906
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.61245059967041,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 44,
+     "B_tokens_after": 25,
+     "prefill_ms": 127.25413799285889,
+     "scoped_answer": {
+      "text": "The forecast for tomorrow at 15:00 is partly cloudy and 32C.",
+      "n_generated": 17,
+      "n_context": 49,
+      "n_question": 20,
+      "question_ms": 23.241400957107544,
+      "generate_ms": 138.6697130203247
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6546568870544434,
+     "flat_control_answer": {
+      "text": "Tomorrow at 15:00 expect partly cloudy and 32C.",
+      "n_generated": 14,
+      "n_context": 0,
+      "n_question": 20,
+      "question_ms": 24.18605899810791,
+      "generate_ms": 119.25760197639465
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.12572979927063,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "call c9 get_weather({\"city\": \"Skerra\"}) result: Skerra Island: stormy, 19C.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Tomorrow at 15:00 expect partly cloudy and 32C.",
+    "n_generated": 14,
+    "n_context": 0,
+    "n_question": 20,
+    "question_ms": 24.514811992645264,
+    "generate_ms": 118.70923793315887
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "32",
+   "baseline_correct": true
+  },
+  {
+   "doc": "weather_lookup.json",
+   "question": "What did the assistant say the current temperature is?",
+   "A": "turn 4 assistant",
+   "B": "turn 1 user",
+   "n_nodes": 9,
+   "n_tokens": 204,
+   "prefill_ms": 168.4974089860916,
+   "baseline_scoped": {
+    "text": "The assistant said the current temperature is 31C.",
+    "n_generated": 11,
+    "n_context": 48,
+    "n_question": 18,
+    "question_ms": 22.824007987976074,
+    "generate_ms": 91.66992497444153
+   },
+   "baseline_full": {
+    "text": "### turn 5 [assistant]\nThe current temperature is 32C.",
+    "n_generated": 15,
+    "n_context": 204,
+    "n_question": 18,
+    "question_ms": 23.40009295940399,
+    "generate_ms": 125.42902398109436
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6688529,
+    "kv_bytes_after": 6065709,
+    "kv_cells_before": 204,
+    "kv_cells_after": 185,
+    "scoped_answer": {
+     "text": "The assistant said the current temperature is 31C.",
+     "n_generated": 11,
+     "n_context": 48,
+     "n_question": 18,
+     "question_ms": 22.40590500831604,
+     "generate_ms": 90.62170600891113
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5514943599700928,
+    "full_answer": {
+     "text": "The assistant mentioned that the current temperature is 32C.",
+     "n_generated": 12,
+     "n_context": 185,
+     "n_question": 18,
+     "question_ms": 23.49626398086548,
+     "generate_ms": 100.19590497016907
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": false
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 19,
+     "B_tokens_after": 19,
+     "prefill_ms": 134.05852496623993,
+     "scoped_answer": {
+      "text": "The assistant said the current temperature is 31C.",
+      "n_generated": 11,
+      "n_context": 48,
+      "n_question": 18,
+      "question_ms": 22.664546966552734,
+      "generate_ms": 92.26071000099182
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The assistant said the current temperature is 31C.",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 23.49204397201538,
+      "generate_ms": 93.6533910036087
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 8.820323944091797,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 19,
+     "B_tokens_after": 9,
+     "prefill_ms": 126.77970504760742,
+     "scoped_answer": {
+      "text": "The assistant said the current temperature is 31C.",
+      "n_generated": 11,
+      "n_context": 48,
+      "n_question": 18,
+      "question_ms": 22.36878490447998,
+      "generate_ms": 92.45070195198059
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5346050262451172,
+     "flat_control_answer": {
+      "text": "The assistant said the current temperature is 31C.",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 23.455453038215637,
+      "generate_ms": 93.74341189861298
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 9.114493370056152,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "Is it raining on Skerra Island today?\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The assistant said the current temperature is 31C.",
+    "n_generated": 11,
+    "n_context": 0,
+    "n_question": 18,
+    "question_ms": 23.52134394645691,
+    "generate_ms": 93.98405396938324
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "31",
+   "baseline_correct": true
+  },
+  {
+   "doc": "repo_issue.json",
+   "question": "What comment id was posted? Reply with the id only.",
+   "A": "turn 8 assistant",
+   "B": "turn 2 get_issue",
+   "n_nodes": 9,
+   "n_tokens": 207,
+   "prefill_ms": 173.73992109298706,
+   "baseline_scoped": {
+    "text": "9917",
+    "n_generated": 2,
+    "n_context": 48,
+    "n_question": 20,
+    "question_ms": 23.203130960464478,
+    "generate_ms": 19.499879956245422
+   },
+   "baseline_full": {
+    "text": "### turn 5 [assistant]\n412",
+    "n_generated": 8,
+    "n_context": 207,
+    "n_question": 20,
+    "question_ms": 24.338701009750366,
+    "generate_ms": 68.6829160451889
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6786873,
+    "kv_bytes_after": 5344553,
+    "kv_cells_before": 207,
+    "kv_cells_after": 163,
+    "scoped_answer": {
+     "text": "9917",
+     "n_generated": 2,
+     "n_context": 48,
+     "n_question": 20,
+     "question_ms": 23.170521020889282,
+     "generate_ms": 18.243041038513184
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5248198509216309,
+    "full_answer": {
+     "text": "### turn 5 [assistant]\n412",
+     "n_generated": 8,
+     "n_context": 163,
+     "n_question": 20,
+     "question_ms": 23.92639696598053,
+     "generate_ms": 68.06058096885681
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": false
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 44,
+     "B_tokens_after": 44,
+     "prefill_ms": 133.8267229795456,
+     "scoped_answer": {
+      "text": "9917",
+      "n_generated": 2,
+      "n_context": 48,
+      "n_question": 20,
+      "question_ms": 22.92116892337799,
+      "generate_ms": 19.09108793735504
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "9917",
+      "n_generated": 2,
+      "n_context": 0,
+      "n_question": 20,
+      "question_ms": 24.15972900390625,
+      "generate_ms": 19.55479097366333
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.266998529434204,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 44,
+     "B_tokens_after": 27,
+     "prefill_ms": 128.34886705875397,
+     "scoped_answer": {
+      "text": "9917",
+      "n_generated": 2,
+      "n_context": 48,
+      "n_question": 20,
+      "question_ms": 23.27598202228546,
+      "generate_ms": 19.32573902606964
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6789035797119141,
+     "flat_control_answer": {
+      "text": "9917",
+      "n_generated": 2,
+      "n_context": 0,
+      "n_question": 20,
+      "question_ms": 24.041468024253845,
+      "generate_ms": 19.386629939079285
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.785520315170288,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "call c9 get_issue({\"id\": 100}) result: Issue 100 closed, assignee nobody, title: Old typo.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "9917",
+    "n_generated": 2,
+    "n_context": 0,
+    "n_question": 20,
+    "question_ms": 24.374861001968384,
+    "generate_ms": 19.44527006149292
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "9917",
+   "baseline_correct": true
+  },
+  {
+   "doc": "repo_issue.json",
+   "question": "On which platform was the bug reproduced? Reply with one word.",
+   "A": "turn 6 post_comment",
+   "B": "turn 4 assistant",
+   "n_nodes": 9,
+   "n_tokens": 207,
+   "prefill_ms": 173.9907350540161,
+   "baseline_scoped": {
+    "text": "Linux",
+    "n_generated": 1,
+    "n_context": 72,
+    "n_question": 21,
+    "question_ms": 24.729033946990967,
+    "generate_ms": 10.660167932510376
+   },
+   "baseline_full": {
+    "text": "Linux",
+    "n_generated": 1,
+    "n_context": 207,
+    "n_question": 21,
+    "question_ms": 25.37652897834778,
+    "generate_ms": 10.263824939727783
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6786873,
+    "kv_bytes_after": 6164053,
+    "kv_cells_before": 207,
+    "kv_cells_after": 188,
+    "scoped_answer": {
+     "text": "Linux",
+     "n_generated": 1,
+     "n_context": 72,
+     "n_question": 21,
+     "question_ms": 24.43730092048645,
+     "generate_ms": 9.967972040176392
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6985986232757568,
+    "full_answer": {
+     "text": "Linux",
+     "n_generated": 1,
+     "n_context": 188,
+     "n_question": 21,
+     "question_ms": 25.1683269739151,
+     "generate_ms": 10.040562987327576
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 19,
+     "B_tokens_after": 19,
+     "prefill_ms": 134.181165933609,
+     "scoped_answer": {
+      "text": "Linux",
+      "n_generated": 1,
+      "n_context": 72,
+      "n_question": 21,
+      "question_ms": 24.3796409368515,
+      "generate_ms": 10.443956017494202
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Linux",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 21,
+      "question_ms": 25.47479999065399,
+      "generate_ms": 10.59837794303894
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 0.9437360763549805,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 19,
+     "B_tokens_after": 11,
+     "prefill_ms": 128.84172201156616,
+     "scoped_answer": {
+      "text": "Linux",
+      "n_generated": 1,
+      "n_context": 72,
+      "n_question": 21,
+      "question_ms": 24.5309419631958,
+      "generate_ms": 12.90976595878601
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.8203895092010498,
+     "flat_control_answer": {
+      "text": "Linux",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 21,
+      "question_ms": 25.533760905265808,
+      "generate_ms": 10.371354937553406
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 0.6518278121948242,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "Issue 412 is closed and nobody owns it now.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Linux",
+    "n_generated": 1,
+    "n_context": 0,
+    "n_question": 21,
+    "question_ms": 25.484430074691772,
+    "generate_ms": 10.626298069953918
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "Linux",
+   "baseline_correct": true
+  },
+  {
+   "doc": "shopping_return.json",
+   "question": "What is the refund amount in INR? Reply with the number only.",
+   "A": "turn 8 assistant",
+   "B": "turn 2 get_order",
+   "n_nodes": 9,
+   "n_tokens": 207,
+   "prefill_ms": 171.44155406951904,
+   "baseline_scoped": {
+    "text": "2499",
+    "n_generated": 2,
+    "n_context": 52,
+    "n_question": 23,
+    "question_ms": 26.04513394832611,
+    "generate_ms": 19.618152022361755
+   },
+   "baseline_full": {
+    "text": "2499",
+    "n_generated": 2,
+    "n_context": 207,
+    "n_question": 23,
+    "question_ms": 27.30308508872986,
+    "generate_ms": 18.801385045051575
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6786877,
+    "kv_bytes_after": 5344557,
+    "kv_cells_before": 207,
+    "kv_cells_after": 163,
+    "scoped_answer": {
+     "text": "2499",
+     "n_generated": 2,
+     "n_context": 52,
+     "n_question": 23,
+     "question_ms": 25.80364203453064,
+     "generate_ms": 18.373062014579773
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6162300109863281,
+    "full_answer": {
+     "text": "2499",
+     "n_generated": 2,
+     "n_context": 163,
+     "n_question": 23,
+     "question_ms": 26.691969990730286,
+     "generate_ms": 18.670124053955078
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 44,
+     "B_tokens_after": 44,
+     "prefill_ms": 133.9983650445938,
+     "scoped_answer": {
+      "text": "2499",
+      "n_generated": 2,
+      "n_context": 52,
+      "n_question": 23,
+      "question_ms": 25.865823984146118,
+      "generate_ms": 19.04670798778534
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "2499",
+      "n_generated": 2,
+      "n_context": 0,
+      "n_question": 23,
+      "question_ms": 27.180433988571167,
+      "generate_ms": 19.3176589012146
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.762235164642334,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 44,
+     "B_tokens_after": 29,
+     "prefill_ms": 126.44123208522797,
+     "scoped_answer": {
+      "text": "2499",
+      "n_generated": 2,
+      "n_context": 52,
+      "n_question": 23,
+      "question_ms": 26.105616092681885,
+      "generate_ms": 19.211028933525085
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.47582507133483887,
+     "flat_control_answer": {
+      "text": "2499",
+      "n_generated": 2,
+      "n_context": 0,
+      "n_question": 23,
+      "question_ms": 26.781909942626953,
+      "generate_ms": 19.338689923286438
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.6374855041503906,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "call c9 get_order({\"order\": 100}) result: Order 100: socks, INR 199, delivered a month ago.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "2499",
+    "n_generated": 2,
+    "n_context": 0,
+    "n_question": 23,
+    "question_ms": 27.112753033638,
+    "generate_ms": 19.337679982185364
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "2499",
+   "baseline_correct": true
+  },
+  {
+   "doc": "shopping_return.json",
+   "question": "What return reason was filed?",
+   "A": "turn 6 start_return",
+   "B": "turn 4 assistant",
+   "n_nodes": 9,
+   "n_tokens": 207,
+   "prefill_ms": 172.85036504268646,
+   "baseline_scoped": {
+    "text": "\"lid leaks\"",
+    "n_generated": 4,
+    "n_context": 79,
+    "n_question": 14,
+    "question_ms": 21.409506916999817,
+    "generate_ms": 36.22434902191162
+   },
+   "baseline_full": {
+    "text": "### turn 7 [assistant]\nReturn reason: Lid leaks.",
+    "n_generated": 13,
+    "n_context": 207,
+    "n_question": 14,
+    "question_ms": 21.32382607460022,
+    "generate_ms": 110.12137806415558
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6786877,
+    "kv_bytes_after": 6327957,
+    "kv_cells_before": 207,
+    "kv_cells_after": 193,
+    "scoped_answer": {
+     "text": "\"lid leaks\"",
+     "n_generated": 4,
+     "n_context": 79,
+     "n_question": 14,
+     "question_ms": 20.54435896873474,
+     "generate_ms": 34.57947492599487
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 1.01171875,
+    "full_answer": {
+     "text": "### turn 7 [assistant]\nReturn reason: Lid leaks.",
+     "n_generated": 13,
+     "n_context": 193,
+     "n_question": 14,
+     "question_ms": 21.098544001579285,
+     "generate_ms": 109.29336094856262
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 14,
+     "B_tokens_after": 14,
+     "prefill_ms": 133.4070199728012,
+     "scoped_answer": {
+      "text": "\"lid leaks\"",
+      "n_generated": 4,
+      "n_context": 79,
+      "n_question": 14,
+      "question_ms": 21.00545299053192,
+      "generate_ms": 35.820894956588745
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The return reason was \"lid leaks\".",
+      "n_generated": 8,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 21.93342101573944,
+      "generate_ms": 69.83799600601196
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.254324436187744,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 14,
+     "B_tokens_after": 7,
+     "prefill_ms": 128.03120505809784,
+     "scoped_answer": {
+      "text": "\"lid leaks\"",
+      "n_generated": 4,
+      "n_context": 79,
+      "n_question": 14,
+      "question_ms": 21.72256898880005,
+      "generate_ms": 35.684953927993774
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.7939193248748779,
+     "flat_control_answer": {
+      "text": "The return reason was \"lid leaks\".",
+      "n_generated": 8,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 21.546636939048767,
+      "generate_ms": 69.60001397132874
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.9784626960754395,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "Order not found in our records.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The return reason was \"lid leaks\".",
+    "n_generated": 8,
+    "n_context": 0,
+    "n_question": 14,
+    "question_ms": 21.60497796535492,
+    "generate_ms": 69.42245197296143
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "lid leaks",
+   "baseline_correct": true
+  },
+  {
+   "doc": "restaurant_reserve.json",
+   "question": "What table was booked?",
+   "A": "turn 8 assistant",
+   "B": "turn 2 check_tables",
+   "n_nodes": 9,
+   "n_tokens": 201,
+   "prefill_ms": 167.04866695404053,
+   "baseline_scoped": {
+    "text": "T-18",
+    "n_generated": 3,
+    "n_context": 50,
+    "n_question": 13,
+    "question_ms": 20.691390991210938,
+    "generate_ms": 27.95980989933014
+   },
+   "baseline_full": {
+    "text": "### turn 9 [assistant]\nT-18.",
+    "n_generated": 11,
+    "n_context": 201,
+    "n_question": 13,
+    "question_ms": 20.514099955558777,
+    "generate_ms": 92.33591198921204
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6590189,
+    "kv_bytes_after": 5410109,
+    "kv_cells_before": 201,
+    "kv_cells_after": 165,
+    "scoped_answer": {
+     "text": "T-18",
+     "n_generated": 3,
+     "n_context": 50,
+     "n_question": 13,
+     "question_ms": 19.49505090713501,
+     "generate_ms": 26.18475604057312
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.46822071075439453,
+    "full_answer": {
+     "text": "### turn 9 [assistant]\nT-18 for 20:00 under Aditya.",
+     "n_generated": 20,
+     "n_context": 165,
+     "n_question": 13,
+     "question_ms": 20.123776078224182,
+     "generate_ms": 163.79117000102997
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 36,
+     "B_tokens_after": 36,
+     "prefill_ms": 130.05595195293427,
+     "scoped_answer": {
+      "text": "T-18",
+      "n_generated": 3,
+      "n_context": 50,
+      "n_question": 13,
+      "question_ms": 19.915894031524658,
+      "generate_ms": 29.803056001663208
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Table T-18 was booked.",
+      "n_generated": 7,
+      "n_context": 0,
+      "n_question": 13,
+      "question_ms": 20.92925202846527,
+      "generate_ms": 60.54362893104553
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 4.410772323608398,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 36,
+     "B_tokens_after": 23,
+     "prefill_ms": 123.16745507717133,
+     "scoped_answer": {
+      "text": "T-18",
+      "n_generated": 3,
+      "n_context": 50,
+      "n_question": 13,
+      "question_ms": 20.10883605480194,
+      "generate_ms": 27.416375994682312
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.512423038482666,
+     "flat_control_answer": {
+      "text": "Table T-18 was booked for 8pm under Aditya.",
+      "n_generated": 15,
+      "n_context": 0,
+      "n_question": 13,
+      "question_ms": 20.873202919960022,
+      "generate_ms": 126.06284892559052
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 4.1117634773254395,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "call c9 check_tables({\"area\": \"mall\"}) result: Mall food court has tables; menu is noodles.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Table T-18 was booked for 8pm under Aditya.",
+    "n_generated": 15,
+    "n_context": 0,
+    "n_question": 13,
+    "question_ms": 20.740710973739624,
+    "generate_ms": 126.23141098022461
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "T-18",
+   "baseline_correct": true
+  },
+  {
+   "doc": "restaurant_reserve.json",
+   "question": "Under what name was the table reserved?",
+   "A": "turn 6 reserve_table",
+   "B": "turn 4 assistant",
+   "n_nodes": 9,
+   "n_tokens": 201,
+   "prefill_ms": 167.89671409130096,
+   "baseline_scoped": {
+    "text": "\"Aditya\"",
+    "n_generated": 5,
+    "n_context": 83,
+    "n_question": 16,
+    "question_ms": 19.42858099937439,
+    "generate_ms": 45.2867830991745
+   },
+   "baseline_full": {
+    "text": "Aditya.",
+    "n_generated": 4,
+    "n_context": 201,
+    "n_question": 16,
+    "question_ms": 19.788413047790527,
+    "generate_ms": 34.917797923088074
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 6590189,
+    "kv_bytes_after": 6164049,
+    "kv_cells_before": 201,
+    "kv_cells_after": 188,
+    "scoped_answer": {
+     "text": "\"Aditya\"",
+     "n_generated": 5,
+     "n_context": 83,
+     "n_question": 16,
+     "question_ms": 18.856594920158386,
+     "generate_ms": 42.78097307682037
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5779091119766235,
+    "full_answer": {
+     "text": "Aditya.",
+     "n_generated": 4,
+     "n_context": 188,
+     "n_question": 16,
+     "question_ms": 19.571081042289734,
+     "generate_ms": 34.801286935806274
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 13,
+     "B_tokens_after": 13,
+     "prefill_ms": 130.2492640018463,
+     "scoped_answer": {
+      "text": "\"Aditya\"",
+      "n_generated": 5,
+      "n_context": 83,
+      "n_question": 16,
+      "question_ms": 19.273308992385864,
+      "generate_ms": 44.38005602359772
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Aditya.",
+      "n_generated": 4,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 19.87177300453186,
+      "generate_ms": 36.84756398200989
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 4.147857189178467,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 13,
+     "B_tokens_after": 6,
+     "prefill_ms": 129.2659159898758,
+     "scoped_answer": {
+      "text": "\"Aditya\"",
+      "n_generated": 5,
+      "n_context": 83,
+      "n_question": 16,
+      "question_ms": 19.410889983177185,
+      "generate_ms": 43.99072301387787
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6971368789672852,
+     "flat_control_answer": {
+      "text": "Aditya.",
+      "n_generated": 4,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 19.853883981704712,
+      "generate_ms": 37.04595494270325
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.8034558296203613,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "No tables free anywhere tonight.\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Aditya.",
+    "n_generated": 4,
+    "n_context": 0,
+    "n_question": 16,
+    "question_ms": 19.847733974456787,
+    "generate_ms": 36.574930906295776
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "Aditya",
+   "baseline_correct": true
+  }
+ ]
+}

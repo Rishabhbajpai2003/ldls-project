@@ -1,0 +1,82 @@
+[
+ {
+  "A": "turn 8 assistant",
+  "B": "turn 2 search_flights",
+  "doc": "flight_booking.json",
+  "edit_text": "call c9 search_flights({\"from\": \"DEL\", \"to\": \"MAA\"}) result: Found OX-300 departing 18:00, price INR 5000.\n",
+  "expect": "OX9K2Q",
+  "question": "What is the booking confirmation code?"
+ },
+ {
+  "A": "turn 6 book_flight",
+  "B": "turn 4 assistant",
+  "doc": "flight_booking.json",
+  "edit_text": "The 06:40 flight is full. Only the evening flight is available.\n",
+  "expect": "Aditya",
+  "question": "Under what passenger name was the flight booked?"
+ },
+ {
+  "A": "turn 8 assistant",
+  "B": "turn 2 get_weather",
+  "doc": "weather_lookup.json",
+  "edit_text": "call c9 get_weather({\"city\": \"Skerra\"}) result: Skerra Island: stormy, 19C.\n",
+  "expect": "32",
+  "question": "What is the forecast for tomorrow at 15:00?"
+ },
+ {
+  "A": "turn 4 assistant",
+  "B": "turn 1 user",
+  "doc": "weather_lookup.json",
+  "edit_text": "Is it raining on Skerra Island today?\n",
+  "expect": "31",
+  "question": "What did the assistant say the current temperature is?"
+ },
+ {
+  "A": "turn 8 assistant",
+  "B": "turn 2 get_issue",
+  "doc": "repo_issue.json",
+  "edit_text": "call c9 get_issue({\"id\": 100}) result: Issue 100 closed, assignee nobody, title: Old typo.\n",
+  "expect": "9917",
+  "question": "What comment id was posted? Reply with the id only."
+ },
+ {
+  "A": "turn 6 post_comment",
+  "B": "turn 4 assistant",
+  "doc": "repo_issue.json",
+  "edit_text": "Issue 412 is closed and nobody owns it now.\n",
+  "expect": "Linux",
+  "question": "On which platform was the bug reproduced? Reply with one word."
+ },
+ {
+  "A": "turn 8 assistant",
+  "B": "turn 2 get_order",
+  "doc": "shopping_return.json",
+  "edit_text": "call c9 get_order({\"order\": 100}) result: Order 100: socks, INR 199, delivered a month ago.\n",
+  "expect": "2499",
+  "question": "What is the refund amount in INR? Reply with the number only."
+ },
+ {
+  "A": "turn 6 start_return",
+  "B": "turn 4 assistant",
+  "doc": "shopping_return.json",
+  "edit_text": "Order not found in our records.\n",
+  "expect": "lid leaks",
+  "question": "What return reason was filed?"
+ },
+ {
+  "A": "turn 8 assistant",
+  "B": "turn 2 check_tables",
+  "doc": "restaurant_reserve.json",
+  "edit_text": "call c9 check_tables({\"area\": \"mall\"}) result: Mall food court has tables; menu is noodles.\n",
+  "expect": "T-18",
+  "question": "What table was booked?"
+ },
+ {
+  "A": "turn 6 reserve_table",
+  "B": "turn 4 assistant",
+  "doc": "restaurant_reserve.json",
+  "edit_text": "No tables free anywhere tonight.\n",
+  "expect": "Aditya",
+  "question": "Under what name was the table reserved?"
+ }
+]

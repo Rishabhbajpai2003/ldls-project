@@ -1,0 +1,267 @@
+{
+ "domain": "json",
+ "total": {
+  "docs": 5,
+  "nodes": 53,
+  "nodes_before_merge": 221,
+  "tokens": 1345,
+  "max_depth": 3,
+  "markup_share": 0.5443983402489626,
+  "scoped_question_context_share": 0.25289067718473307,
+  "prefill_flat_tok_s": 968.9783961817498,
+  "prefill_tree_tok_s": 987.8697065671927,
+  "generate_tok_s": 61.79088638210819,
+  "kv_bytes_per_token": 32786.22846840721
+ },
+ "tests": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 10,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 10,
+  "test1_free_length_correct": 10,
+  "test2_pass": 10,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 7,
+  "test2_full_scope_correct": 8
+ },
+ "docs": [
+  {
+   "doc": "flight_search.json",
+   "nodes": 9,
+   "nodes_before_merge": 39,
+   "tokens_total": 251,
+   "tokens_document": 223,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 20,
+    "median": 34.5,
+    "max": 67
+   },
+   "leaf_tokens": {
+    "min": 20,
+    "median": 29,
+    "max": 44
+   },
+   "n_leaves": 7,
+   "markup_tokens": 121,
+   "markup_share": 0.5426008968609866,
+   "node_types": {
+    "array": 1,
+    "object": 7
+   },
+   "bench": {
+    "doc": "flight_search.json",
+    "n_nodes": 9,
+    "n_tokens": 251,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 1487.4900460243225,
+    "prefill_tree_one_batch_ms": 1509.6091780662537,
+    "prefill_tree_per_node_ms": 12181.18394291401,
+    "prefill_flat_tok_s": 168.74062496811882,
+    "prefill_tree_tok_s": 166.26819950943894,
+    "answer_full_scope": {
+     "text": "The document summarizes a travel policy with details about the fare, flight, and travel duration.",
+     "n_generated": 18,
+     "n_context": 251,
+     "n_question": 17,
+     "question_ms": 1340.7630069255829,
+     "generate_ms": 25225.04312503338
+    },
+    "generate_tok_s": 0.7135765798607008,
+    "kv_bytes": 8229165
+   }
+  },
+  {
+   "doc": "github_repo.json",
+   "nodes": 11,
+   "nodes_before_merge": 48,
+   "tokens_total": 294,
+   "tokens_document": 266,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 20,
+    "median": 34.5,
+    "max": 108
+   },
+   "leaf_tokens": {
+    "min": 20,
+    "median": 34.0,
+    "max": 38
+   },
+   "n_leaves": 8,
+   "markup_tokens": 138,
+   "markup_share": 0.518796992481203,
+   "node_types": {
+    "array": 2,
+    "object": 8
+   },
+   "bench": {
+    "doc": "github_repo.json",
+    "n_nodes": 11,
+    "n_tokens": 294,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 271.954638004303,
+    "prefill_tree_one_batch_ms": 321.94321596622467,
+    "prefill_tree_per_node_ms": 657.104777097702,
+    "prefill_flat_tok_s": 1081.0626439669259,
+    "prefill_tree_tok_s": 913.2045199885305,
+    "answer_full_scope": {
+     "text": "The document describes a GitHub repository with a single issue, which is a bugfix release of version 2.9.1.",
+     "n_generated": 26,
+     "n_context": 294,
+     "n_question": 17,
+     "question_ms": 49.28146004676819,
+     "generate_ms": 582.1498290300369
+    },
+    "generate_tok_s": 44.66204180343148,
+    "kv_bytes": 9638965
+   }
+  },
+  {
+   "doc": "movie_db.json",
+   "nodes": 9,
+   "nodes_before_merge": 35,
+   "tokens_total": 209,
+   "tokens_document": 181,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 18,
+    "median": 28.5,
+    "max": 62
+   },
+   "leaf_tokens": {
+    "min": 18,
+    "median": 26,
+    "max": 31
+   },
+   "n_leaves": 7,
+   "markup_tokens": 97,
+   "markup_share": 0.5359116022099447,
+   "node_types": {
+    "array": 1,
+    "object": 7
+   },
+   "bench": {
+    "doc": "movie_db.json",
+    "n_nodes": 9,
+    "n_tokens": 209,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 178.63163197040558,
+    "prefill_tree_one_batch_ms": 150.26345098018646,
+    "prefill_tree_per_node_ms": 356.26387202739716,
+    "prefill_flat_tok_s": 1170.0055454603116,
+    "prefill_tree_tok_s": 1390.8904569718586,
+    "answer_full_scope": {
+     "text": "The document contains information about a movie, including its title, budget, gross revenue, and director, with a brief description of the movie's rating.",
+     "n_generated": 30,
+     "n_context": 209,
+     "n_question": 17,
+     "question_ms": 22.893866062164307,
+     "generate_ms": 331.19730496406555
+    },
+    "generate_tok_s": 90.58044721485568,
+    "kv_bytes": 6852393
+   }
+  },
+  {
+   "doc": "product_catalog.json",
+   "nodes": 10,
+   "nodes_before_merge": 39,
+   "tokens_total": 230,
+   "tokens_document": 202,
+   "depth": 2,
+   "subtree_tokens": {
+    "min": 18,
+    "median": 26,
+    "max": 68
+   },
+   "leaf_tokens": {
+    "min": 18,
+    "median": 21,
+    "max": 29
+   },
+   "n_leaves": 7,
+   "markup_tokens": 109,
+   "markup_share": 0.5396039603960396,
+   "node_types": {
+    "array": 2,
+    "object": 7
+   },
+   "bench": {
+    "doc": "product_catalog.json",
+    "n_nodes": 10,
+    "n_tokens": 230,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 146.0110330581665,
+    "prefill_tree_one_batch_ms": 254.2471890449524,
+    "prefill_tree_per_node_ms": 516.0721969604492,
+    "prefill_flat_tok_s": 1575.223427865035,
+    "prefill_tree_tok_s": 904.6314370828094,
+    "answer_full_scope": {
+     "text": "The document contains a single product with a rating of 4.6, a delivery time of 3 days, and a price of 2499, with",
+     "n_generated": 32,
+     "n_context": 230,
+     "n_question": 17,
+     "question_ms": 161.44907093048096,
+     "generate_ms": 578.6171830892563
+    },
+    "generate_tok_s": 55.30426840964339,
+    "kv_bytes": 7541017
+   }
+  },
+  {
+   "doc": "weather_api.json",
+   "nodes": 14,
+   "nodes_before_merge": 60,
+   "tokens_total": 361,
+   "tokens_document": 333,
+   "depth": 3,
+   "subtree_tokens": {
+    "min": 13,
+    "median": 30,
+    "max": 117
+   },
+   "leaf_tokens": {
+    "min": 13,
+    "median": 27,
+    "max": 46
+   },
+   "n_leaves": 9,
+   "markup_tokens": 191,
+   "markup_share": 0.5735735735735735,
+   "node_types": {
+    "array": 4,
+    "object": 9
+   },
+   "bench": {
+    "doc": "weather_api.json",
+    "n_nodes": 14,
+    "n_tokens": 361,
+    "n_threads": 32,
+    "reps": 3,
+    "prefill_flat_ms": 424.775976061821,
+    "prefill_tree_one_batch_ms": 230.76619398593903,
+    "prefill_tree_per_node_ms": 587.4707890748978,
+    "prefill_flat_tok_s": 849.8597386483572,
+    "prefill_tree_tok_s": 1564.353919283326,
+    "answer_full_scope": {
+     "text": "The document contains a weather forecast with a single 3-hour period, where the temperature is 31\u00b0C and the condition is sunny, with a wind speed of",
+     "n_generated": 32,
+     "n_context": 361,
+     "n_question": 17,
+     "question_ms": 23.690880060195923,
+     "generate_ms": 271.8912891149521
+    },
+    "generate_tok_s": 117.69409790274972,
+    "kv_bytes": 11835901
+   }
+  }
+ ]
+}

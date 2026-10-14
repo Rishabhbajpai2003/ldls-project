@@ -1,0 +1,82 @@
+[
+ {
+  "A": "hourly_forecast[1]",
+  "B": "current",
+  "doc": "weather_api.json",
+  "edit_text": "\"current\": {\"condition\": \"rainy\", \"temp_c\": 18, \"humidity_pct\": 91, \"wind_kph\": 40}\n",
+  "expect": "31",
+  "question": "What is the forecast temperature at 15:00?"
+ },
+ {
+  "A": "current",
+  "B": "alerts",
+  "doc": "weather_api.json",
+  "edit_text": "\"alerts\": [{\"headline\": \"All clear, no warnings\", \"severity\": \"none\"}]\n",
+  "expect": "31",
+  "question": "What is the current temperature in degrees?"
+ },
+ {
+  "A": "stats",
+  "B": "issues",
+  "doc": "github_repo.json",
+  "edit_text": "\"issues\": [{\"id\": 500, \"title\": \"Homepage banner typo\", \"state\": \"open\"}]\n",
+  "expect": "1284",
+  "question": "How many stars does the repository have?"
+ },
+ {
+  "A": "releases[0]",
+  "B": "owner",
+  "doc": "github_repo.json",
+  "edit_text": "\"owner\": {\"login\": \"orb-sync\", \"type\": \"user\"}\n",
+  "expect": "v3.0.0",
+  "question": "What is the latest release tag?"
+ },
+ {
+  "A": "policies",
+  "B": "inbound",
+  "doc": "flight_search.json",
+  "edit_text": "\"inbound\": {\"flight\": \"OX-999\", \"from\": \"DEL\", \"to\": \"BLR\", \"depart\": \"23:00\", \"arrive\": \"01:30\"}\n",
+  "expect": "15kg",
+  "question": "How much check-in baggage is included?"
+ },
+ {
+  "A": "inbound",
+  "B": "fares",
+  "doc": "flight_search.json",
+  "edit_text": "\"fares\": [{\"cabin\": \"economy\", \"price_inr\": 100}]\n",
+  "expect": "OX-214",
+  "question": "What is the inbound flight number?"
+ },
+ {
+  "A": "shipping",
+  "B": "reviews",
+  "doc": "product_catalog.json",
+  "edit_text": "\"reviews\": [{\"rating\": 2, \"text\": \"Arrived late and dented.\"}]\n",
+  "expect": "3",
+  "question": "How many days does delivery take?"
+ },
+ {
+  "A": "product",
+  "B": "pricing",
+  "doc": "product_catalog.json",
+  "edit_text": "\"pricing\": {\"price\": 9999, \"currency\": \"USD\", \"discount_pct\": 0}\n",
+  "expect": "Orbit",
+  "question": "What is the product brand?"
+ },
+ {
+  "A": "crew",
+  "B": "cast",
+  "doc": "movie_db.json",
+  "edit_text": "\"cast\": [{\"name\": \"X. Extra\", \"role\": \"lead\"}]\n",
+  "expect": "Meera Krishnan",
+  "question": "Who directed the film?"
+ },
+ {
+  "A": "ratings",
+  "B": "crew",
+  "doc": "movie_db.json",
+  "edit_text": "\"crew\": {\"director\": \"A. Nother\", \"music\": \"B. Flat\"}\n",
+  "expect": "8.1",
+  "question": "What is the IMDb rating? Reply with the number only."
+ }
+]
