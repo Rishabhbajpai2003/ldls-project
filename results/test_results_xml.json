@@ -1,0 +1,1258 @@
+{
+ "summary": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 8,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 8,
+  "test1_free_length_correct": 10,
+  "test2_pass": 9,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 10,
+  "test2_full_scope_correct": 10
+ },
+ "results": [
+  {
+   "doc": "jats_dunlin_foraging.xml",
+   "question": "How many dunlin were tagged?",
+   "A": "sec#s2",
+   "B": "sec#s1",
+   "n_nodes": 28,
+   "n_tokens": 951,
+   "prefill_ms": 8567.30322265625,
+   "baseline_scoped": {
+    "text": "46.",
+    "n_generated": 2,
+    "n_context": 212,
+    "n_question": 15,
+    "question_ms": 236.702880859375,
+    "generate_ms": 101.301025390625
+   },
+   "baseline_full": {
+    "text": "46.",
+    "n_generated": 2,
+    "n_context": 951,
+    "n_question": 15,
+    "question_ms": 279.631103515625,
+    "generate_ms": 112.293701171875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 31188305,
+    "kv_bytes_after": 27844745,
+    "kv_cells_before": 951,
+    "kv_cells_after": 849,
+    "scoped_answer": {
+     "text": "46.",
+     "n_generated": 2,
+     "n_context": 212,
+     "n_question": 15,
+     "question_ms": 210.35693359375,
+     "generate_ms": 102.919921875
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.541938304901123,
+    "full_answer": {
+     "text": "46.",
+     "n_generated": 2,
+     "n_context": 849,
+     "n_question": 15,
+     "question_ms": 269.537841796875,
+     "generate_ms": 105.6142578125
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 102,
+     "B_tokens_after": 102,
+     "prefill_ms": 6974.75,
+     "scoped_answer": {
+      "text": "46.",
+      "n_generated": 2,
+      "n_context": 212,
+      "n_question": 15,
+      "question_ms": 197.0361328125,
+      "generate_ms": 106.446044921875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "46",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 275.238037109375,
+      "generate_ms": 57.31396484375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.366806983947754,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 102,
+     "B_tokens_after": 33,
+     "prefill_ms": 7665.882080078125,
+     "scoped_answer": {
+      "text": "46.",
+      "n_generated": 2,
+      "n_context": 212,
+      "n_question": 15,
+      "question_ms": 316.611083984375,
+      "generate_ms": 138.833984375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.7722721099853516,
+     "flat_control_answer": {
+      "text": "46",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 15,
+      "question_ms": 322.079833984375,
+      "generate_ms": 60.97509765625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.2062116861343384,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "    <sec id=\"s1\">\n      <title>Introduction</title>\n      <p>This study was withdrawn by the authors.</p>\n    </sec>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "46",
+    "n_generated": 1,
+    "n_context": 0,
+    "n_question": 15,
+    "question_ms": 287.749755859375,
+    "generate_ms": 57.793212890625
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "46",
+   "baseline_correct": true
+  },
+  {
+   "doc": "jats_dunlin_foraging.xml",
+   "question": "What percentage of low-tide hours did the birds spend foraging?",
+   "A": "sec#s3",
+   "B": "abstract",
+   "n_nodes": 28,
+   "n_tokens": 951,
+   "prefill_ms": 9431.034912109375,
+   "baseline_scoped": {
+    "text": "Birds spent 71 percent of all low-tide hours foraging.",
+    "n_generated": 15,
+    "n_context": 183,
+    "n_question": 22,
+    "question_ms": 291.481201171875,
+    "generate_ms": 852.02197265625
+   },
+   "baseline_full": {
+    "text": "The birds spent 71 percent of all low-tide hours foraging.",
+    "n_generated": 15,
+    "n_context": 951,
+    "n_question": 22,
+    "question_ms": 434.421142578125,
+    "generate_ms": 934.59716796875
+   },
+   "test2_evict_B": {
+    "pass": false,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 31188305,
+    "kv_bytes_after": 29516525,
+    "kv_cells_before": 951,
+    "kv_cells_after": 900,
+    "scoped_answer": {
+     "text": "71%",
+     "n_generated": 2,
+     "n_context": 183,
+     "n_question": 22,
+     "question_ms": 284.97314453125,
+     "generate_ms": 110.85791015625
+    },
+    "scoped_unchanged": false,
+    "scoped_first_logits_diff": 0.5783939361572266,
+    "full_answer": {
+     "text": "The birds spent 71 percent of all low-tide hours foraging.",
+     "n_generated": 15,
+     "n_context": 900,
+     "n_question": 22,
+     "question_ms": 468.654052734375,
+     "generate_ms": 959.6669921875
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 51,
+     "B_tokens_after": 51,
+     "prefill_ms": 8137.448974609375,
+     "scoped_answer": {
+      "text": "Birds spent 71 percent of all low-tide hours foraging.",
+      "n_generated": 15,
+      "n_context": 183,
+      "n_question": 22,
+      "question_ms": 254.01904296875,
+      "generate_ms": 802.323974609375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "71%",
+      "n_generated": 2,
+      "n_context": 0,
+      "n_question": 22,
+      "question_ms": 406.777099609375,
+      "generate_ms": 114.595947265625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.4259862899780273,
+     "correct": true
+    },
+    "free_length": {
+     "pass": false,
+     "B_tokens_before": 51,
+     "B_tokens_after": 24,
+     "prefill_ms": 7214.5791015625,
+     "scoped_answer": {
+      "text": "The birds spent 71 percent of all low-tide hours foraging.",
+      "n_generated": 15,
+      "n_context": 183,
+      "n_question": 22,
+      "question_ms": 245.85595703125,
+      "generate_ms": 795.509033203125
+     },
+     "scoped_unchanged": false,
+     "scoped_first_logits_diff": 0.6273610591888428,
+     "flat_control_answer": {
+      "text": "71%",
+      "n_generated": 2,
+      "n_context": 0,
+      "n_question": 22,
+      "question_ms": 383.243896484375,
+      "generate_ms": 115.73291015625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.874330520629883,
+     "correct": true
+    },
+    "pass": false,
+    "edit_text": "        <abstract>\n          <p>We studied gulls in a city park during summer.</p>\n        </abstract>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "71%",
+    "n_generated": 2,
+    "n_context": 0,
+    "n_question": 22,
+    "question_ms": 429.525390625,
+    "generate_ms": 112.97998046875
+   },
+   "flash_attn": "auto",
+   "pass": false,
+   "expect": "71",
+   "baseline_correct": true
+  },
+  {
+   "doc": "jats_subtree_eviction.xml",
+   "question": "How many documents were used in the evaluation?",
+   "A": "sec#s3",
+   "B": "sec#s2",
+   "n_nodes": 24,
+   "n_tokens": 773,
+   "prefill_ms": 6542.86279296875,
+   "baseline_scoped": {
+    "text": "120",
+    "n_generated": 1,
+    "n_context": 198,
+    "n_question": 17,
+    "question_ms": 264.3330078125,
+    "generate_ms": 59.5400390625
+   },
+   "baseline_full": {
+    "text": "120 documents were used in the evaluation.",
+    "n_generated": 8,
+    "n_context": 773,
+    "n_question": 17,
+    "question_ms": 289.680908203125,
+    "generate_ms": 465.354248046875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 25351109,
+    "kv_bytes_after": 22433689,
+    "kv_cells_before": 773,
+    "kv_cells_after": 684,
+    "scoped_answer": {
+     "text": "120",
+     "n_generated": 1,
+     "n_context": 198,
+     "n_question": 17,
+     "question_ms": 235.405029296875,
+     "generate_ms": 54.090087890625
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.4548006057739258,
+    "full_answer": {
+     "text": "120 documents were used in the evaluation.",
+     "n_generated": 8,
+     "n_context": 684,
+     "n_question": 17,
+     "question_ms": 266.898193359375,
+     "generate_ms": 454.20068359375
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 89,
+     "B_tokens_after": 89,
+     "prefill_ms": 6432.995849609375,
+     "scoped_answer": {
+      "text": "120",
+      "n_generated": 1,
+      "n_context": 198,
+      "n_question": 17,
+      "question_ms": 209.10302734375,
+      "generate_ms": 51.740234375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "120",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 270.0,
+      "generate_ms": 57.4638671875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.138763427734375,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 89,
+     "B_tokens_after": 39,
+     "prefill_ms": 5866.0859375,
+     "scoped_answer": {
+      "text": "120",
+      "n_generated": 1,
+      "n_context": 198,
+      "n_question": 17,
+      "question_ms": 217.315185546875,
+      "generate_ms": 51.1767578125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.668461799621582,
+     "flat_control_answer": {
+      "text": "120",
+      "n_generated": 1,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 278.626953125,
+      "generate_ms": 53.274169921875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.7421255111694336,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "    <sec id=\"s2\">\n      <title>Method</title>\n      <p>We copy the full prompt for every question and never evict anything.</p>\n    </sec>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "120",
+    "n_generated": 1,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 276.740966796875,
+    "generate_ms": 55.4892578125
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "120",
+   "baseline_correct": true
+  },
+  {
+   "doc": "jats_subtree_eviction.xml",
+   "question": "Which foundation funded this work?",
+   "A": "ack#ack",
+   "B": "sec#s4",
+   "n_nodes": 24,
+   "n_tokens": 773,
+   "prefill_ms": 6263.22802734375,
+   "baseline_scoped": {
+    "text": "The Northlight Foundation funded this work.",
+    "n_generated": 8,
+    "n_context": 149,
+    "n_question": 14,
+    "question_ms": 226.347900390625,
+    "generate_ms": 421.864013671875
+   },
+   "baseline_full": {
+    "text": "The Northlight Foundation funded this work.",
+    "n_generated": 8,
+    "n_context": 773,
+    "n_question": 14,
+    "question_ms": 256.6767578125,
+    "generate_ms": 455.97216796875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 25351109,
+    "kv_bytes_after": 24138249,
+    "kv_cells_before": 773,
+    "kv_cells_after": 736,
+    "scoped_answer": {
+     "text": "The Northlight Foundation funded this work.",
+     "n_generated": 8,
+     "n_context": 149,
+     "n_question": 14,
+     "question_ms": 192.463134765625,
+     "generate_ms": 429.2568359375
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6681680679321289,
+    "full_answer": {
+     "text": "The Northlight Foundation funded this work.",
+     "n_generated": 8,
+     "n_context": 736,
+     "n_question": 14,
+     "question_ms": 240.827880859375,
+     "generate_ms": 448.18994140625
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 37,
+     "B_tokens_after": 37,
+     "prefill_ms": 6194.4580078125,
+     "scoped_answer": {
+      "text": "The Northlight Foundation funded this work.",
+      "n_generated": 8,
+      "n_context": 149,
+      "n_question": 14,
+      "question_ms": 198.2001953125,
+      "generate_ms": 451.9111328125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The Northlight Foundation funded this work.",
+      "n_generated": 8,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 276.343017578125,
+      "generate_ms": 461.217041015625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.095313549041748,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 37,
+     "B_tokens_after": 35,
+     "prefill_ms": 6111.68115234375,
+     "scoped_answer": {
+      "text": "The Northlight Foundation funded this work.",
+      "n_generated": 8,
+      "n_context": 149,
+      "n_question": 14,
+      "question_ms": 188.84814453125,
+      "generate_ms": 420.540771484375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5476388931274414,
+     "flat_control_answer": {
+      "text": "The Northlight Foundation funded this work.",
+      "n_generated": 8,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 250.26904296875,
+      "generate_ms": 463.833984375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.1441316604614258,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "    <sec id=\"s4\">\n      <title>Conclusion</title>\n      <p>Structured identifiers did not help in our experiments.</p>\n    </sec>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The Northlight Foundation funded this work.",
+    "n_generated": 8,
+    "n_context": 0,
+    "n_question": 14,
+    "question_ms": 251.76708984375,
+    "generate_ms": 454.550048828125
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "Northlight",
+   "baseline_correct": true
+  },
+  {
+   "doc": "jats_school_sleep.xml",
+   "question": "How many students took part in the study?",
+   "A": "sec#s2",
+   "B": "abstract#abstract",
+   "n_nodes": 25,
+   "n_tokens": 690,
+   "prefill_ms": 5220.30908203125,
+   "baseline_scoped": {
+    "text": "312 students aged 13 to 17 took part in the study.",
+    "n_generated": 14,
+    "n_context": 301,
+    "n_question": 17,
+    "question_ms": 257.85693359375,
+    "generate_ms": 780.861083984375
+   },
+   "baseline_full": {
+    "text": "The study involved 312 students.",
+    "n_generated": 7,
+    "n_context": 690,
+    "n_question": 17,
+    "question_ms": 263.227783203125,
+    "generate_ms": 385.77294921875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 22632117,
+    "kv_bytes_after": 20927557,
+    "kv_cells_before": 690,
+    "kv_cells_after": 638,
+    "scoped_answer": {
+     "text": "312 students aged 13 to 17 took part in the study.",
+     "n_generated": 14,
+     "n_context": 301,
+     "n_question": 17,
+     "question_ms": 217.52783203125,
+     "generate_ms": 779.34326171875
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.4439382553100586,
+    "full_answer": {
+     "text": "The study involved 312 students.",
+     "n_generated": 7,
+     "n_context": 638,
+     "n_question": 17,
+     "question_ms": 258.508056640625,
+     "generate_ms": 383.334716796875
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 52,
+     "B_tokens_after": 52,
+     "prefill_ms": 5370.692138671875,
+     "scoped_answer": {
+      "text": "312 students aged 13 to 17 took part in the study.",
+      "n_generated": 14,
+      "n_context": 301,
+      "n_question": 17,
+      "question_ms": 211.4560546875,
+      "generate_ms": 802.1240234375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "312 students aged 13 to 17 kept a sleep diary for two weeks in October 2024 and again in October 2025.",
+      "n_generated": 28,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 410.339111328125,
+      "generate_ms": 2084.447998046875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.7144536972045898,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 52,
+     "B_tokens_after": 23,
+     "prefill_ms": 7833.65673828125,
+     "scoped_answer": {
+      "text": "312 students aged 13 to 17 took part in the study.",
+      "n_generated": 14,
+      "n_context": 301,
+      "n_question": 17,
+      "question_ms": 337.533935546875,
+      "generate_ms": 978.48291015625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5406045913696289,
+     "flat_control_answer": {
+      "text": "312 students aged 13 to 17 kept a sleep diary for two weeks in October 2024 and again in October 2025.",
+      "n_generated": 28,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 441.510009765625,
+      "generate_ms": 2069.781982421875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.6552510261535645,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "        <abstract id=\"abstract\">\n          <p>We surveyed teachers about classroom noise.</p>\n        </abstract>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "312 students aged 13 to 17 kept a sleep diary for two weeks in October 2024 and again in October 2025.",
+    "n_generated": 28,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 268.97900390625,
+    "generate_ms": 1615.682861328125
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "312",
+   "baseline_correct": true
+  },
+  {
+   "doc": "jats_school_sleep.xml",
+   "question": "How many minutes longer did students in Port Avelin sleep on school nights?",
+   "A": "sec#s3",
+   "B": "sec#s1",
+   "n_nodes": 25,
+   "n_tokens": 690,
+   "prefill_ms": 8569.4482421875,
+   "baseline_scoped": {
+    "text": "Students in Port Avelin slept 34 minutes longer on school nights.",
+    "n_generated": 15,
+    "n_context": 167,
+    "n_question": 24,
+    "question_ms": 489.35009765625,
+    "generate_ms": 1040.61083984375
+   },
+   "baseline_full": {
+    "text": "Students in Port Avelin slept 34 minutes longer on school nights.",
+    "n_generated": 15,
+    "n_context": 690,
+    "n_question": 24,
+    "question_ms": 591.926025390625,
+    "generate_ms": 1094.453857421875
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 22632117,
+    "kv_bytes_after": 21222577,
+    "kv_cells_before": 690,
+    "kv_cells_after": 647,
+    "scoped_answer": {
+     "text": "Students in Port Avelin slept 34 minutes longer on school nights.",
+     "n_generated": 15,
+     "n_context": 167,
+     "n_question": 24,
+     "question_ms": 447.90087890625,
+     "generate_ms": 1047.396240234375
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5067157745361328,
+    "full_answer": {
+     "text": "Students in Port Avelin slept 34 minutes longer on school nights.",
+     "n_generated": 15,
+     "n_context": 647,
+     "n_question": 24,
+     "question_ms": 562.578857421875,
+     "generate_ms": 1067.640869140625
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 43,
+     "B_tokens_after": 43,
+     "prefill_ms": 8382.27099609375,
+     "scoped_answer": {
+      "text": "Students in Port Avelin slept 34 minutes longer on school nights.",
+      "n_generated": 15,
+      "n_context": 167,
+      "n_question": 24,
+      "question_ms": 438.622802734375,
+      "generate_ms": 1046.19091796875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Students in Port Avelin slept 34 minutes longer on school nights.",
+      "n_generated": 15,
+      "n_context": 0,
+      "n_question": 24,
+      "question_ms": 560.06103515625,
+      "generate_ms": 1099.9619140625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.258349895477295,
+     "correct": true
+    },
+    "free_length": {
+     "pass": false,
+     "B_tokens_before": 43,
+     "B_tokens_after": 34,
+     "prefill_ms": 8339.8740234375,
+     "scoped_answer": {
+      "text": "34 minutes.",
+      "n_generated": 3,
+      "n_context": 167,
+      "n_question": 24,
+      "question_ms": 469.19287109375,
+      "generate_ms": 206.409912109375
+     },
+     "scoped_unchanged": false,
+     "scoped_first_logits_diff": 0.6043500900268555,
+     "flat_control_answer": {
+      "text": "Students in Port Avelin slept 34 minutes longer on school nights.",
+      "n_generated": 15,
+      "n_context": 0,
+      "n_question": 24,
+      "question_ms": 280.722900390625,
+      "generate_ms": 669.47314453125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 0.9851336479187012,
+     "correct": true
+    },
+    "pass": false,
+    "edit_text": "    <sec id=\"s1\">\n      <title>Background</title>\n      <p>Adults need more sleep than teenagers.</p>\n    </sec>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Students in Port Avelin slept 34 minutes longer on school nights.",
+    "n_generated": 15,
+    "n_context": 0,
+    "n_question": 24,
+    "question_ms": 590.309814453125,
+    "generate_ms": 1090.60693359375
+   },
+   "flash_attn": "auto",
+   "pass": false,
+   "expect": "34",
+   "baseline_correct": true
+  },
+  {
+   "doc": "orbit_server_pom.xml",
+   "question": "Which version of junit-jupiter does the project use?",
+   "A": "dependency: junit-jupiter",
+   "B": "dependency: jackson-databind",
+   "n_nodes": 21,
+   "n_tokens": 614,
+   "prefill_ms": 4120.369140625,
+   "baseline_scoped": {
+    "text": "The project uses version 5.10.2 of junit-jupiter.",
+    "n_generated": 15,
+    "n_context": 164,
+    "n_question": 19,
+    "question_ms": 202.59619140625,
+    "generate_ms": 642.49072265625
+   },
+   "baseline_full": {
+    "text": "The project uses version 5.10.2 of junit-jupiter.",
+    "n_generated": 15,
+    "n_context": 614,
+    "n_question": 19,
+    "question_ms": 218.696044921875,
+    "generate_ms": 673.472900390625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 20136841,
+    "kv_bytes_after": 18792861,
+    "kv_cells_before": 614,
+    "kv_cells_after": 573,
+    "scoped_answer": {
+     "text": "The project uses version 5.10.2 of junit-jupiter.",
+     "n_generated": 15,
+     "n_context": 164,
+     "n_question": 19,
+     "question_ms": 167.892822265625,
+     "generate_ms": 647.403076171875
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6237794160842896,
+    "full_answer": {
+     "text": "The project uses version 5.10.2 of junit-jupiter.",
+     "n_generated": 15,
+     "n_context": 573,
+     "n_question": 19,
+     "question_ms": 248.8671875,
+     "generate_ms": 689.979736328125
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 41,
+     "B_tokens_after": 41,
+     "prefill_ms": 3896.9677734375,
+     "scoped_answer": {
+      "text": "The project uses version 5.10.2 of junit-jupiter.",
+      "n_generated": 15,
+      "n_context": 164,
+      "n_question": 19,
+      "question_ms": 174.48388671875,
+      "generate_ms": 665.777099609375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The project uses JUnit Jupiter version 5.10.2.",
+      "n_generated": 14,
+      "n_context": 0,
+      "n_question": 19,
+      "question_ms": 229.041015625,
+      "generate_ms": 660.88623046875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.2169504165649414,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 41,
+     "B_tokens_after": 42,
+     "prefill_ms": 4629.06494140625,
+     "scoped_answer": {
+      "text": "The project uses version 5.10.2 of junit-jupiter.",
+      "n_generated": 15,
+      "n_context": 164,
+      "n_question": 19,
+      "question_ms": 218.97607421875,
+      "generate_ms": 712.9453125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6385756731033325,
+     "flat_control_answer": {
+      "text": "The project uses JUnit Jupiter version 5.10.2.",
+      "n_generated": 14,
+      "n_context": 0,
+      "n_question": 19,
+      "question_ms": 235.490966796875,
+      "generate_ms": 740.135986328125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.2248828411102295,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "    <dependency>\n      <groupId>com.google.code.gson</groupId>\n      <artifactId>gson</artifactId>\n      <version>2.11.0</version>\n    </dependency>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The project uses JUnit Jupiter version 5.10.2.",
+    "n_generated": 14,
+    "n_context": 0,
+    "n_question": 19,
+    "question_ms": 234.21484375,
+    "generate_ms": 656.552978515625
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "5.10.2",
+   "baseline_correct": true
+  },
+  {
+   "doc": "orbit_server_pom.xml",
+   "question": "What forkCount does the surefire plugin use?",
+   "A": "plugin: maven-surefire-plugin",
+   "B": "plugin: maven-compiler-plugin",
+   "n_nodes": 21,
+   "n_tokens": 614,
+   "prefill_ms": 4260.8837890625,
+   "baseline_scoped": {
+    "text": "The surefire plugin uses 4 forkCount.",
+    "n_generated": 10,
+    "n_context": 189,
+    "n_question": 18,
+    "question_ms": 220.81689453125,
+    "generate_ms": 451.594970703125
+   },
+   "baseline_full": {
+    "text": "The surefire plugin uses 4 forkCount.",
+    "n_generated": 10,
+    "n_context": 614,
+    "n_question": 18,
+    "question_ms": 255.2939453125,
+    "generate_ms": 482.01318359375
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 20136841,
+    "kv_bytes_after": 18399337,
+    "kv_cells_before": 614,
+    "kv_cells_after": 561,
+    "scoped_answer": {
+     "text": "The surefire plugin uses 4 forkCount.",
+     "n_generated": 10,
+     "n_context": 189,
+     "n_question": 18,
+     "question_ms": 189.488037109375,
+     "generate_ms": 444.862060546875
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.549445390701294,
+    "full_answer": {
+     "text": "The surefire plugin uses 4 forkCount.",
+     "n_generated": 10,
+     "n_context": 561,
+     "n_question": 18,
+     "question_ms": 227.93701171875,
+     "generate_ms": 454.18603515625
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 41,
+     "B_tokens_after": 41,
+     "prefill_ms": 4327.30908203125,
+     "scoped_answer": {
+      "text": "The surefire plugin uses 4 forkCount.",
+      "n_generated": 10,
+      "n_context": 189,
+      "n_question": 18,
+      "question_ms": 184.67724609375,
+      "generate_ms": 442.986083984375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The surefire plugin uses forkCount=4.",
+      "n_generated": 10,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 241.64404296875,
+      "generate_ms": 464.048828125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 0.8633992671966553,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 41,
+     "B_tokens_after": 40,
+     "prefill_ms": 4464.273193359375,
+     "scoped_answer": {
+      "text": "The surefire plugin uses 4 forkCount.",
+      "n_generated": 10,
+      "n_context": 189,
+      "n_question": 18,
+      "question_ms": 183.884033203125,
+      "generate_ms": 447.06396484375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5593019723892212,
+     "flat_control_answer": {
+      "text": "forkCount is 4.",
+      "n_generated": 6,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 253.035888671875,
+      "generate_ms": 293.2001953125
+     },
+     "flat_control_unchanged": false,
+     "flat_control_logits_diff": 0.7771182060241699,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "      <plugin>\n        <groupId>org.apache.maven.plugins</groupId>\n        <artifactId>maven-jar-plugin</artifactId>\n        <version>3.4.1</version>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The surefire plugin uses forkCount=4.",
+    "n_generated": 10,
+    "n_context": 0,
+    "n_question": 18,
+    "question_ms": 246.767822265625,
+    "generate_ms": 463.135986328125
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "4",
+   "baseline_correct": true
+  },
+  {
+   "doc": "harbor_gateway_config.xml",
+   "question": "Which port does the admin server listen on?",
+   "A": "server: admin",
+   "B": "server: public",
+   "n_nodes": 10,
+   "n_tokens": 408,
+   "prefill_ms": 3004.933837890625,
+   "baseline_scoped": {
+    "text": "The admin server listens on port 9100.",
+    "n_generated": 10,
+    "n_context": 96,
+    "n_question": 17,
+    "question_ms": 215.799072265625,
+    "generate_ms": 455.865966796875
+   },
+   "baseline_full": {
+    "text": "The admin server listens on port 9100.",
+    "n_generated": 10,
+    "n_context": 408,
+    "n_question": 17,
+    "question_ms": 206.958984375,
+    "generate_ms": 466.517822265625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 13376905,
+    "kv_bytes_after": 12000145,
+    "kv_cells_before": 408,
+    "kv_cells_after": 366,
+    "scoped_answer": {
+     "text": "The admin server listens on port 9100.",
+     "n_generated": 10,
+     "n_context": 96,
+     "n_question": 17,
+     "question_ms": 172.771240234375,
+     "generate_ms": 464.217041015625
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5492814779281616,
+    "full_answer": {
+     "text": "The admin server listens on port 9100.",
+     "n_generated": 10,
+     "n_context": 366,
+     "n_question": 17,
+     "question_ms": 221.27294921875,
+     "generate_ms": 476.8701171875
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 42,
+     "B_tokens_after": 42,
+     "prefill_ms": 3534.466064453125,
+     "scoped_answer": {
+      "text": "The admin server listens on port 9100.",
+      "n_generated": 10,
+      "n_context": 96,
+      "n_question": 17,
+      "question_ms": 176.231201171875,
+      "generate_ms": 488.258056640625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The admin server listens on port 9100.",
+      "n_generated": 10,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 310.3681640625,
+      "generate_ms": 525.8779296875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 4.512267589569092,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 42,
+     "B_tokens_after": 21,
+     "prefill_ms": 3380.881103515625,
+     "scoped_answer": {
+      "text": "The admin server listens on port 9100.",
+      "n_generated": 10,
+      "n_context": 96,
+      "n_question": 17,
+      "question_ms": 219.588134765625,
+      "generate_ms": 508.48876953125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5289883613586426,
+     "flat_control_answer": {
+      "text": "The admin server listens on port 9100.",
+      "n_generated": 10,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 257.013916015625,
+      "generate_ms": 524.192138671875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.377678871154785,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "    <server name=\"public\" port=\"8080\" tls=\"false\" maxConnections=\"100\"/>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The admin server listens on port 9100.",
+    "n_generated": 10,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 214.10400390625,
+    "generate_ms": 474.368896484375
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "9100",
+   "baseline_correct": true
+  },
+  {
+   "doc": "harbor_gateway_config.xml",
+   "question": "What is the maximum size of the database connection pool?",
+   "A": "database: harbor",
+   "B": "logging",
+   "n_nodes": 10,
+   "n_tokens": 408,
+   "prefill_ms": 3599.232177734375,
+   "baseline_scoped": {
+    "text": "The maximum size of the database connection pool is 20.",
+    "n_generated": 12,
+    "n_context": 126,
+    "n_question": 19,
+    "question_ms": 282.83203125,
+    "generate_ms": 620.410888671875
+   },
+   "baseline_full": {
+    "text": "The maximum size of the database connection pool is 20.",
+    "n_generated": 12,
+    "n_context": 408,
+    "n_question": 19,
+    "question_ms": 290.23388671875,
+    "generate_ms": 656.911865234375
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 13376905,
+    "kv_bytes_after": 11606785,
+    "kv_cells_before": 408,
+    "kv_cells_after": 354,
+    "scoped_answer": {
+     "text": "The maximum size of the database connection pool is 20.",
+     "n_generated": 12,
+     "n_context": 126,
+     "n_question": 19,
+     "question_ms": 232.19189453125,
+     "generate_ms": 649.096923828125
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.719451904296875,
+    "full_answer": {
+     "text": "The maximum size of the database connection pool is 20.",
+     "n_generated": 12,
+     "n_context": 354,
+     "n_question": 19,
+     "question_ms": 275.752197265625,
+     "generate_ms": 627.882080078125
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 54,
+     "B_tokens_after": 54,
+     "prefill_ms": 3251.834228515625,
+     "scoped_answer": {
+      "text": "The maximum size of the database connection pool is 20.",
+      "n_generated": 12,
+      "n_context": 126,
+      "n_question": 19,
+      "question_ms": 204.330810546875,
+      "generate_ms": 576.871826171875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The maximum size of the database connection pool is 20.",
+      "n_generated": 12,
+      "n_context": 0,
+      "n_question": 19,
+      "question_ms": 249.307861328125,
+      "generate_ms": 611.318115234375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.8442848920822144,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 54,
+     "B_tokens_after": 11,
+     "prefill_ms": 2835.87109375,
+     "scoped_answer": {
+      "text": "The maximum size of the database connection pool is 20.",
+      "n_generated": 12,
+      "n_context": 126,
+      "n_question": 19,
+      "question_ms": 209.794921875,
+      "generate_ms": 587.285888671875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.767794132232666,
+     "flat_control_answer": {
+      "text": "The maximum size of the database connection pool is 20.",
+      "n_generated": 12,
+      "n_context": 0,
+      "n_question": 19,
+      "question_ms": 241.8330078125,
+      "generate_ms": 587.801025390625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.8157124519348145,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "  <logging level=\"debug\" format=\"text\"/>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The maximum size of the database connection pool is 20.",
+    "n_generated": 12,
+    "n_context": 0,
+    "n_question": 19,
+    "question_ms": 292.640869140625,
+    "generate_ms": 663.828125
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "20",
+   "baseline_correct": true
+  }
+ ]
+}

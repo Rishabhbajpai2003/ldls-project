@@ -1,13 +1,14 @@
 """Tree statistics + CPU timings + test results -> one report per domain.
 
-Usage: python tools/report.py [--docs data/markdown/json] [--no-bench]
+Usage: python tools/report.py [--domain markdown|html|xml] [--no-bench]
+       (--docs <dir> overrides parsers/<domain>/json)
 Writes results/report_<domain>.json and results/report_<domain>.md.
 
 Statistics (the root node is the prompt preamble and is excluded from document stats):
   depth         longest root-to-leaf path in edges (root = 0)
   subtree size  tokens in a node's subtree, over all non-root nodes
   leaf size     tokens in a leaf node
-  markup share  tokens that are only whitespace or Markdown syntax (# * _ ` > | ~ - = [ ] :)
+  markup share  tokens flagged as markup/syntax by the domain parser (n_markup; see each parser's docstring)
 """
 
 import argparse
@@ -73,9 +74,11 @@ def bench(path):
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
-    ap.add_argument("--docs", default=os.path.join(ROOT, "data", "markdown", "json"))
+    ap.add_argument("--domain", default="markdown", help="reads parsers/<domain>/json")
+    ap.add_argument("--docs", default=None)
     ap.add_argument("--no-bench", action="store_true", help="reuse timings from the previous report")
     args = ap.parse_args()
+    args.docs = args.docs or os.path.join(ROOT, "parsers", args.domain, "json")
 
     paths = sorted(glob.glob(os.path.join(args.docs, "*.json")))
     domain = json.load(open(paths[0], encoding="utf-8"))["domain"]

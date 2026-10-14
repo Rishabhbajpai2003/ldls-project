@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "JATS-journalpublishing1-3.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article" xml:lang="en">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="publisher-id">nce</journal-id>
+      <journal-title-group><journal-title>Northern Coastal Ecology</journal-title></journal-title-group>
+      <issn pub-type="epub">2999-0142</issn>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="doi">10.5555/nce.2026.0417</article-id>
+      <title-group>
+        <article-title>Tide-linked foraging of dunlin on the Skerra Island mudflats</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author"><name><surname>Lindqvist</surname><given-names>Anna</given-names></name><xref ref-type="aff" rid="aff1">1</xref></contrib>
+        <contrib contrib-type="author"><name><surname>Saar</surname><given-names>Mihkel</given-names></name><xref ref-type="aff" rid="aff1">1</xref></contrib>
+      </contrib-group>
+      <aff id="aff1"><label>1</label>Port Avelin Field Station, Lighthouse Road 9, Port Avelin</aff>
+      <pub-date pub-type="epub"><day>14</day><month>03</month><year>2026</year></pub-date>
+      <abstract>
+        <p>We tracked dunlin on an intertidal mudflat to test whether foraging follows the tide rather than the time of day. Birds foraged mostly in the two hours either side of low water.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s1">
+      <title>Introduction</title>
+      <p>Shorebirds that feed on mudflats can only reach their prey when the tide is out. Earlier work on dunlin (<italic>Calidris alpina</italic>) suggested that they also prefer daylight, but most studies were too short to separate the two effects <xref ref-type="bibr" rid="r1">[1]</xref>.</p>
+    </sec>
+    <sec id="s2">
+      <title>Methods</title>
+      <p>We tagged 46 adult dunlin with 1.2 g GPS loggers between March and May 2025. Loggers recorded a position every 10 minutes for up to 9 weeks.</p>
+      <p>Tide heights came from the Port Avelin harbour gauge. A position on the exposed mudflat counted as foraging.</p>
+    </sec>
+    <sec id="s3">
+      <title>Results</title>
+      <p>Birds spent 71 percent of all low-tide hours foraging, compared with 9 percent of high-tide hours. Foraging at night was as common as during the day when the tide was low.</p>
+    </sec>
+    <sec id="s4">
+      <title>Discussion</title>
+      <p>Tide, not daylight, sets the foraging rhythm of dunlin at Skerra. Disturbance from walkers at low tide may therefore matter more than night-time light.</p>
+    </sec>
+  </body>
+  <back>
+    <ack><p>We thank the Skerra Island ferry crew for transport and the Northlight Trust for funding.</p></ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="r1"><mixed-citation>Holm, K. (2019). Daylight and foraging in small waders. <italic>Wader Study</italic> 126: 40–48.</mixed-citation></ref>
+      <ref id="r2"><mixed-citation>Varga, I. (2022). Tags for small birds. <ext-link ext-link-type="uri" xlink:href="https://example.org/tags">Online report</ext-link>.</mixed-citation></ref>
+    </ref-list>
+  </back>
+</article>

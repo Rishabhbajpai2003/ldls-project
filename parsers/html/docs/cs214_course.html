@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CS 214: Data Systems – Halvorsen University</title>
+  <link rel="stylesheet" href="https://cdn.halvorsen.example/brand/2026/university.css">
+  <link rel="stylesheet" href="/courses/cs214/local.css">
+  <script src="https://cdn.halvorsen.example/brand/2026/menu.js" defer></script>
+</head>
+<body class="course-page">
+  <div class="uni-topbar">
+    <a class="uni-logo" href="https://www.halvorsen.example/"><img src="/brand/logo-white.svg" alt="Halvorsen University"></a>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Computer Science</a></li>
+        <li><a href="/courses/">Courses</a></li>
+        <li aria-current="page">CS 214</li>
+      </ol>
+    </nav>
+  </div>
+  <main id="content" class="container">
+    <section id="overview">
+      <h1>CS 214: Data Systems</h1>
+      <p>This course covers how databases store, index and query data. Students build a small key-value store in Rust over the semester.</p>
+      <p>Prerequisites: CS 120 and CS 161. Lectures are on Mondays and Wednesdays at 10:15 in Hall C.</p>
+    </section>
+    <section id="schedule">
+      <h2>Schedule</h2>
+      <table class="table table-striped">
+        <thead><tr><th>Week</th><th>Topic</th><th>Due</th></tr></thead>
+        <tbody>
+          <tr><td>1–2</td><td>Storage and file formats</td><td>Project 1 out</td></tr>
+          <tr><td>3–4</td><td>B-trees and LSM trees</td><td>Project 1 due</td></tr>
+          <tr><td>5–6</td><td>Query processing</td><td>Project 2 out</td></tr>
+          <tr><td>7</td><td>Midterm exam</td><td></td></tr>
+          <tr><td>8–10</td><td>Transactions and recovery</td><td>Project 2 due</td></tr>
+          <tr><td>11–13</td><td>Distributed storage</td><td>Project 3 due</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="grading">
+      <h2>Grading</h2>
+      <ul>
+        <li>Three projects: 40 percent</li>
+        <li>Midterm exam: 20 percent</li>
+        <li>Final exam: 30 percent</li>
+        <li>Participation and quizzes: 10 percent</li>
+      </ul>
+      <p>Late projects lose 10 percent per day and are not accepted after 3 days.</p>
+    </section>
+    <section id="staff">
+      <h2>Course staff</h2>
+      <div class="person">
+        <h3>Prof. Ines Varga</h3>
+        <p>Office hours: Tuesdays 14:00–15:30 in room B310.</p>
+      </div>
+      <div class="person">
+        <h3>Teaching assistant: Daniel Okafor</h3>
+        <p>Lab sessions: Thursdays 16:00–18:00 in the basement lab.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="uni-footer">
+    <p>Halvorsen University · Department of Computer Science · <a href="/accessibility">Accessibility</a></p>
+  </footer>
+  <script>document.querySelectorAll('table.table-striped tr').forEach(function(r,i){if(i%2)r.classList.add('odd')});</script>
+</body>
+</html>

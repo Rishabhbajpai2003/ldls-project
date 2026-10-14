@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- harbor-gateway configuration, production environment -->
+<config service="harbor-gateway" environment="production" version="7">
+  <servers>
+    <server name="public" port="8443" tls="true" maxConnections="4000">
+      <cert path="/etc/harbor/tls/public.pem" reloadInterval="1h"/>
+    </server>
+    <server name="admin" port="9100" tls="true" bind="10.0.4.12"/>
+  </servers>
+  <logging level="info" format="json">
+    <appender name="stdout" type="console"/>
+    <appender name="audit" type="file" path="/var/log/harbor/audit.log" rotate="daily" keep="30"/>
+  </logging>
+  <database>
+    <host>db-primary.internal</host>
+    <port>5432</port>
+    <name>harbor</name>
+    <pool min="4" max="20" idleTimeout="300s"/>
+    <connectTimeout>5s</connectTimeout>
+  </database>
+  <rateLimits>
+    <!-- requests per minute per API key -->
+    <limit route="/api/upload" perMinute="60"/>
+    <limit route="/api/search" perMinute="600"/>
+    <limit route="/api/*" perMinute="1200"/>
+  </rateLimits>
+  <features>
+    <flag name="dark-launch" enabled="false"/>
+    <flag name="resumable-uploads" enabled="true" rollout="25%"/>
+    <flag name="new-search" enabled="true" rollout="100%"/>
+  </features>
+  <alerts email="oncall@harbor.example">
+    <rule metric="error_rate" threshold="2%" window="5m"/>
+    <rule metric="p99_latency" threshold="800ms" window="10m"/>
+  </alerts>
+</config>

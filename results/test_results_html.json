@@ -1,0 +1,1258 @@
+{
+ "summary": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 9,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 9,
+  "test1_free_length_correct": 10,
+  "test2_pass": 9,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 9,
+  "test2_full_scope_correct": 10
+ },
+ "results": [
+  {
+   "doc": "brightloom_landing.html",
+   "question": "How much does the Team plan cost per user per month?",
+   "A": "section#pricing",
+   "B": "section#hero",
+   "n_nodes": 35,
+   "n_tokens": 1242,
+   "prefill_ms": 10354.933349609375,
+   "baseline_scoped": {
+    "text": "The Team plan costs $8 per user per month.",
+    "n_generated": 11,
+    "n_context": 259,
+    "n_question": 20,
+    "question_ms": 291.888916015625,
+    "generate_ms": 606.59716796875
+   },
+   "baseline_full": {
+    "text": "The Team plan costs $8 per user per month.",
+    "n_generated": 11,
+    "n_context": 1242,
+    "n_question": 20,
+    "question_ms": 373.012939453125,
+    "generate_ms": 633.77587890625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 40721829,
+    "kv_bytes_after": 37083249,
+    "kv_cells_before": 1242,
+    "kv_cells_after": 1131,
+    "scoped_answer": {
+     "text": "The Team plan costs $8 per user per month.",
+     "n_generated": 11,
+     "n_context": 259,
+     "n_question": 20,
+     "question_ms": 238.673828125,
+     "generate_ms": 595.277099609375
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.4532341957092285,
+    "full_answer": {
+     "text": "The Team plan costs $8 per user per month.",
+     "n_generated": 11,
+     "n_context": 1131,
+     "n_question": 20,
+     "question_ms": 359.52490234375,
+     "generate_ms": 630.454833984375
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 111,
+     "B_tokens_after": 111,
+     "prefill_ms": 9659.7119140625,
+     "scoped_answer": {
+      "text": "The Team plan costs $8 per user per month.",
+      "n_generated": 11,
+      "n_context": 259,
+      "n_question": 20,
+      "question_ms": 365.31005859375,
+      "generate_ms": 909.94580078125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "$8 per user per month.",
+      "n_generated": 7,
+      "n_context": 0,
+      "n_question": 20,
+      "question_ms": 445.089111328125,
+      "generate_ms": 439.927001953125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 4.657083511352539,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 111,
+     "B_tokens_after": 59,
+     "prefill_ms": 8991.532958984375,
+     "scoped_answer": {
+      "text": "The Team plan costs $8 per user per month.",
+      "n_generated": 11,
+      "n_context": 259,
+      "n_question": 20,
+      "question_ms": 246.970947265625,
+      "generate_ms": 624.215087890625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6367254257202148,
+     "flat_control_answer": {
+      "text": "$8 per user per month.",
+      "n_generated": 7,
+      "n_context": 0,
+      "n_question": 20,
+      "question_ms": 384.19189453125,
+      "generate_ms": 388.965087890625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 4.9517669677734375,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "    <section id=\"hero\" class=\"hero\">\n      <h1 class=\"hero-title\">Brightloom is shutting down</h1>\n      <p class=\"hero-lead\">New sign-ups are closed. Existing teams can export their notes until March.</p>\n    </section>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "$8 per user per month.",
+    "n_generated": 7,
+    "n_context": 0,
+    "n_question": 20,
+    "question_ms": 406.464111328125,
+    "generate_ms": 396.56494140625
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "8",
+   "baseline_correct": true
+  },
+  {
+   "doc": "brightloom_landing.html",
+   "question": "Where is customer data stored?",
+   "A": "section#faq",
+   "B": "div: Offline mode",
+   "n_nodes": 35,
+   "n_tokens": 1242,
+   "prefill_ms": 9626.527099609375,
+   "baseline_scoped": {
+    "text": "Customer data is stored in data centres in Frankfurt, Germany.",
+    "n_generated": 12,
+    "n_context": 203,
+    "n_question": 14,
+    "question_ms": 226.76025390625,
+    "generate_ms": 649.671875
+   },
+   "baseline_full": {
+    "text": "Customer data is stored in data centres in Frankfurt, Germany.",
+    "n_generated": 12,
+    "n_context": 1242,
+    "n_question": 14,
+    "question_ms": 295.974365234375,
+    "generate_ms": 719.510009765625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 40721829,
+    "kv_bytes_after": 39377849,
+    "kv_cells_before": 1242,
+    "kv_cells_after": 1201,
+    "scoped_answer": {
+     "text": "Customer data is stored in data centres in Frankfurt, Germany.",
+     "n_generated": 12,
+     "n_context": 203,
+     "n_question": 14,
+     "question_ms": 191.77294921875,
+     "generate_ms": 684.063232421875
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5275683403015137,
+    "full_answer": {
+     "text": "Customer data is stored in data centres in Frankfurt, Germany.",
+     "n_generated": 12,
+     "n_context": 1201,
+     "n_question": 14,
+     "question_ms": 337.101806640625,
+     "generate_ms": 689.51611328125
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 41,
+     "B_tokens_after": 41,
+     "prefill_ms": 11858.421875,
+     "scoped_answer": {
+      "text": "Customer data is stored in data centres in Frankfurt, Germany.",
+      "n_generated": 12,
+      "n_context": 203,
+      "n_question": 14,
+      "question_ms": 216.67626953125,
+      "generate_ms": 683.97900390625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "All customer data is stored in data centres in Frankfurt, Germany.",
+      "n_generated": 13,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 293.136962890625,
+      "generate_ms": 775.133056640625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 0.7198681831359863,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 41,
+     "B_tokens_after": 31,
+     "prefill_ms": 9498.7490234375,
+     "scoped_answer": {
+      "text": "Customer data is stored in data centres in Frankfurt, Germany.",
+      "n_generated": 12,
+      "n_context": 203,
+      "n_question": 14,
+      "question_ms": 187.678955078125,
+      "generate_ms": 653.541259765625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.576129674911499,
+     "flat_control_answer": {
+      "text": "All customer data is stored in data centres in Frankfurt, Germany.",
+      "n_generated": 13,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 305.26123046875,
+      "generate_ms": 860.555908203125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.6445341110229492,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "          <div class=\"card\"><h3>Offline mode</h3><p>Offline mode has been removed from all apps.</p></div>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "All customer data is stored in data centres in Frankfurt, Germany.",
+    "n_generated": 13,
+    "n_context": 0,
+    "n_question": 14,
+    "question_ms": 317.3720703125,
+    "generate_ms": 923.60302734375
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "Frankfurt",
+   "baseline_correct": true
+  },
+  {
+   "doc": "saltmarsh_recipe.html",
+   "question": "How many people does the chowder serve?",
+   "A": "section#recipe-card",
+   "B": "article#post #2",
+   "n_nodes": 29,
+   "n_tokens": 1206,
+   "prefill_ms": 9265.69287109375,
+   "baseline_scoped": {
+    "text": "The chowder serves 4 people.",
+    "n_generated": 9,
+    "n_context": 315,
+    "n_question": 18,
+    "question_ms": 466.18310546875,
+    "generate_ms": 693.952880859375
+   },
+   "baseline_full": {
+    "text": "The chowder serves 4 people.",
+    "n_generated": 9,
+    "n_context": 1206,
+    "n_question": 18,
+    "question_ms": 576.257080078125,
+    "generate_ms": 705.224853515625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 39539681,
+    "kv_bytes_after": 36523921,
+    "kv_cells_before": 1206,
+    "kv_cells_after": 1114,
+    "scoped_answer": {
+     "text": "The chowder serves 4 people.",
+     "n_generated": 9,
+     "n_context": 315,
+     "n_question": 18,
+     "question_ms": 313.7509765625,
+     "generate_ms": 564.325927734375
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5989034175872803,
+    "full_answer": {
+     "text": "The chowder serves 4 people.",
+     "n_generated": 9,
+     "n_context": 1114,
+     "n_question": 18,
+     "question_ms": 388.677001953125,
+     "generate_ms": 583.01416015625
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 92,
+     "B_tokens_after": 92,
+     "prefill_ms": 12103.340087890625,
+     "scoped_answer": {
+      "text": "The chowder serves 4 people.",
+      "n_generated": 9,
+      "n_context": 315,
+      "n_question": 18,
+      "question_ms": 269.011962890625,
+      "generate_ms": 553.3349609375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The chowder serves 4 people.",
+      "n_generated": 9,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 352.802734375,
+      "generate_ms": 538.373046875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.8887338638305664,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 92,
+     "B_tokens_after": 21,
+     "prefill_ms": 10537.255859375,
+     "scoped_answer": {
+      "text": "The chowder serves 4 people.",
+      "n_generated": 9,
+      "n_context": 315,
+      "n_question": 18,
+      "question_ms": 293.800048828125,
+      "generate_ms": 642.098876953125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.8076245784759521,
+     "flat_control_answer": {
+      "text": "The chowder serves 4 people.",
+      "n_generated": 9,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 405.074951171875,
+      "generate_ms": 659.568115234375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.8611273765563965,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "      <p>Update: I now make this with salmon and serve it cold in summer.</p>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The chowder serves 4 people.",
+    "n_generated": 9,
+    "n_context": 0,
+    "n_question": 18,
+    "question_ms": 438.34716796875,
+    "generate_ms": 708.539794921875
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "4",
+   "baseline_correct": true
+  },
+  {
+   "doc": "saltmarsh_recipe.html",
+   "question": "Which fish did Tomas use instead of mackerel?",
+   "A": "section#comments",
+   "B": "section: About me",
+   "n_nodes": 29,
+   "n_tokens": 1206,
+   "prefill_ms": 12123.447998046875,
+   "baseline_scoped": {
+    "text": "Smoked haddock.",
+    "n_generated": 5,
+    "n_context": 171,
+    "n_question": 19,
+    "question_ms": 381.45703125,
+    "generate_ms": 342.950927734375
+   },
+   "baseline_full": {
+    "text": "Tomas used smoked haddock instead of mackerel.",
+    "n_generated": 12,
+    "n_context": 1206,
+    "n_question": 19,
+    "question_ms": 501.47216796875,
+    "generate_ms": 823.97412109375
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 39539681,
+    "kv_bytes_after": 37835121,
+    "kv_cells_before": 1206,
+    "kv_cells_after": 1154,
+    "scoped_answer": {
+     "text": "Smoked haddock.",
+     "n_generated": 5,
+     "n_context": 171,
+     "n_question": 19,
+     "question_ms": 307.97314453125,
+     "generate_ms": 304.011962890625
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5007538795471191,
+    "full_answer": {
+     "text": "Tomas used smoked haddock instead of mackerel.",
+     "n_generated": 12,
+     "n_context": 1154,
+     "n_question": 19,
+     "question_ms": 519.4990234375,
+     "generate_ms": 1144.050048828125
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 52,
+     "B_tokens_after": 52,
+     "prefill_ms": 10127.64794921875,
+     "scoped_answer": {
+      "text": "Smoked haddock.",
+      "n_generated": 5,
+      "n_context": 171,
+      "n_question": 19,
+      "question_ms": 237.37109375,
+      "generate_ms": 260.416015625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Smoked haddock.",
+      "n_generated": 5,
+      "n_context": 0,
+      "n_question": 19,
+      "question_ms": 381.557861328125,
+      "generate_ms": 286.737060546875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.3309860229492188,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 52,
+     "B_tokens_after": 47,
+     "prefill_ms": 9473.47705078125,
+     "scoped_answer": {
+      "text": "Smoked haddock.",
+      "n_generated": 5,
+      "n_context": 171,
+      "n_question": 19,
+      "question_ms": 222.416015625,
+      "generate_ms": 261.80419921875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5078535079956055,
+     "flat_control_answer": {
+      "text": "Smoked haddock.",
+      "n_generated": 5,
+      "n_context": 0,
+      "n_question": 19,
+      "question_ms": 401.947021484375,
+      "generate_ms": 309.09423828125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.9287991523742676,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "        <section class=\"widget widget-about\">\n          <h3 class=\"widget-title\">About me</h3>\n          <p>I am a professional baker from the south who mostly writes about cakes.</p>\n        </section>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Smoked haddock.",
+    "n_generated": 5,
+    "n_context": 0,
+    "n_question": 19,
+    "question_ms": 414.5439453125,
+    "generate_ms": 322.0791015625
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "haddock",
+   "baseline_correct": true
+  },
+  {
+   "doc": "cs214_course.html",
+   "question": "What percentage of the grade is the final exam?",
+   "A": "section#grading",
+   "B": "section#overview",
+   "n_nodes": 28,
+   "n_tokens": 901,
+   "prefill_ms": 7300.751953125,
+   "baseline_scoped": {
+    "text": "30 percent.",
+    "n_generated": 3,
+    "n_context": 155,
+    "n_question": 18,
+    "question_ms": 247.35205078125,
+    "generate_ms": 149.52587890625
+   },
+   "baseline_full": {
+    "text": "The final exam accounts for 30 percent of the grade.",
+    "n_generated": 12,
+    "n_context": 901,
+    "n_question": 18,
+    "question_ms": 312.0439453125,
+    "generate_ms": 692.551025390625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 29542337,
+    "kv_bytes_after": 26592137,
+    "kv_cells_before": 901,
+    "kv_cells_after": 811,
+    "scoped_answer": {
+     "text": "30 percent.",
+     "n_generated": 3,
+     "n_context": 155,
+     "n_question": 18,
+     "question_ms": 226.908203125,
+     "generate_ms": 149.767822265625
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.48120641708374023,
+    "full_answer": {
+     "text": "The final exam accounts for 30 percent of the grade.",
+     "n_generated": 12,
+     "n_context": 811,
+     "n_question": 18,
+     "question_ms": 295.729736328125,
+     "generate_ms": 689.309326171875
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 90,
+     "B_tokens_after": 90,
+     "prefill_ms": 7276.934814453125,
+     "scoped_answer": {
+      "text": "30 percent.",
+      "n_generated": 3,
+      "n_context": 155,
+      "n_question": 18,
+      "question_ms": 201.87109375,
+      "generate_ms": 151.59912109375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "30 percent.",
+      "n_generated": 3,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 363.9931640625,
+      "generate_ms": 171.151123046875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.5482406616210938,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 90,
+     "B_tokens_after": 47,
+     "prefill_ms": 6921.625732421875,
+     "scoped_answer": {
+      "text": "30 percent.",
+      "n_generated": 3,
+      "n_context": 155,
+      "n_question": 18,
+      "question_ms": 202.18310546875,
+      "generate_ms": 155.8408203125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5887837409973145,
+     "flat_control_answer": {
+      "text": "30 percent.",
+      "n_generated": 3,
+      "n_context": 0,
+      "n_question": 18,
+      "question_ms": 294.7099609375,
+      "generate_ms": 178.65185546875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.5327625274658203,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "      <section id=\"overview\">\n        <h1>CS 214: Data Systems</h1>\n        <p>This course is cancelled this semester. Students should enrol in CS 215 instead.</p>\n      </section>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "30 percent.",
+    "n_generated": 3,
+    "n_context": 0,
+    "n_question": 18,
+    "question_ms": 305.8349609375,
+    "generate_ms": 170.8701171875
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "30",
+   "baseline_correct": true
+  },
+  {
+   "doc": "cs214_course.html",
+   "question": "When are Professor Varga's office hours?",
+   "A": "section#staff",
+   "B": "section#grading #2",
+   "n_nodes": 28,
+   "n_tokens": 901,
+   "prefill_ms": 6855.85986328125,
+   "baseline_scoped": {
+    "text": "Office hours: Tuesdays 14:00–15:30 in room B310.",
+    "n_generated": 18,
+    "n_context": 168,
+    "n_question": 17,
+    "question_ms": 234.218017578125,
+    "generate_ms": 961.65869140625
+   },
+   "baseline_full": {
+    "text": "The office hours for Professor Varga are on Tuesdays at 14:00–15:30 in room B310.",
+    "n_generated": 25,
+    "n_context": 901,
+    "n_question": 17,
+    "question_ms": 292.791015625,
+    "generate_ms": 1446.362060546875
+   },
+   "test2_evict_B": {
+    "pass": false,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 29542337,
+    "kv_bytes_after": 28755617,
+    "kv_cells_before": 901,
+    "kv_cells_after": 877,
+    "scoped_answer": {
+     "text": "Office hours are Tuesdays 14:00–15:30 in room B310.",
+     "n_generated": 18,
+     "n_context": 168,
+     "n_question": 17,
+     "question_ms": 212.8359375,
+     "generate_ms": 1005.320068359375
+    },
+    "scoped_unchanged": false,
+    "scoped_first_logits_diff": 0.5506591796875,
+    "full_answer": {
+     "text": "The office hours for Professor Varga are on Tuesdays at 14:00–15:30 in room B310.",
+     "n_generated": 25,
+     "n_context": 877,
+     "n_question": 17,
+     "question_ms": 294.31591796875,
+     "generate_ms": 1458.343994140625
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 24,
+     "B_tokens_after": 24,
+     "prefill_ms": 6943.417724609375,
+     "scoped_answer": {
+      "text": "Office hours: Tuesdays 14:00–15:30 in room B310.",
+      "n_generated": 18,
+      "n_context": 168,
+      "n_question": 17,
+      "question_ms": 196.56103515625,
+      "generate_ms": 958.4599609375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Office hours: Tuesdays 14:00–15:30 in room B310.",
+      "n_generated": 18,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 318.407958984375,
+      "generate_ms": 1076.039794921875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.487752914428711,
+     "correct": true
+    },
+    "free_length": {
+     "pass": false,
+     "B_tokens_before": 24,
+     "B_tokens_after": 15,
+     "prefill_ms": 6892.880859375,
+     "scoped_answer": {
+      "text": "Office hours are Tuesdays 14:00–15:30 in room B310.",
+      "n_generated": 18,
+      "n_context": 168,
+      "n_question": 17,
+      "question_ms": 193.779296875,
+      "generate_ms": 1021.9228515625
+     },
+     "scoped_unchanged": false,
+     "scoped_first_logits_diff": 0.5621976852416992,
+     "flat_control_answer": {
+      "text": "Office hours: Tuesdays 14:00–15:30 in room B310.",
+      "n_generated": 18,
+      "n_context": 0,
+      "n_question": 17,
+      "question_ms": 292.080810546875,
+      "generate_ms": 1036.178955078125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.7370586395263672,
+     "correct": true
+    },
+    "pass": false,
+    "edit_text": "        <p>Late projects are never accepted, without exception.</p>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Office hours: Tuesdays 14:00–15:30 in room B310.",
+    "n_generated": 18,
+    "n_context": 0,
+    "n_question": 17,
+    "question_ms": 314.979248046875,
+    "generate_ms": 1053.761962890625
+   },
+   "flash_attn": "auto",
+   "pass": false,
+   "expect": "14:00",
+   "baseline_correct": true
+  },
+  {
+   "doc": "avelin_gazette.html",
+   "question": "How much will the bridge repairs cost?",
+   "A": "article#story",
+   "B": "div#cookie-banner",
+   "n_nodes": 20,
+   "n_tokens": 822,
+   "prefill_ms": 6662.9677734375,
+   "baseline_scoped": {
+    "text": "The bridge repairs will cost 4.2 million crowns.",
+    "n_generated": 13,
+    "n_context": 265,
+    "n_question": 16,
+    "question_ms": 235.899169921875,
+    "generate_ms": 725.031005859375
+   },
+   "baseline_full": {
+    "text": "$4.2 million.",
+    "n_generated": 6,
+    "n_context": 822,
+    "n_question": 16,
+    "question_ms": 268.66796875,
+    "generate_ms": 344.8818359375
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 26949317,
+    "kv_bytes_after": 25080857,
+    "kv_cells_before": 822,
+    "kv_cells_after": 765,
+    "scoped_answer": {
+     "text": "The bridge repairs will cost 4.2 million crowns.",
+     "n_generated": 13,
+     "n_context": 265,
+     "n_question": 16,
+     "question_ms": 183.4638671875,
+     "generate_ms": 744.819091796875
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5609416961669922,
+    "full_answer": {
+     "text": "The bridge repairs cost 4.2 million crowns.",
+     "n_generated": 12,
+     "n_context": 765,
+     "n_question": 16,
+     "question_ms": 247.525146484375,
+     "generate_ms": 708.062255859375
+    },
+    "full_unchanged": false,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 57,
+     "B_tokens_after": 57,
+     "prefill_ms": 6683.10302734375,
+     "scoped_answer": {
+      "text": "The bridge repairs will cost 4.2 million crowns.",
+      "n_generated": 13,
+      "n_context": 265,
+      "n_question": 16,
+      "question_ms": 192.256103515625,
+      "generate_ms": 750.51904296875
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The repairs will cost 4.2 million crowns.",
+      "n_generated": 12,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 259.812255859375,
+      "generate_ms": 719.9658203125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 0.6944849491119385,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 57,
+     "B_tokens_after": 29,
+     "prefill_ms": 6334.361083984375,
+     "scoped_answer": {
+      "text": "The bridge repairs will cost 4.2 million crowns.",
+      "n_generated": 13,
+      "n_context": 265,
+      "n_question": 16,
+      "question_ms": 193.62109375,
+      "generate_ms": 746.197021484375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.4679982662200928,
+     "flat_control_answer": {
+      "text": "The repairs will cost 4.2 million crowns.",
+      "n_generated": 12,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 254.613037109375,
+      "generate_ms": 695.02197265625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 0.9899911880493164,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "    <div id=\"cookie-banner\" class=\"consent\">\n      <p>This site does not use cookies.</p>\n    </div>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The repairs will cost 4.2 million crowns.",
+    "n_generated": 12,
+    "n_context": 0,
+    "n_question": 16,
+    "question_ms": 264.666259765625,
+    "generate_ms": 680.921630859375
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "4.2",
+   "baseline_correct": true
+  },
+  {
+   "doc": "avelin_gazette.html",
+   "question": "At what time does the newsletter arrive?",
+   "A": "section#newsletter",
+   "B": "article#story #3",
+   "n_nodes": 20,
+   "n_tokens": 822,
+   "prefill_ms": 6539.552978515625,
+   "baseline_scoped": {
+    "text": "07:00",
+    "n_generated": 3,
+    "n_context": 139,
+    "n_question": 16,
+    "question_ms": 232.253173828125,
+    "generate_ms": 157.673828125
+   },
+   "baseline_full": {
+    "text": "The newsletter arrives every weekday at 07:00.",
+    "n_generated": 11,
+    "n_context": 822,
+    "n_question": 16,
+    "question_ms": 288.291015625,
+    "generate_ms": 627.22314453125
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 26949317,
+    "kv_bytes_after": 24261357,
+    "kv_cells_before": 822,
+    "kv_cells_after": 740,
+    "scoped_answer": {
+     "text": "07:00",
+     "n_generated": 3,
+     "n_context": 139,
+     "n_question": 16,
+     "question_ms": 170.68017578125,
+     "generate_ms": 153.196044921875
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6562290191650391,
+    "full_answer": {
+     "text": "The newsletter arrives every weekday at 07:00.",
+     "n_generated": 11,
+     "n_context": 740,
+     "n_question": 16,
+     "question_ms": 239.719970703125,
+     "generate_ms": 642.510009765625
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 82,
+     "B_tokens_after": 82,
+     "prefill_ms": 6328.1611328125,
+     "scoped_answer": {
+      "text": "07:00",
+      "n_generated": 3,
+      "n_context": 139,
+      "n_question": 16,
+      "question_ms": 171.85498046875,
+      "generate_ms": 156.77392578125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "The newsletter arrives every weekday at 07:00.",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 262.218994140625,
+      "generate_ms": 635.5087890625
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.8631372451782227,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 82,
+     "B_tokens_after": 14,
+     "prefill_ms": 5924.55908203125,
+     "scoped_answer": {
+      "text": "07:00",
+      "n_generated": 3,
+      "n_context": 139,
+      "n_question": 16,
+      "question_ms": 169.810791015625,
+      "generate_ms": 150.69384765625
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.5281896591186523,
+     "flat_control_answer": {
+      "text": "The newsletter arrives every weekday at 07:00.",
+      "n_generated": 11,
+      "n_context": 0,
+      "n_question": 16,
+      "question_ms": 256.43603515625,
+      "generate_ms": 623.0341796875
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.9472744464874268,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "        <p>The engineer declined to comment on the repairs.</p>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "The newsletter arrives every weekday at 07:00.",
+    "n_generated": 11,
+    "n_context": 0,
+    "n_question": 16,
+    "question_ms": 260.458984375,
+    "generate_ms": 662.840087890625
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "07:00",
+   "baseline_correct": true
+  },
+  {
+   "doc": "hotel_greyhook.html",
+   "question": "What time is check-out?",
+   "A": "section#policies",
+   "B": "div: Harbour Room",
+   "n_nodes": 23,
+   "n_tokens": 865,
+   "prefill_ms": 7037.385986328125,
+   "baseline_scoped": {
+    "text": "11:00.",
+    "n_generated": 4,
+    "n_context": 148,
+    "n_question": 14,
+    "question_ms": 229.4228515625,
+    "generate_ms": 212.31103515625
+   },
+   "baseline_full": {
+    "text": "Check-out is by 11:00.",
+    "n_generated": 9,
+    "n_context": 865,
+    "n_question": 14,
+    "question_ms": 271.5009765625,
+    "generate_ms": 522.852783203125
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 28359441,
+    "kv_bytes_after": 26458201,
+    "kv_cells_before": 865,
+    "kv_cells_after": 807,
+    "scoped_answer": {
+     "text": "11:00.",
+     "n_generated": 4,
+     "n_context": 148,
+     "n_question": 14,
+     "question_ms": 195.8740234375,
+     "generate_ms": 210.07470703125
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.6187217235565186,
+    "full_answer": {
+     "text": "Check-out is by 11:00.",
+     "n_generated": 9,
+     "n_context": 807,
+     "n_question": 14,
+     "question_ms": 255.68603515625,
+     "generate_ms": 530.438232421875
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 58,
+     "B_tokens_after": 58,
+     "prefill_ms": 6934.955078125,
+     "scoped_answer": {
+      "text": "11:00.",
+      "n_generated": 4,
+      "n_context": 148,
+      "n_question": 14,
+      "question_ms": 195.43505859375,
+      "generate_ms": 211.939208984375
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "11:00.",
+      "n_generated": 4,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 287.906982421875,
+      "generate_ms": 231.020751953125
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 3.350623607635498,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 58,
+     "B_tokens_after": 31,
+     "prefill_ms": 6735.322998046875,
+     "scoped_answer": {
+      "text": "11:00.",
+      "n_generated": 4,
+      "n_context": 148,
+      "n_question": 14,
+      "question_ms": 186.537109375,
+      "generate_ms": 240.548828125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.6285204887390137,
+     "flat_control_answer": {
+      "text": "11:00.",
+      "n_generated": 4,
+      "n_context": 0,
+      "n_question": 14,
+      "question_ms": 267.11083984375,
+      "generate_ms": 299.9990234375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 2.7397570610046387,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "          <div class=\"room-info\"><h3>Harbour Room</h3><p>Closed for renovation until next spring.</p></div>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "11:00.",
+    "n_generated": 4,
+    "n_context": 0,
+    "n_question": 14,
+    "question_ms": 308.524169921875,
+    "generate_ms": 260.73388671875
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "11:00",
+   "baseline_correct": true
+  },
+  {
+   "doc": "hotel_greyhook.html",
+   "question": "When is breakfast served?",
+   "A": "section#amenities",
+   "B": "ul",
+   "n_nodes": 23,
+   "n_tokens": 865,
+   "prefill_ms": 7327.483154296875,
+   "baseline_scoped": {
+    "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+    "n_generated": 19,
+    "n_context": 133,
+    "n_question": 13,
+    "question_ms": 225.7119140625,
+    "generate_ms": 971.982177734375
+   },
+   "baseline_full": {
+    "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+    "n_generated": 19,
+    "n_context": 865,
+    "n_question": 13,
+    "question_ms": 258.492919921875,
+    "generate_ms": 1132.94384765625
+   },
+   "test2_evict_B": {
+    "pass": true,
+    "seq_rm_ok": true,
+    "kv_bytes_before": 28359441,
+    "kv_bytes_after": 25540361,
+    "kv_cells_before": 865,
+    "kv_cells_after": 779,
+    "scoped_answer": {
+     "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+     "n_generated": 19,
+     "n_context": 133,
+     "n_question": 13,
+     "question_ms": 199.15380859375,
+     "generate_ms": 964.38525390625
+    },
+    "scoped_unchanged": true,
+    "scoped_first_logits_diff": 0.5312824249267578,
+    "full_answer": {
+     "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+     "n_generated": 19,
+     "n_context": 779,
+     "n_question": 13,
+     "question_ms": 274.773193359375,
+     "generate_ms": 1121.587890625
+    },
+    "full_unchanged": true,
+    "correct": true,
+    "full_correct": true
+   },
+   "test1_edit_B": {
+    "same_length": {
+     "pass": true,
+     "B_tokens_before": 86,
+     "B_tokens_after": 86,
+     "prefill_ms": 11314.30224609375,
+     "scoped_answer": {
+      "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+      "n_generated": 19,
+      "n_context": 133,
+      "n_question": 13,
+      "question_ms": 596.781982421875,
+      "generate_ms": 1169.40283203125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.0,
+     "flat_control_answer": {
+      "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+      "n_generated": 19,
+      "n_context": 0,
+      "n_question": 13,
+      "question_ms": 260.9970703125,
+      "generate_ms": 1158.8271484375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.391709327697754,
+     "correct": true
+    },
+    "free_length": {
+     "pass": true,
+     "B_tokens_before": 86,
+     "B_tokens_after": 30,
+     "prefill_ms": 6810.952880859375,
+     "scoped_answer": {
+      "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+      "n_generated": 19,
+      "n_context": 133,
+      "n_question": 13,
+      "question_ms": 185.840087890625,
+      "generate_ms": 1051.981689453125
+     },
+     "scoped_unchanged": true,
+     "scoped_first_logits_diff": 0.47203588485717773,
+     "flat_control_answer": {
+      "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+      "n_generated": 19,
+      "n_context": 0,
+      "n_question": 13,
+      "question_ms": 247.361083984375,
+      "generate_ms": 1115.484130859375
+     },
+     "flat_control_unchanged": true,
+     "flat_control_logits_diff": 1.665358543395996,
+     "correct": true
+    },
+    "pass": true,
+    "edit_text": "        <ul>\n          <li>No pets are allowed.</li>\n          <li>Cancellations are not refunded.</li>\n        </ul>\n"
+   },
+   "flat_baseline_answer": {
+    "text": "Breakfast is served from 06:30 to 10:00 in the Lantern Room.",
+    "n_generated": 19,
+    "n_context": 0,
+    "n_question": 13,
+    "question_ms": 259.337890625,
+    "generate_ms": 1400.68701171875
+   },
+   "flash_attn": "auto",
+   "pass": true,
+   "expect": "06:30",
+   "baseline_correct": true
+  }
+ ]
+}

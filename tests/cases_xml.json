@@ -1,0 +1,82 @@
+[
+  {
+    "doc": "jats_dunlin_foraging.json",
+    "question": "How many dunlin were tagged?",
+    "A": "sec#s2",
+    "B": "sec#s1",
+    "edit_text": "    <sec id=\"s1\">\n      <title>Introduction</title>\n      <p>This study was withdrawn by the authors.</p>\n    </sec>\n",
+    "expect": "46"
+  },
+  {
+    "doc": "jats_dunlin_foraging.json",
+    "question": "What percentage of low-tide hours did the birds spend foraging?",
+    "A": "sec#s3",
+    "B": "abstract",
+    "edit_text": "        <abstract>\n          <p>We studied gulls in a city park during summer.</p>\n        </abstract>\n",
+    "expect": "71"
+  },
+  {
+    "doc": "jats_subtree_eviction.json",
+    "question": "How many documents were used in the evaluation?",
+    "A": "sec#s3",
+    "B": "sec#s2",
+    "edit_text": "    <sec id=\"s2\">\n      <title>Method</title>\n      <p>We copy the full prompt for every question and never evict anything.</p>\n    </sec>\n",
+    "expect": "120"
+  },
+  {
+    "doc": "jats_subtree_eviction.json",
+    "question": "Which foundation funded this work?",
+    "A": "ack#ack",
+    "B": "sec#s4",
+    "edit_text": "    <sec id=\"s4\">\n      <title>Conclusion</title>\n      <p>Structured identifiers did not help in our experiments.</p>\n    </sec>\n",
+    "expect": "Northlight"
+  },
+  {
+    "doc": "jats_school_sleep.json",
+    "question": "How many students took part in the study?",
+    "A": "sec#s2",
+    "B": "abstract#abstract",
+    "edit_text": "        <abstract id=\"abstract\">\n          <p>We surveyed teachers about classroom noise.</p>\n        </abstract>\n",
+    "expect": "312"
+  },
+  {
+    "doc": "jats_school_sleep.json",
+    "question": "How many minutes longer did students in Port Avelin sleep on school nights?",
+    "A": "sec#s3",
+    "B": "sec#s1",
+    "edit_text": "    <sec id=\"s1\">\n      <title>Background</title>\n      <p>Adults need more sleep than teenagers.</p>\n    </sec>\n",
+    "expect": "34"
+  },
+  {
+    "doc": "orbit_server_pom.json",
+    "question": "Which version of junit-jupiter does the project use?",
+    "A": "dependency: junit-jupiter",
+    "B": "dependency: jackson-databind",
+    "edit_text": "    <dependency>\n      <groupId>com.google.code.gson</groupId>\n      <artifactId>gson</artifactId>\n      <version>2.11.0</version>\n    </dependency>\n",
+    "expect": "5.10.2"
+  },
+  {
+    "doc": "orbit_server_pom.json",
+    "question": "What forkCount does the surefire plugin use?",
+    "A": "plugin: maven-surefire-plugin",
+    "B": "plugin: maven-compiler-plugin",
+    "edit_text": "      <plugin>\n        <groupId>org.apache.maven.plugins</groupId>\n        <artifactId>maven-jar-plugin</artifactId>\n        <version>3.4.1</version>\n",
+    "expect": "4"
+  },
+  {
+    "doc": "harbor_gateway_config.json",
+    "question": "Which port does the admin server listen on?",
+    "A": "server: admin",
+    "B": "server: public",
+    "edit_text": "    <server name=\"public\" port=\"8080\" tls=\"false\" maxConnections=\"100\"/>\n",
+    "expect": "9100"
+  },
+  {
+    "doc": "harbor_gateway_config.json",
+    "question": "What is the maximum size of the database connection pool?",
+    "A": "database: harbor",
+    "B": "logging",
+    "edit_text": "  <logging level=\"debug\" format=\"text\"/>\n",
+    "expect": "20"
+  }
+]

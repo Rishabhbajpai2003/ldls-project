@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "JATS-journalpublishing1-3.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article" xml:lang="en">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="publisher-id">jsys</journal-id>
+      <journal-title-group><journal-title>Journal of Practical Systems</journal-title></journal-title-group>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="doi">10.5555/jsys.2026.0088</article-id>
+      <title-group>
+        <article-title>Subtree eviction for structured prompts in small language models</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author"><name><surname>Okafor</surname><given-names>Daniel</given-names></name></contrib>
+        <contrib contrib-type="author"><name><surname>Holt</surname><given-names>Maren</given-names></name></contrib>
+      </contrib-group>
+      <pub-date pub-type="epub"><day>02</day><month>06</month><year>2026</year></pub-date>
+      <abstract>
+        <p>Long prompts often contain structure that a model never needs all at once. We store each subtree of a document under its own sequence and remove whole subtrees from the key-value cache when they are no longer needed.</p>
+      </abstract>
+      <kwd-group><kwd>KV cache</kwd><kwd>attention masks</kwd><kwd>document structure</kwd></kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s1">
+      <title>Introduction</title>
+      <p>Retrieval systems paste whole documents into a prompt, yet most questions concern a single section. Keeping every token in the cache wastes memory on small devices.</p>
+    </sec>
+    <sec id="s2">
+      <title>Method</title>
+      <p>Each node of the parsed document gets its own sequence identifier, and every token is tagged with the identifiers of its node and all descendants. Siblings therefore cannot attend to each other.</p>
+      <p>To evict a subtree we remove its identifiers over its position range; the freed cells are reused by later tokens.</p>
+    </sec>
+    <sec id="s3">
+      <title>Experiments</title>
+      <p>We evaluated the method on 120 documents from four domains using a 1-billion-parameter model on a laptop CPU.</p>
+      <p>Evicting unused subtrees reduced cache memory by 38 percent on average while answer accuracy stayed within one point of the full prompt.</p>
+    </sec>
+    <sec id="s4">
+      <title>Conclusion</title>
+      <p>Structured sequence identifiers make cache eviction safe at the granularity of document sections.</p>
+    </sec>
+  </body>
+  <back>
+    <ack id="ack"><p>This work was funded by the Northlight Foundation under grant NF-2025-17.</p></ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="r1"><mixed-citation>Lund, P. (2024). Prompt compression in practice. <italic>Systems Letters</italic> 12: 5–11.</mixed-citation></ref>
+    </ref-list>
+  </back>
+</article>

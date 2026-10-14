@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "JATS-journalpublishing1-3.dtd">
+<article xmlns:xlink="http://www.w3.org/1999/xlink" article-type="research-article" xml:lang="en">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="publisher-id">yhr</journal-id>
+      <journal-title-group><journal-title>Youth Health Reports</journal-title></journal-title-group>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="doi">10.5555/yhr.2026.0213</article-id>
+      <title-group>
+        <article-title>Later school start times and adolescent sleep in two coastal towns</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author"><name><surname>Varga</surname><given-names>Ines</given-names></name></contrib>
+      </contrib-group>
+      <pub-date pub-type="epub"><day>21</day><month>09</month><year>2026</year></pub-date>
+      <abstract id="abstract">
+        <p>One town moved its secondary school start from 08:00 to 09:00; a neighbouring town did not. We compared sleep diaries from both towns before and after the change.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s1">
+      <title>Background</title>
+      <p>Teenagers fall asleep later than adults for biological reasons, so early school starts cut their sleep short.</p>
+    </sec>
+    <sec id="s2">
+      <title>Methods</title>
+      <p>In total 312 students aged 13 to 17 kept a sleep diary for two weeks in October 2024 and again in October 2025.</p>
+      <table-wrap id="t1">
+        <label>Table 1</label>
+        <caption><p>Participants by town</p></caption>
+        <table>
+          <tr><th>Town</th><th>Start time</th><th>Students</th></tr>
+          <tr><td>Port Avelin</td><td>09:00</td><td>164</td></tr>
+          <tr><td>Skerra</td><td>08:00</td><td>148</td></tr>
+        </table>
+      </table-wrap>
+    </sec>
+    <sec id="s3">
+      <title>Results</title>
+      <p>After the change, students in Port Avelin slept 34 minutes longer on school nights. Sleep in Skerra did not change.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="r1"><mixed-citation>Carskadon, M. A. (2011). Sleep in adolescents. <italic>Pediatric Clinics</italic> 58: 637–647.</mixed-citation></ref>
+    </ref-list>
+  </back>
+</article>

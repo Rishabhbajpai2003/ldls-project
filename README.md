@@ -2,15 +2,19 @@
 
 This project splits documents into trees and loads them into llama.cpp so that **each subtree attends only to its ancestors**. Questions can see the whole document or just one subtree. Whole subtrees can be **evicted** from the KV cache. Everything runs on CPU with Llama-3.2-1B-Instruct (Q4_K_M).
 
+Three domains are implemented: **Markdown** (#3), **HTML** (#1) and **XML** (#8). They all use the same driver, schema and tests.
+
 ## Contents
 
 | Part | Path |
 |---|---|
 | Shared C++ driver (based on llama.cpp `batched`) | [`driver/ldls_driver.cpp`](driver/ldls_driver.cpp) |
 | JSON schema and merge rules | [`schema/tree.schema.json`](schema/tree.schema.json), [`schema/SCHEMA.md`](schema/SCHEMA.md) |
-| Markdown parser (domain 3) | [`parsers/markdown_parser.py`](parsers/markdown_parser.py) |
-| 5 sample documents and their parsed trees | [`data/markdown/docs/`](data/markdown/docs), [`data/markdown/json/`](data/markdown/json) |
-| Tests (change B / remove B, ask about A) | [`tests/run_tests.py`](tests/run_tests.py), [`tests/cases_markdown.json`](tests/cases_markdown.json) |
+| Shared parser code (tokenizing, merge rules, JSON output) | [`parsers/common.py`](parsers/common.py) |
+| Markdown: parser, 5 documents, parsed trees | [`parsers/markdown/`](parsers/markdown) (`parser.py`, `docs/`, `json/`) |
+| HTML: parser, 5 documents, parsed trees | [`parsers/html/`](parsers/html) |
+| XML: parser, 5 documents, parsed trees | [`parsers/xml/`](parsers/xml) |
+| Tests (change B / remove B, ask about A), 10 cases per domain | [`tests/run_tests.py`](tests/run_tests.py), `tests/cases_<domain>.json` |
 | Tree statistics and CPU timings | [`tools/report.py`](tools/report.py) |
 | Results from the original machine | [`results/`](results) |
 | How llama.cpp builds the mask (trace notes) | [`docs/llama_cpp_notes.md`](docs/llama_cpp_notes.md) |
@@ -51,7 +55,7 @@ LDLS PROJECT/
 ├── models/        ← step 3 (you download the model)
 ├── build/         ← step 5 (created by the build)
 ├── .venv/         ← step 4, Linux/macOS only
-└── driver/  parsers/  schema/  tests/  tools/  data/  results/  docs/
+└── driver/  parsers/  schema/  tests/  tools/  results/  docs/
 ```
 
 ### Step 1: get the project folder
@@ -138,29 +142,34 @@ This decodes two prompts in two sequences of one batch, then each prompt alone. 
 
 Run these from the project folder. On Linux/macOS, activate the venv first.
 
+Every step takes the domain: `markdown`, `html` or `xml`.
+
 | # | What | Command | Time* |
 |---|---|---|---|
-| 1 | Parse the 5 documents into the schema | `python parsers/markdown_parser.py "data/markdown/docs/*.md" -o data/markdown/json` | 5 s |
-| 2 | Ask a question, scoped to one section, then evict another section | see below | 15 s |
-| 3 | Run both tests on all 10 cases | `python tests/run_tests.py` | 6–8 min |
-| 4 | Tree statistics and CPU timings | `python tools/report.py` | 5 min |
+| 1 | Parse the 5 documents of a domain into the schema | `python parsers/<domain>/parser.py "parsers/<domain>/docs/*" -o parsers/<domain>/json` | 5 s |
+| 2 | Ask a question, scoped to one subtree, then evict another subtree | see below | 15 s |
+| 3 | Run both tests on the domain's 10 cases | `python tests/run_tests.py --domain <domain>` | 6–8 min |
+| 4 | Tree statistics and CPU timings | `python tools/report.py --domain <domain>` | 5 min |
 
 \* on a 12-thread laptop CPU.
 
-Step 1 is optional: the parsed trees are already in `data/markdown/json/`, and re-running it with the same model gives identical files. Keep the quotes around `*.md`; they make it work in every shell, PowerShell included.
+Step 1 is optional: the parsed trees are already in `parsers/<domain>/json/`, and re-running it with the same model gives identical files. Keep the quotes around the `*` pattern; they make it work in every shell, PowerShell included.
 
-Step 2, an example question:
+Step 2, an example question for each domain:
 
 ```bash
-build/ldls_driver run -m models/Llama-3.2-1B-Instruct-Q4_K_M.gguf \
-  -d data/markdown/json/orbit_cli.json \
-  -q "What is the default number of upload workers?" \
-  --scope Configuration --evict Troubleshooting
+M=models/Llama-3.2-1B-Instruct-Q4_K_M.gguf
+build/ldls_driver run -m $M -d parsers/markdown/json/orbit_cli.json \
+  -q "What is the default number of upload workers?" --scope Configuration --evict Troubleshooting
+build/ldls_driver run -m $M -d parsers/html/json/brightloom_landing.json \
+  -q "How much does the Team plan cost per user per month?" --scope "section#pricing" --evict "section#faq"
+build/ldls_driver run -m $M -d parsers/xml/json/harbor_gateway_config.json \
+  -q "Which port does the admin server listen on?" --scope "server: admin" --evict features
 ```
 
-It prints the answer before and after evicting "Troubleshooting", plus KV memory and timings, as JSON.
+Each prints the answer before and after the eviction, plus KV memory and timings, as JSON. Node titles are listed in the JSON files (`"title"`).
 
-Step 3 prints one line per case and a summary. `test1_pass` and `test2_pass` must both be 10, and the command exits with code 0. The `test2_full_scope_*` counts are informational: a question that sees the *whole* document is allowed to change once B is gone. Results go to `results/test_results_markdown.json`. Step 4 writes `results/report_markdown.md` and `.json`.
+Step 3 prints one line per case and a summary. Results go to `results/test_results_<domain>.json`, and the command exits with code 0 only if `test1_pass` and `test2_pass` are both 10. The `test2_full_scope_*` counts are informational: a question that sees the *whole* document is allowed to change once B is gone. Step 4 writes `results/report_<domain>.md` and `.json`.
 
 ### Driver commands
 
@@ -230,13 +239,33 @@ For each case, the question targets subtree **A**, and **B** is a separate subtr
 
 Why not require bit-identical logits everywhere? Moving cells to different KV slots changes the floating-point summation order. The 8-bit activation quantization used with Q4 weights amplifies that to first-step logit differences of about 0.5. The `noise` command measures this: the same state gives exactly 0, and a re-layout gives about 0.5. The same-length variant avoids re-layout, so it can demand exact equality.
 
+### Results (original machine, 10 cases per domain)
+
+| | Markdown | HTML | XML |
+|---|---|---|---|
+| Documents (tokens each) | 5 (499–589) | 5 (822–1,242) | 5 (408–951) |
+| Nodes after merging (before) | 68 (123) | 135 (308) | 108 (243) |
+| Max tree depth | 3 | 7 | 6 |
+| Markup / syntax tokens | 19% | 76% | 64% |
+| Share of tokens a scoped question sees | 24% | 19% | 27% |
+| Answers correct | 10/10 | 10/10 | 10/10 |
+| **Test 1, same-length edit: A bit-identical** | **10/10** | **10/10** | **10/10** |
+| Test 1 control: flat prompt changes (logit Δ) | 10/10 (0.9–6.0) | 10/10 (0.7–4.7) | 10/10 (0.9–4.5) |
+| Test 1, real edit: identical answer wording | 10/10 | 9/10 | 8/10 |
+| Test 2: identical answer wording after eviction | 10/10 | 9/10 | 9/10 |
+| Test 2: KV memory drops | 10/10 (4–14%) | 10/10 (3–10%) | 10/10 (5–13%) |
+| CPU prefill, flat / tree (tokens/s) | 113 / 119 | 127 / 130 | 124 / 126 |
+| CPU generation (tokens/s) | 17 | 18 | 19 |
+
+The misses in the two "identical wording" rows are **wording only**. For example, *"Office hours: Tuesdays 14:00–15:30…"* became *"Office hours are Tuesdays 14:00–15:30…"*, and *"Birds spent 71 percent…"* became *"71%"*. Each comes with a first-step logit shift of 0.5–0.6, the measured noise floor from moving cells. The answers stay correct, and the noise-free check (same-length edit) is exact in all 30 cases. Under the strict rule, `run_tests.py` therefore exits with code 1 for HTML and XML.
+
 ## 7. Adding a domain
 
-Write `parsers/<domain>_parser.py` that emits [`schema/tree.schema.json`](schema/tree.schema.json). Tokenize with `ldls_driver tokenize` (see how the Markdown parser does it), and the driver validates the rest when it loads the file. Then add `tests/cases_<domain>.json` and run:
+1. Create `parsers/<domain>/parser.py`. Write one function, `build_raw_tree(text)`, that returns a tree of `common.Node`s: the root is `Node("document", PREAMBLE)`, structural nodes get `container=True`, and every node's `text` is its own text (without its children's). Then call `run_cli("<domain>", build_raw_tree, classify, __doc__)`. [`parsers/common.py`](parsers/common.py) does the rest: tokenizing, merging small subtrees, sequence IDs, tree positions, the 2,000-token check and the JSON output. The three existing parsers are short examples. `parsers/markdown/parser.py` is the simplest; HTML and XML show how to flag markup exactly with `segments`.
+2. Put 5 documents in `parsers/<domain>/docs/` and parse them into `parsers/<domain>/json/`.
+3. Write `tests/cases_<domain>.json` (same format as the existing case files), then run `python tests/run_tests.py --domain <domain>` and `python tools/report.py --domain <domain>`.
 
-```bash
-python tests/run_tests.py --cases tests/cases_<domain>.json --docs data/<domain>/json
-```
+The driver needs no changes. It validates every JSON file when it loads it.
 
 ## 8. Sharing this folder
 

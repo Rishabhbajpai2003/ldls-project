@@ -1,6 +1,7 @@
 """Run test 1 (edit B, ask about A) and test 2 (evict B, ask about A) for every case.
 
-Usage: python tests/run_tests.py [--cases tests/cases_markdown.json] [--docs data/markdown/json]
+Usage: python tests/run_tests.py [--domain markdown|html|xml]
+       (= --cases tests/cases_<domain>.json --docs parsers/<domain>/json)
 Writes results/test_results_<domain>.json and prints a summary table.
 """
 
@@ -46,11 +47,14 @@ def run_case(case, docs_dir, n_predict):
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
-    ap.add_argument("--cases", default=os.path.join(ROOT, "tests", "cases_markdown.json"))
-    ap.add_argument("--docs", default=os.path.join(ROOT, "data", "markdown", "json"))
+    ap.add_argument("--domain", default="markdown", help="picks tests/cases_<domain>.json and parsers/<domain>/json")
+    ap.add_argument("--cases", default=None)
+    ap.add_argument("--docs", default=None)
     ap.add_argument("-n", type=int, default=48)
     ap.add_argument("-o", "--out", default=None)
     args = ap.parse_args()
+    args.cases = args.cases or os.path.join(ROOT, "tests", f"cases_{args.domain}.json")
+    args.docs = args.docs or os.path.join(ROOT, "parsers", args.domain, "json")
 
     with open(args.cases, encoding="utf-8") as f:
         cases = json.load(f)

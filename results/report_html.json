@@ -1,0 +1,332 @@
+{
+ "domain": "html",
+ "total": {
+  "docs": 5,
+  "nodes": 135,
+  "nodes_before_merge": 308,
+  "tokens": 5036,
+  "max_depth": 7,
+  "markup_share": 0.7574398695474929,
+  "scoped_question_context_share": 0.19497959932374254,
+  "prefill_flat_tok_s": 126.66841511068405,
+  "prefill_tree_tok_s": 129.66445815628538,
+  "generate_tok_s": 18.026250497620673,
+  "kv_bytes_per_token": 32786.40650463837
+ },
+ "tests": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 9,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 9,
+  "test1_free_length_correct": 10,
+  "test2_pass": 9,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 9,
+  "test2_full_scope_correct": 10
+ },
+ "docs": [
+  {
+   "doc": "avelin_gazette.html",
+   "nodes": 20,
+   "nodes_before_merge": 40,
+   "tokens_total": 822,
+   "tokens_document": 796,
+   "depth": 5,
+   "subtree_tokens": {
+    "min": 16,
+    "median": 82,
+    "max": 796
+   },
+   "leaf_tokens": {
+    "min": 16,
+    "median": 65,
+    "max": 89
+   },
+   "n_leaves": 11,
+   "markup_tokens": 581,
+   "markup_share": 0.7298994974874372,
+   "node_types": {
+    "article": 1,
+    "aside": 1,
+    "body": 1,
+    "div": 1,
+    "footer": 1,
+    "head": 1,
+    "header": 1,
+    "html": 1,
+    "main": 1,
+    "merged": 3,
+    "nav": 1,
+    "p": 2,
+    "script": 1,
+    "section": 1,
+    "ul": 2
+   },
+   "bench": {
+    "doc": "avelin_gazette.html",
+    "n_nodes": 20,
+    "n_tokens": 822,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 6154.3681640625,
+    "prefill_tree_one_batch_ms": 6080.746826171875,
+    "prefill_tree_per_node_ms": 7048.994873046875,
+    "prefill_flat_tok_s": 133.56367023993533,
+    "prefill_tree_tok_s": 135.18076372824237,
+    "answer_full_scope": {
+     "text": "The document describes the closure of the Harbour Bridge for repairs, including the timing and details of the closure, as well as the cost of the repairs.",
+     "n_generated": 30,
+     "n_context": 822,
+     "n_question": 17,
+     "question_ms": 342.895263671875,
+     "generate_ms": 1624.177734375
+    },
+    "generate_tok_s": 18.47088490690602,
+    "kv_bytes": 26949317
+   }
+  },
+  {
+   "doc": "brightloom_landing.html",
+   "nodes": 35,
+   "nodes_before_merge": 77,
+   "tokens_total": 1242,
+   "tokens_document": 1216,
+   "depth": 6,
+   "subtree_tokens": {
+    "min": 23,
+    "median": 54.5,
+    "max": 1216
+   },
+   "leaf_tokens": {
+    "min": 23,
+    "median": 41,
+    "max": 111
+   },
+   "n_leaves": 21,
+   "markup_tokens": 964,
+   "markup_share": 0.7927631578947368,
+   "node_types": {
+    "body": 1,
+    "details": 3,
+    "div": 5,
+    "footer": 1,
+    "head": 1,
+    "header": 1,
+    "html": 1,
+    "li": 2,
+    "main": 1,
+    "merged": 2,
+    "nav": 1,
+    "p": 2,
+    "script": 2,
+    "section": 4,
+    "table": 1,
+    "tr": 4,
+    "ul": 2
+   },
+   "bench": {
+    "doc": "brightloom_landing.html",
+    "n_nodes": 35,
+    "n_tokens": 1242,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 10093.578125,
+    "prefill_tree_one_batch_ms": 9673.182861328125,
+    "prefill_tree_per_node_ms": 11785.0380859375,
+    "prefill_flat_tok_s": 123.04853488217292,
+    "prefill_tree_tok_s": 128.39620813593032,
+    "answer_full_scope": {
+     "text": "The document provides information about Brightloom's pricing and features.",
+     "n_generated": 12,
+     "n_context": 1242,
+     "n_question": 17,
+     "question_ms": 402.2109375,
+     "generate_ms": 673.64208984375
+    },
+    "generate_tok_s": 17.813613758581173,
+    "kv_bytes": 40721829
+   }
+  },
+  {
+   "doc": "cs214_course.html",
+   "nodes": 28,
+   "nodes_before_merge": 73,
+   "tokens_total": 901,
+   "tokens_document": 875,
+   "depth": 7,
+   "subtree_tokens": {
+    "min": 24,
+    "median": 49,
+    "max": 875
+   },
+   "leaf_tokens": {
+    "min": 24,
+    "median": 36.0,
+    "max": 100
+   },
+   "n_leaves": 16,
+   "markup_tokens": 645,
+   "markup_share": 0.7371428571428571,
+   "node_types": {
+    "body": 1,
+    "div": 3,
+    "footer": 1,
+    "head": 1,
+    "html": 1,
+    "main": 1,
+    "nav": 1,
+    "ol": 1,
+    "p": 1,
+    "script": 1,
+    "section": 4,
+    "table": 1,
+    "tbody": 1,
+    "thead": 1,
+    "tr": 7,
+    "ul": 1
+   },
+   "bench": {
+    "doc": "cs214_course.html",
+    "n_nodes": 28,
+    "n_tokens": 901,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 7453.5078125,
+    "prefill_tree_one_batch_ms": 7358.498046875,
+    "prefill_tree_per_node_ms": 8719.572998046875,
+    "prefill_flat_tok_s": 120.88268003006135,
+    "prefill_tree_tok_s": 122.44346526430564,
+    "answer_full_scope": {
+     "text": "The document provides information about the course schedule, including the topics covered and due dates for various projects and exams.",
+     "n_generated": 22,
+     "n_context": 901,
+     "n_question": 17,
+     "question_ms": 346.1650390625,
+     "generate_ms": 1204.77587890625
+    },
+    "generate_tok_s": 18.26065775816544,
+    "kv_bytes": 29542337
+   }
+  },
+  {
+   "doc": "hotel_greyhook.html",
+   "nodes": 23,
+   "nodes_before_merge": 52,
+   "tokens_total": 865,
+   "tokens_document": 839,
+   "depth": 6,
+   "subtree_tokens": {
+    "min": 30,
+    "median": 80.0,
+    "max": 839
+   },
+   "leaf_tokens": {
+    "min": 30,
+    "median": 70,
+    "max": 86
+   },
+   "n_leaves": 11,
+   "markup_tokens": 639,
+   "markup_share": 0.7616209773539928,
+   "node_types": {
+    "body": 1,
+    "div": 4,
+    "footer": 1,
+    "head": 1,
+    "header": 1,
+    "html": 1,
+    "main": 1,
+    "merged": 2,
+    "nav": 1,
+    "script": 2,
+    "section": 4,
+    "ul": 3
+   },
+   "bench": {
+    "doc": "hotel_greyhook.html",
+    "n_nodes": 23,
+    "n_tokens": 865,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 6582.868896484375,
+    "prefill_tree_one_batch_ms": 6476.67578125,
+    "prefill_tree_per_node_ms": 7724.23388671875,
+    "prefill_flat_tok_s": 131.40167510581276,
+    "prefill_tree_tok_s": 133.55616819729931,
+    "answer_full_scope": {
+     "text": "The document describes the amenities and services offered by the Hotel Greyhook, including its rooms, policies, and amenities, with specific details about the Harbour Room and other",
+     "n_generated": 32,
+     "n_context": 865,
+     "n_question": 17,
+     "question_ms": 328.550048828125,
+     "generate_ms": 1739.546875
+    },
+    "generate_tok_s": 18.395595117262936,
+    "kv_bytes": 28359441
+   }
+  },
+  {
+   "doc": "saltmarsh_recipe.html",
+   "nodes": 29,
+   "nodes_before_merge": 66,
+   "tokens_total": 1206,
+   "tokens_document": 1180,
+   "depth": 6,
+   "subtree_tokens": {
+    "min": 10,
+    "median": 81.0,
+    "max": 1180
+   },
+   "leaf_tokens": {
+    "min": 10,
+    "median": 62,
+    "max": 92
+   },
+   "n_leaves": 17,
+   "markup_tokens": 887,
+   "markup_share": 0.7516949152542373,
+   "node_types": {
+    "article": 1,
+    "aside": 1,
+    "body": 1,
+    "div": 4,
+    "footer": 1,
+    "h3": 1,
+    "head": 1,
+    "header": 1,
+    "html": 1,
+    "merged": 6,
+    "nav": 1,
+    "ol": 1,
+    "script": 1,
+    "section": 4,
+    "ul": 3
+   },
+   "bench": {
+    "doc": "saltmarsh_recipe.html",
+    "n_nodes": 29,
+    "n_tokens": 1206,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 9690.988037109375,
+    "prefill_tree_one_batch_ms": 9367.30419921875,
+    "prefill_tree_per_node_ms": 11045.3818359375,
+    "prefill_flat_tok_s": 124.44551529543787,
+    "prefill_tree_tok_s": 128.7456854556493,
+    "answer_full_scope": {
+     "text": "The document provides a recipe for Smoked Mackerel Chowder, including ingredients, instructions, and a brief description.",
+     "n_generated": 24,
+     "n_context": 1206,
+     "n_question": 17,
+     "question_ms": 650.495849609375,
+     "generate_ms": 1396.119873046875
+    },
+    "generate_tok_s": 17.19050094718779,
+    "kv_bytes": 39539681
+   }
+  }
+ ]
+}

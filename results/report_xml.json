@@ -1,0 +1,335 @@
+{
+ "domain": "xml",
+ "total": {
+  "docs": 5,
+  "nodes": 108,
+  "nodes_before_merge": 243,
+  "tokens": 3436,
+  "max_depth": 6,
+  "markup_share": 0.6361161524500908,
+  "scoped_question_context_share": 0.2661549732275732,
+  "prefill_flat_tok_s": 124.45780398762825,
+  "prefill_tree_tok_s": 126.28679631307106,
+  "generate_tok_s": 18.748264080719792,
+  "kv_bytes_per_token": 32794.775073258446
+ },
+ "tests": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 8,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 8,
+  "test1_free_length_correct": 10,
+  "test2_pass": 9,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 10,
+  "test2_full_scope_correct": 10
+ },
+ "docs": [
+  {
+   "doc": "harbor_gateway_config.xml",
+   "nodes": 10,
+   "nodes_before_merge": 27,
+   "tokens_total": 408,
+   "tokens_document": 382,
+   "depth": 3,
+   "subtree_tokens": {
+    "min": 26,
+    "median": 54,
+    "max": 382
+   },
+   "leaf_tokens": {
+    "min": 26,
+    "median": 53,
+    "max": 60
+   },
+   "n_leaves": 7,
+   "markup_tokens": 275,
+   "markup_share": 0.7198952879581152,
+   "node_types": {
+    "alerts": 1,
+    "config": 1,
+    "database": 1,
+    "features": 1,
+    "logging": 1,
+    "rateLimits": 1,
+    "server": 2,
+    "servers": 1
+   },
+   "bench": {
+    "doc": "harbor_gateway_config.xml",
+    "n_nodes": 10,
+    "n_tokens": 408,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 3572.025146484375,
+    "prefill_tree_one_batch_ms": 3408.761962890625,
+    "prefill_tree_per_node_ms": 3894.330810546875,
+    "prefill_flat_tok_s": 114.22092042144719,
+    "prefill_tree_tok_s": 119.69154914355374,
+    "answer_full_scope": {
+     "text": "The document describes the configuration for a Harbor gateway in a production environment, specifying various settings for rate limits, logging, and application configuration.",
+     "n_generated": 27,
+     "n_context": 408,
+     "n_question": 17,
+     "question_ms": 281.635986328125,
+     "generate_ms": 1375.14697265625
+    },
+    "generate_tok_s": 19.63426494540179,
+    "kv_bytes": 13376905
+   }
+  },
+  {
+   "doc": "jats_dunlin_foraging.xml",
+   "nodes": 28,
+   "nodes_before_merge": 53,
+   "tokens_total": 951,
+   "tokens_document": 925,
+   "depth": 6,
+   "subtree_tokens": {
+    "min": 18,
+    "median": 56,
+    "max": 925
+   },
+   "leaf_tokens": {
+    "min": 18,
+    "median": 34,
+    "max": 102
+   },
+   "n_leaves": 17,
+   "markup_tokens": 514,
+   "markup_share": 0.5556756756756757,
+   "node_types": {
+    "abstract": 1,
+    "ack": 1,
+    "aff": 1,
+    "article": 1,
+    "article-meta": 1,
+    "back": 1,
+    "body": 1,
+    "contrib": 2,
+    "contrib-group": 1,
+    "front": 1,
+    "issn": 1,
+    "journal-meta": 1,
+    "journal-title-group": 1,
+    "name": 2,
+    "pub-date": 1,
+    "ref": 2,
+    "ref-list": 1,
+    "sec": 4,
+    "title-group": 1,
+    "xref": 2
+   },
+   "bench": {
+    "doc": "jats_dunlin_foraging.xml",
+    "n_nodes": 28,
+    "n_tokens": 951,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 7566.05078125,
+    "prefill_tree_one_batch_ms": 7592.654296875,
+    "prefill_tree_per_node_ms": 9247.318115234375,
+    "prefill_flat_tok_s": 125.69305011231812,
+    "prefill_tree_tok_s": 125.25264062021296,
+    "answer_full_scope": {
+     "text": "Researchers tracked dunlin foraging behavior on Skerra Island mudflats, finding that birds foraged mostly during low tide, especially at night.",
+     "n_generated": 29,
+     "n_context": 951,
+     "n_question": 17,
+     "question_ms": 347.63623046875,
+     "generate_ms": 1634.7080078125
+    },
+    "generate_tok_s": 17.740171248568497,
+    "kv_bytes": 31188305
+   }
+  },
+  {
+   "doc": "jats_school_sleep.xml",
+   "nodes": 25,
+   "nodes_before_merge": 54,
+   "tokens_total": 690,
+   "tokens_document": 664,
+   "depth": 6,
+   "subtree_tokens": {
+    "min": 14,
+    "median": 46.5,
+    "max": 664
+   },
+   "leaf_tokens": {
+    "min": 14,
+    "median": 32.0,
+    "max": 54
+   },
+   "n_leaves": 12,
+   "markup_tokens": 446,
+   "markup_share": 0.6716867469879518,
+   "node_types": {
+    "abstract": 1,
+    "article": 1,
+    "article-meta": 1,
+    "back": 1,
+    "body": 1,
+    "caption": 1,
+    "contrib": 1,
+    "contrib-group": 1,
+    "front": 1,
+    "journal-meta": 1,
+    "journal-title-group": 1,
+    "name": 1,
+    "pub-date": 1,
+    "ref": 1,
+    "ref-list": 1,
+    "sec": 3,
+    "table": 1,
+    "table-wrap": 1,
+    "title-group": 1,
+    "tr": 3
+   },
+   "bench": {
+    "doc": "jats_school_sleep.xml",
+    "n_nodes": 25,
+    "n_tokens": 690,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 5288.77294921875,
+    "prefill_tree_one_batch_ms": 5251.794921875,
+    "prefill_tree_per_node_ms": 6879.130859375,
+    "prefill_flat_tok_s": 130.46504484597432,
+    "prefill_tree_tok_s": 131.3836526871951,
+    "answer_full_scope": {
+     "text": "The document describes a study comparing sleep diaries from two coastal towns, Port Avelin and Sleep in Skerra, before and after a change in school start",
+     "n_generated": 32,
+     "n_context": 690,
+     "n_question": 17,
+     "question_ms": 314.807861328125,
+     "generate_ms": 1654.045166015625
+    },
+    "generate_tok_s": 19.346509186979304,
+    "kv_bytes": 22632117
+   }
+  },
+  {
+   "doc": "jats_subtree_eviction.xml",
+   "nodes": 24,
+   "nodes_before_merge": 52,
+   "tokens_total": 773,
+   "tokens_document": 747,
+   "depth": 6,
+   "subtree_tokens": {
+    "min": 19,
+    "median": 50,
+    "max": 747
+   },
+   "leaf_tokens": {
+    "min": 19,
+    "median": 37,
+    "max": 89
+   },
+   "n_leaves": 13,
+   "markup_tokens": 441,
+   "markup_share": 0.5903614457831325,
+   "node_types": {
+    "abstract": 1,
+    "ack": 1,
+    "article": 1,
+    "article-meta": 1,
+    "back": 1,
+    "body": 1,
+    "contrib": 2,
+    "contrib-group": 1,
+    "front": 1,
+    "journal-meta": 1,
+    "journal-title-group": 1,
+    "kwd-group": 1,
+    "name": 2,
+    "pub-date": 1,
+    "ref": 1,
+    "ref-list": 1,
+    "sec": 4,
+    "title-group": 1
+   },
+   "bench": {
+    "doc": "jats_subtree_eviction.xml",
+    "n_nodes": 24,
+    "n_tokens": 773,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 6258.483154296875,
+    "prefill_tree_one_batch_ms": 6238.195068359375,
+    "prefill_tree_per_node_ms": 7496.083984375,
+    "prefill_flat_tok_s": 123.51235610010117,
+    "prefill_tree_tok_s": 123.91404749760358,
+    "answer_full_scope": {
+     "text": "The document discusses the use of subtree eviction in small language models to improve cache efficiency and answer accuracy.",
+     "n_generated": 20,
+     "n_context": 773,
+     "n_question": 17,
+     "question_ms": 353.93017578125,
+     "generate_ms": 1077.991943359375
+    },
+    "generate_tok_s": 18.55301435525897,
+    "kv_bytes": 25351109
+   }
+  },
+  {
+   "doc": "orbit_server_pom.xml",
+   "nodes": 21,
+   "nodes_before_merge": 57,
+   "tokens_total": 614,
+   "tokens_document": 588,
+   "depth": 6,
+   "subtree_tokens": {
+    "min": 5,
+    "median": 48.0,
+    "max": 588
+   },
+   "leaf_tokens": {
+    "min": 5,
+    "median": 41.0,
+    "max": 85
+   },
+   "n_leaves": 10,
+   "markup_tokens": 427,
+   "markup_share": 0.7261904761904762,
+   "node_types": {
+    "build": 2,
+    "comment": 1,
+    "configuration": 2,
+    "dependencies": 1,
+    "dependency": 4,
+    "merged": 1,
+    "plugin": 3,
+    "plugins": 2,
+    "profile": 1,
+    "profiles": 1,
+    "project": 1,
+    "properties": 1
+   },
+   "bench": {
+    "doc": "orbit_server_pom.xml",
+    "n_nodes": 21,
+    "n_tokens": 614,
+    "n_threads": 6,
+    "reps": 3,
+    "prefill_flat_ms": 4782.01904296875,
+    "prefill_tree_one_batch_ms": 4680.16015625,
+    "prefill_tree_per_node_ms": 5857.27587890625,
+    "prefill_flat_tok_s": 128.39764845830047,
+    "prefill_tree_tok_s": 131.19209161678995,
+    "answer_full_scope": {
+     "text": "This document defines a Maven project with a specific set of dependencies, including the Maven Surefire Plugin for running tests, and specifies the version of the JUnit Jupiter",
+     "n_generated": 32,
+     "n_context": 614,
+     "n_question": 17,
+     "question_ms": 301.528076171875,
+     "generate_ms": 1732.786865234375
+    },
+    "generate_tok_s": 18.467360667390395,
+    "kv_bytes": 20136841
+   }
+  }
+ ]
+}

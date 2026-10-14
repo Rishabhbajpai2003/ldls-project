@@ -1,23 +1,26 @@
-"""Markdown -> LDLS tree JSON (see schema/tree.schema.json).
+"""Domain-independent parts of the LDLS parsers (see schema/SCHEMA.md).
 
-Tree: document (prompt preamble) -> sections (one per heading, nested by level)
--> leaf blocks (paragraph, list, code, table, blockquote, html, rule).
+A domain parser only builds the raw tree of `Node`s and calls `run_cli()`; this
+module tokenizes it with the Llama tokenizer (through `ldls_driver tokenize`),
+merges small subtrees, assigns sequence IDs and tree positions, and writes the
+JSON of schema/tree.schema.json.
 
 Merge rules (llama.cpp only allows a limited number of sequences, so tiny
 subtrees must not get their own sequence ID):
-  1. Consecutive leaf blocks of a section are packed greedily into chunks of at
-     least `min_leaf` tokens; a short tail joins the previous chunk.
-  2. A section whose leaf content is a single chunk with no subsections, or
-     whose leaf content is shorter than `min_leaf`, is folded into the heading
-     node itself (heading + body become one node).
+  1. Each run of consecutive leaf children (between container children) is
+     packed greedily into chunks of at least `min_leaf` tokens; a short tail
+     joins the previous chunk. Sibling order is kept.
+  2. A container whose leading leaf run is a single chunk and which has no
+     container children, or whose leading leaf run is shorter than `min_leaf`,
+     absorbs that run into its own text (e.g. heading + body become one node).
   3. If the tree still has more than `max_nodes` nodes, `min_leaf` is doubled
      and the merge is redone; as a last resort the smallest bottom-level
-     section is collapsed into a single node until the budget is met.
+     container is collapsed into a single node until the budget is met.
 
-Tokens come from the Llama tokenizer through `ldls_driver tokenize`, so the
-token IDs are exactly the ones the driver will decode.
-
-Usage: python parsers/markdown_parser.py data/markdown/docs/*.md -o data/markdown/json
+Markup flags: every token is flagged as markup/syntax or content. A node either
+gives `segments` [(text, is_markup)] -- each segment is tokenized on its own and
+the node's tokens are their concatenation -- or is tokenized as one text and a
+per-piece `classify` function decides.
 """
 
 import argparse
@@ -29,9 +32,8 @@ import subprocess
 import sys
 from dataclasses import dataclass, field
 
-from markdown_it import MarkdownIt
-
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tools"))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "tools"))
 import ldls_paths  # noqa: E402
 
 DRIVER = ldls_paths.driver()
@@ -46,49 +48,37 @@ PREAMBLE = (
     "<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nDocument:\n\n"
 )
 
-BLOCK_TYPES = {
-    "paragraph_open": "paragraph",
-    "bullet_list_open": "list",
-    "ordered_list_open": "list",
-    "fence": "code",
-    "code_block": "code",
-    "blockquote_open": "blockquote",
-    "table_open": "table",
-    "html_block": "html",
-    "hr": "rule",
-}
-
-# a token counts as markup if it is only whitespace or only Markdown syntax characters
-MARKUP_CHARS = set("#*_`>|~-=[]:")
-
-
-def is_markup(piece):
-    s = piece.strip()
-    return s == "" or all(ch in MARKUP_CHARS for ch in s)
-
 
 @dataclass
 class Node:
     node_type: str
-    text: str
+    text: str = ""
     title: str = ""
-    level: int = 7  # heading level; 0 = document root, 7 = leaf block
+    container: bool = False  # structural node whose children are merged by the rules above
+    keep_title: bool = False # a leaf packed alone keeps its title (e.g. "server: admin") instead of "<parent> #k"
+    level: int = 0           # free for the domain parser (Markdown: heading level)
+    segments: list = None    # optional [(text, is_markup)]; must join to `text`
     children: list = field(default_factory=list)
     ids: list = field(default_factory=list)
     pieces: list = field(default_factory=list)
+    markup: list = field(default_factory=list)  # one flag per token
 
     @property
     def n(self):
         return len(self.ids)
-
-    def is_section(self):
-        return self.node_type == "section"
 
     def absorb(self, others):
         for o in others:
             self.text += o.text
             self.ids += o.ids
             self.pieces += o.pieces
+            self.markup += o.markup
+
+
+def walk(node):
+    yield node
+    for c in node.children:
+        yield from walk(c)
 
 
 def tokenize(items):
@@ -104,42 +94,27 @@ def tokenize(items):
     return [(o["ids"], o["pieces"]) for o in out]
 
 
-def block_text(lines, span):
-    return "\n".join(lines[span[0]:span[1]]).rstrip("\n") + "\n\n"
-
-
-def build_raw_tree(src):
-    lines = src.split("\n")
-    toks = MarkdownIt("commonmark").enable("table").parse(src)
-
-    root = Node("document", PREAMBLE, title="(document)", level=0)
-    stack = [root]
-    for i, t in enumerate(toks):
-        if t.level != 0 or t.nesting == -1:
-            continue
-        if t.type == "heading_open":
-            lvl = int(t.tag[1])
-            while stack[-1].level >= lvl:
-                stack.pop()
-            node = Node("section", block_text(lines, t.map), title=toks[i + 1].content, level=lvl)
-            stack[-1].children.append(node)
-            stack.append(node)
-        elif t.type in BLOCK_TYPES:
-            stack[-1].children.append(Node(BLOCK_TYPES[t.type], block_text(lines, t.map)))
-
+def tokenize_tree(root, classify):
+    """Tokenize every node in one driver call. The root holds the prompt preamble (special tokens)."""
     nodes = list(walk(root))
-    for node, (ids, pieces) in zip(nodes, tokenize([(n.text, n is root) for n in nodes])):
-        node.ids, node.pieces = ids, pieces
-    return root
+    items, spans = [], []
+    for n in nodes:
+        segs = n.segments if n.segments is not None else [(n.text, None)]
+        if "".join(s for s, _ in segs) != n.text:
+            raise ValueError(f"segments of node '{n.title}' do not join to its text")
+        spans.append((len(items), segs))
+        items += [(s, n is root) for s, _ in segs]
+
+    out = tokenize(items)
+    for n, (start, segs) in zip(nodes, spans):
+        n.ids, n.pieces, n.markup = [], [], []
+        for (_, flag), (ids, pieces) in zip(segs, out[start:start + len(segs)]):
+            n.ids += ids
+            n.pieces += pieces
+            n.markup += [classify(p) if flag is None else (flag or p.strip() == "") for p in pieces]
 
 
-def walk(node):
-    yield node
-    for c in node.children:
-        yield from walk(c)
-
-
-def pack(run, min_leaf, section_title):
+def pack(run, min_leaf, parent_title, first):
     chunks, cur = [], []
     for b in run:
         cur.append(b)
@@ -158,28 +133,48 @@ def pack(run, min_leaf, section_title):
             node = chunk[0]
         else:
             types = {b.node_type for b in chunk}
-            node = Node(types.pop() if len(types) == 1 else "merged", "")
+            node = Node(types.pop() if len(types) == 1 else "merged")
             node.absorb(chunk)
-        node.title = f"{section_title} #{k + 1}"
+        if not node.keep_title:
+            node.title = f"{parent_title} #{first + k}"
         out.append(node)
     return out
 
 
 def merge(node, min_leaf):
-    leaves = [c for c in node.children if not c.is_section()]
-    sections = [c for c in node.children if c.is_section()]
-    for s in sections:
-        merge(s, min_leaf)
+    for c in node.children:
+        if c.container:
+            merge(c, min_leaf)
 
-    # leaves always precede subsections in Markdown, so order is preserved
-    chunks = pack(leaves, min_leaf, node.title) if leaves else []
-    fold = node.is_section() and chunks and (
-        (len(chunks) == 1 and not sections) or sum(c.n for c in chunks) < min_leaf
+    # split the children into runs of consecutive leaves and single containers
+    groups = []
+    for c in node.children:
+        if c.container:
+            groups.append(c)
+        elif groups and isinstance(groups[-1], list):
+            groups[-1].append(c)
+        else:
+            groups.append([c])
+
+    packed, k = [], 1
+    for g in groups:
+        if isinstance(g, list):
+            g = pack(g, min_leaf, node.title, k)
+            k += len(g)
+        packed.append(g)
+
+    has_containers = any(c.container for c in node.children)
+    leading = packed[0] if packed and isinstance(packed[0], list) else []
+    fold = node.container and leading and (
+        (len(leading) == 1 and not has_containers) or sum(c.n for c in leading) < min_leaf
     )
     if fold:
-        node.absorb(chunks)
-        chunks = []
-    node.children = chunks + sections
+        node.absorb(leading)
+        packed = packed[1:]
+
+    node.children = []
+    for g in packed:
+        node.children += g if isinstance(g, list) else [g]
 
 
 def count(node):
@@ -191,7 +186,7 @@ def subtree_tokens(node):
 
 
 def collapse_smallest(root):
-    bottom = [n for n in walk(root) if n.is_section() and n.children and not any(c.is_section() for c in n.children)]
+    bottom = [n for n in walk(root) if n.container and n.children and not any(c.container for c in n.children)]
     if not bottom:
         return False
     victim = min(bottom, key=subtree_tokens)
@@ -212,7 +207,7 @@ def build_tree(raw, min_leaf, max_nodes):
     return tree, min_leaf
 
 
-def to_json(tree, source, min_leaf, max_nodes, n_raw):
+def to_json(tree, domain, source, min_leaf, max_nodes, n_raw):
     order = list(walk(tree))
     index = {id(n): i for i, n in enumerate(order)}
     parent = {}
@@ -232,13 +227,13 @@ def to_json(tree, source, min_leaf, max_nodes, n_raw):
             "seq_ids": [index[id(d)] for d in walk(n)],  # own seq first, then descendants
             "positions": list(range(start, start + n.n)),
             "tokens": n.ids,
-            "n_markup": sum(is_markup(pc) for pc in n.pieces),
+            "n_markup": sum(n.markup),
             "text": n.text,
         })
 
     return {
         "schema_version": 1,
-        "domain": "markdown",
+        "domain": domain,
         "source": os.path.basename(source),
         "model": os.path.basename(MODEL),
         "merge": {"min_leaf_tokens": min_leaf, "max_nodes": max_nodes, "nodes_before_merge": n_raw},
@@ -247,9 +242,10 @@ def to_json(tree, source, min_leaf, max_nodes, n_raw):
     }
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("inputs", nargs="+")
+def run_cli(domain, build_raw_tree, classify, description):
+    """Command line shared by all domain parsers: parse files (globs allowed) into JSON."""
+    ap = argparse.ArgumentParser(description=description, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("inputs", nargs="+", help="input files or quoted glob patterns")
     ap.add_argument("-o", "--out-dir", required=True)
     ap.add_argument("--min-leaf", type=int, default=48, help="minimum tokens per leaf chunk")
     ap.add_argument("--max-nodes", type=int, default=48, help="sequence budget per document")
@@ -267,8 +263,9 @@ def main():
     for path in inputs:
         with open(path, encoding="utf-8") as f:
             raw = build_raw_tree(f.read())
+        tokenize_tree(raw, classify)
         tree, min_leaf = build_tree(raw, args.min_leaf, args.max_nodes)
-        doc = to_json(tree, path, min_leaf, args.max_nodes, count(raw))
+        doc = to_json(tree, domain, path, min_leaf, args.max_nodes, count(raw))
         if doc["n_tokens"] > MAX_DOC_TOKENS:
             sys.exit(f"{path}: {doc['n_tokens']} tokens exceeds the {MAX_DOC_TOKENS}-token limit")
 
@@ -277,7 +274,3 @@ def main():
             json.dump(doc, f, ensure_ascii=False, indent=1)
         print(f"{os.path.basename(path)}: {len(doc['nodes'])} nodes ({count(raw)} before merge), "
               f"{doc['n_tokens']} tokens, min_leaf={min_leaf} -> {out}")
-
-
-if __name__ == "__main__":
-    main()

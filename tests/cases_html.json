@@ -1,0 +1,82 @@
+[
+  {
+    "doc": "brightloom_landing.json",
+    "question": "How much does the Team plan cost per user per month?",
+    "A": "section#pricing",
+    "B": "section#hero",
+    "edit_text": "    <section id=\"hero\" class=\"hero\">\n      <h1 class=\"hero-title\">Brightloom is shutting down</h1>\n      <p class=\"hero-lead\">New sign-ups are closed. Existing teams can export their notes until March.</p>\n    </section>\n",
+    "expect": "8"
+  },
+  {
+    "doc": "brightloom_landing.json",
+    "question": "Where is customer data stored?",
+    "A": "section#faq",
+    "B": "div: Offline mode",
+    "edit_text": "          <div class=\"card\"><h3>Offline mode</h3><p>Offline mode has been removed from all apps.</p></div>\n",
+    "expect": "Frankfurt"
+  },
+  {
+    "doc": "saltmarsh_recipe.json",
+    "question": "How many people does the chowder serve?",
+    "A": "section#recipe-card",
+    "B": "article#post #2",
+    "edit_text": "      <p>Update: I now make this with salmon and serve it cold in summer.</p>\n",
+    "expect": "4"
+  },
+  {
+    "doc": "saltmarsh_recipe.json",
+    "question": "Which fish did Tomas use instead of mackerel?",
+    "A": "section#comments",
+    "B": "section: About me",
+    "edit_text": "        <section class=\"widget widget-about\">\n          <h3 class=\"widget-title\">About me</h3>\n          <p>I am a professional baker from the south who mostly writes about cakes.</p>\n        </section>\n",
+    "expect": "haddock"
+  },
+  {
+    "doc": "cs214_course.json",
+    "question": "What percentage of the grade is the final exam?",
+    "A": "section#grading",
+    "B": "section#overview",
+    "edit_text": "      <section id=\"overview\">\n        <h1>CS 214: Data Systems</h1>\n        <p>This course is cancelled this semester. Students should enrol in CS 215 instead.</p>\n      </section>\n",
+    "expect": "30"
+  },
+  {
+    "doc": "cs214_course.json",
+    "question": "When are Professor Varga's office hours?",
+    "A": "section#staff",
+    "B": "section#grading #2",
+    "edit_text": "        <p>Late projects are never accepted, without exception.</p>\n",
+    "expect": "14:00"
+  },
+  {
+    "doc": "avelin_gazette.json",
+    "question": "How much will the bridge repairs cost?",
+    "A": "article#story",
+    "B": "div#cookie-banner",
+    "edit_text": "    <div id=\"cookie-banner\" class=\"consent\">\n      <p>This site does not use cookies.</p>\n    </div>\n",
+    "expect": "4.2"
+  },
+  {
+    "doc": "avelin_gazette.json",
+    "question": "At what time does the newsletter arrive?",
+    "A": "section#newsletter",
+    "B": "article#story #3",
+    "edit_text": "        <p>The engineer declined to comment on the repairs.</p>\n",
+    "expect": "07:00"
+  },
+  {
+    "doc": "hotel_greyhook.json",
+    "question": "What time is check-out?",
+    "A": "section#policies",
+    "B": "div: Harbour Room",
+    "edit_text": "          <div class=\"room-info\"><h3>Harbour Room</h3><p>Closed for renovation until next spring.</p></div>\n",
+    "expect": "11:00"
+  },
+  {
+    "doc": "hotel_greyhook.json",
+    "question": "When is breakfast served?",
+    "A": "section#amenities",
+    "B": "ul",
+    "edit_text": "        <ul>\n          <li>No pets are allowed.</li>\n          <li>Cancellations are not refunded.</li>\n        </ul>\n",
+    "expect": "06:30"
+  }
+]

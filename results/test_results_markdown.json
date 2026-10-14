@@ -21,22 +21,22 @@
    "B": "From a release",
    "n_nodes": 16,
    "n_tokens": 589,
-   "prefill_ms": 7079.390869140625,
+   "prefill_ms": 5564.55322265625,
    "baseline_scoped": {
     "text": "4",
     "n_generated": 1,
     "n_context": 247,
     "n_question": 17,
-    "question_ms": 294.85205078125,
-    "generate_ms": 59.102783203125
+    "question_ms": 305.91796875,
+    "generate_ms": 51.648193359375
    },
    "baseline_full": {
     "text": "The default number of upload workers is 4.",
     "n_generated": 10,
     "n_context": 589,
     "n_question": 17,
-    "question_ms": 290.937255859375,
-    "generate_ms": 555.677734375
+    "question_ms": 250.60791015625,
+    "generate_ms": 537.68896484375
    },
    "test2_evict_B": {
     "pass": true,
@@ -50,8 +50,8 @@
      "n_generated": 1,
      "n_context": 247,
      "n_question": 17,
-     "question_ms": 221.540771484375,
-     "generate_ms": 52.249267578125
+     "question_ms": 202.690673828125,
+     "generate_ms": 52.47607421875
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.6441946029663086,
@@ -60,8 +60,8 @@
      "n_generated": 10,
      "n_context": 514,
      "n_question": 17,
-     "question_ms": 265.244873046875,
-     "generate_ms": 579.1982421875
+     "question_ms": 235.15185546875,
+     "generate_ms": 522.708984375
     },
     "full_unchanged": true,
     "correct": true,
@@ -72,14 +72,14 @@
      "pass": true,
      "B_tokens_before": 75,
      "B_tokens_after": 75,
-     "prefill_ms": 5075.240966796875,
+     "prefill_ms": 4694.367919921875,
      "scoped_answer": {
       "text": "4",
       "n_generated": 1,
       "n_context": 247,
       "n_question": 17,
-      "question_ms": 241.455810546875,
-      "generate_ms": 69.43408203125
+      "question_ms": 207.301025390625,
+      "generate_ms": 52.06884765625
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -88,8 +88,8 @@
       "n_generated": 1,
       "n_context": 0,
       "n_question": 17,
-      "question_ms": 313.77001953125,
-      "generate_ms": 60.910888671875
+      "question_ms": 249.7099609375,
+      "generate_ms": 55.596923828125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.7614421844482422,
@@ -99,14 +99,14 @@
      "pass": true,
      "B_tokens_before": 75,
      "B_tokens_after": 36,
-     "prefill_ms": 4652.194091796875,
+     "prefill_ms": 4316.305908203125,
      "scoped_answer": {
       "text": "4",
       "n_generated": 1,
       "n_context": 247,
       "n_question": 17,
-      "question_ms": 239.735107421875,
-      "generate_ms": 56.97607421875
+      "question_ms": 247.2958984375,
+      "generate_ms": 61.42724609375
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.5760021209716797,
@@ -115,8 +115,8 @@
       "n_generated": 1,
       "n_context": 0,
       "n_question": 17,
-      "question_ms": 311.7392578125,
-      "generate_ms": 79.718994140625
+      "question_ms": 241.7880859375,
+      "generate_ms": 52.55712890625
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.8729844093322754,
@@ -130,8 +130,8 @@
     "n_generated": 1,
     "n_context": 0,
     "n_question": 17,
-    "question_ms": 266.217041015625,
-    "generate_ms": 58.809814453125
+    "question_ms": 249.84814453125,
+    "generate_ms": 55.369873046875
    },
    "flash_attn": "auto",
    "pass": true,
@@ -145,22 +145,22 @@
    "B": "orbit push",
    "n_nodes": 16,
    "n_tokens": 589,
-   "prefill_ms": 5226.1650390625,
+   "prefill_ms": 5079.22802734375,
    "baseline_scoped": {
     "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
     "n_generated": 17,
     "n_context": 98,
     "n_question": 21,
-    "question_ms": 301.95703125,
-    "generate_ms": 956.47607421875
+    "question_ms": 285.22314453125,
+    "generate_ms": 806.98779296875
    },
    "baseline_full": {
     "text": "Orbit keeps the remote copy of the file if the same file changed on both sides.",
     "n_generated": 18,
     "n_context": 589,
     "n_question": 21,
-    "question_ms": 346.080078125,
-    "generate_ms": 1018.708984375
+    "question_ms": 318.47998046875,
+    "generate_ms": 930.089111328125
    },
    "test2_evict_B": {
     "pass": true,
@@ -174,8 +174,8 @@
      "n_generated": 17,
      "n_context": 98,
      "n_question": 21,
-     "question_ms": 270.42724609375,
-     "generate_ms": 866.303955078125
+     "question_ms": 257.937255859375,
+     "generate_ms": 813.6953125
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.6716508865356445,
@@ -184,8 +184,8 @@
      "n_generated": 17,
      "n_context": 551,
      "n_question": 21,
-     "question_ms": 332.709228515625,
-     "generate_ms": 959.00390625
+     "question_ms": 293.2470703125,
+     "generate_ms": 886.36474609375
     },
     "full_unchanged": false,
     "correct": true,
@@ -196,14 +196,14 @@
      "pass": true,
      "B_tokens_before": 38,
      "B_tokens_after": 38,
-     "prefill_ms": 4907.7802734375,
+     "prefill_ms": 4935.22216796875,
      "scoped_answer": {
       "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
       "n_generated": 17,
       "n_context": 98,
       "n_question": 21,
-      "question_ms": 254.6181640625,
-      "generate_ms": 928.813720703125
+      "question_ms": 226.77294921875,
+      "generate_ms": 823.7890625
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -212,8 +212,8 @@
       "n_generated": 17,
       "n_context": 0,
       "n_question": 21,
-      "question_ms": 344.538818359375,
-      "generate_ms": 1010.1162109375
+      "question_ms": 304.02685546875,
+      "generate_ms": 881.48095703125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 6.027441501617432,
@@ -223,14 +223,14 @@
      "pass": true,
      "B_tokens_before": 38,
      "B_tokens_after": 16,
-     "prefill_ms": 5051.76806640625,
+     "prefill_ms": 4715.40185546875,
      "scoped_answer": {
       "text": "Orbit keeps the remote copy and saves the local one as `name.conflict`.",
       "n_generated": 17,
       "n_context": 98,
       "n_question": 21,
-      "question_ms": 243.9091796875,
-      "generate_ms": 839.28076171875
+      "question_ms": 263.72802734375,
+      "generate_ms": 828.94091796875
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.630424976348877,
@@ -239,8 +239,8 @@
       "n_generated": 17,
       "n_context": 0,
       "n_question": 21,
-      "question_ms": 348.725830078125,
-      "generate_ms": 976.843017578125
+      "question_ms": 309.64794921875,
+      "generate_ms": 902.39794921875
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 3.9770259857177734,
@@ -254,8 +254,8 @@
     "n_generated": 17,
     "n_context": 0,
     "n_question": 21,
-    "question_ms": 348.596923828125,
-    "generate_ms": 1002.852294921875
+    "question_ms": 301.1240234375,
+    "generate_ms": 917.795166015625
    },
    "flash_attn": "auto",
    "pass": true,
@@ -269,22 +269,22 @@
    "B": "By ferry",
    "n_nodes": 13,
    "n_tokens": 525,
-   "prefill_ms": 4303.98876953125,
+   "prefill_ms": 3857.364013671875,
    "baseline_scoped": {
     "text": "The Greyhook Lighthouse is 41 metres tall.",
     "n_generated": 11,
     "n_context": 135,
     "n_question": 17,
-    "question_ms": 254.505859375,
-    "generate_ms": 591.416015625
+    "question_ms": 238.885009765625,
+    "generate_ms": 526.639892578125
    },
    "baseline_full": {
     "text": "The Greyhook Lighthouse is 41 metres tall.",
     "n_generated": 11,
     "n_context": 525,
     "n_question": 17,
-    "question_ms": 264.052001953125,
-    "generate_ms": 627.51904296875
+    "question_ms": 230.572021484375,
+    "generate_ms": 569.513916015625
    },
    "test2_evict_B": {
     "pass": true,
@@ -298,8 +298,8 @@
      "n_generated": 11,
      "n_context": 135,
      "n_question": 17,
-     "question_ms": 195.453857421875,
-     "generate_ms": 587.926025390625
+     "question_ms": 187.253173828125,
+     "generate_ms": 583.7412109375
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.4579339027404785,
@@ -308,8 +308,8 @@
      "n_generated": 11,
      "n_context": 481,
      "n_question": 17,
-     "question_ms": 252.016845703125,
-     "generate_ms": 622.287109375
+     "question_ms": 228.8359375,
+     "generate_ms": 563.4228515625
     },
     "full_unchanged": true,
     "correct": true,
@@ -320,14 +320,14 @@
      "pass": true,
      "B_tokens_before": 44,
      "B_tokens_after": 44,
-     "prefill_ms": 4880.767822265625,
+     "prefill_ms": 3991.294189453125,
      "scoped_answer": {
       "text": "The Greyhook Lighthouse is 41 metres tall.",
       "n_generated": 11,
       "n_context": 135,
       "n_question": 17,
-      "question_ms": 263.31884765625,
-      "generate_ms": 655.881103515625
+      "question_ms": 181.7451171875,
+      "generate_ms": 529.705078125
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -336,8 +336,8 @@
       "n_generated": 11,
       "n_context": 0,
       "n_question": 17,
-      "question_ms": 252.550048828125,
-      "generate_ms": 595.7021484375
+      "question_ms": 224.127197265625,
+      "generate_ms": 587.916748046875
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 0.8978526592254639,
@@ -347,14 +347,14 @@
      "pass": true,
      "B_tokens_before": 44,
      "B_tokens_after": 22,
-     "prefill_ms": 4202.093994140625,
+     "prefill_ms": 3719.967041015625,
      "scoped_answer": {
       "text": "The Greyhook Lighthouse is 41 metres tall.",
       "n_generated": 11,
       "n_context": 135,
       "n_question": 17,
-      "question_ms": 203.848876953125,
-      "generate_ms": 554.85009765625
+      "question_ms": 187.22216796875,
+      "generate_ms": 538.705810546875
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.5971040725708008,
@@ -363,8 +363,8 @@
       "n_generated": 11,
       "n_context": 0,
       "n_question": 17,
-      "question_ms": 275.838134765625,
-      "generate_ms": 624.701904296875
+      "question_ms": 314.2548828125,
+      "generate_ms": 773.948974609375
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.1214239597320557,
@@ -378,8 +378,8 @@
     "n_generated": 11,
     "n_context": 0,
     "n_question": 17,
-    "question_ms": 344.803955078125,
-    "generate_ms": 752.738037109375
+    "question_ms": 261.739990234375,
+    "generate_ms": 606.44189453125
    },
    "flash_attn": "auto",
    "pass": true,
@@ -393,22 +393,22 @@
    "B": "Getting around",
    "n_nodes": 13,
    "n_tokens": 525,
-   "prefill_ms": 4683.087158203125,
+   "prefill_ms": 5363.97509765625,
    "baseline_scoped": {
     "text": "05:00",
     "n_generated": 3,
     "n_context": 122,
     "n_question": 16,
-    "question_ms": 237.94580078125,
-    "generate_ms": 171.110107421875
+    "question_ms": 496.375,
+    "generate_ms": 139.994873046875
    },
    "baseline_full": {
     "text": "The fish market opens at 05:00.",
     "n_generated": 10,
     "n_context": 525,
     "n_question": 16,
-    "question_ms": 235.092041015625,
-    "generate_ms": 636.26123046875
+    "question_ms": 229.39501953125,
+    "generate_ms": 524.788330078125
    },
    "test2_evict_B": {
     "pass": true,
@@ -422,8 +422,8 @@
      "n_generated": 3,
      "n_context": 122,
      "n_question": 16,
-     "question_ms": 173.797119140625,
-     "generate_ms": 174.18505859375
+     "question_ms": 156.693115234375,
+     "generate_ms": 147.6611328125
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.864032506942749,
@@ -432,8 +432,8 @@
      "n_generated": 10,
      "n_context": 483,
      "n_question": 16,
-     "question_ms": 246.4970703125,
-     "generate_ms": 580.9521484375
+     "question_ms": 223.27197265625,
+     "generate_ms": 516.807861328125
     },
     "full_unchanged": true,
     "correct": true,
@@ -444,14 +444,14 @@
      "pass": true,
      "B_tokens_before": 42,
      "B_tokens_after": 42,
-     "prefill_ms": 3931.145263671875,
+     "prefill_ms": 4026.137939453125,
      "scoped_answer": {
       "text": "05:00",
       "n_generated": 3,
       "n_context": 122,
       "n_question": 16,
-      "question_ms": 171.609130859375,
-      "generate_ms": 164.736572265625
+      "question_ms": 165.01513671875,
+      "generate_ms": 144.01513671875
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -460,8 +460,8 @@
       "n_generated": 10,
       "n_context": 0,
       "n_question": 16,
-      "question_ms": 227.888916015625,
-      "generate_ms": 614.861083984375
+      "question_ms": 207.89111328125,
+      "generate_ms": 532.45703125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 2.182681083679199,
@@ -471,14 +471,14 @@
      "pass": true,
      "B_tokens_before": 42,
      "B_tokens_after": 21,
-     "prefill_ms": 3617.85693359375,
+     "prefill_ms": 3722.416015625,
      "scoped_answer": {
       "text": "05:00",
       "n_generated": 3,
       "n_context": 122,
       "n_question": 16,
-      "question_ms": 159.498779296875,
-      "generate_ms": 153.759033203125
+      "question_ms": 162.471923828125,
+      "generate_ms": 148.930908203125
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.6539134979248047,
@@ -487,8 +487,8 @@
       "n_generated": 10,
       "n_context": 0,
       "n_question": 16,
-      "question_ms": 208.701904296875,
-      "generate_ms": 526.119873046875
+      "question_ms": 206.072998046875,
+      "generate_ms": 542.501953125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 2.1318416595458984,
@@ -502,8 +502,8 @@
     "n_generated": 10,
     "n_context": 0,
     "n_question": 16,
-    "question_ms": 232.627197265625,
-    "generate_ms": 540.761962890625
+    "question_ms": 210.95703125,
+    "generate_ms": 568.2109375
    },
    "flash_attn": "auto",
    "pass": true,
@@ -517,22 +517,22 @@
    "B": "Flammables",
    "n_nodes": 13,
    "n_tokens": 514,
-   "prefill_ms": 3904.297119140625,
+   "prefill_ms": 4273.0,
    "baseline_scoped": {
     "text": "4471.",
     "n_generated": 3,
     "n_context": 112,
     "n_question": 18,
-    "question_ms": 257.5859375,
-    "generate_ms": 142.665283203125
+    "question_ms": 246.531982421875,
+    "generate_ms": 144.066162109375
    },
    "baseline_full": {
     "text": "You should call the building safety officer on extension 4471.",
     "n_generated": 13,
     "n_context": 514,
     "n_question": 18,
-    "question_ms": 246.579833984375,
-    "generate_ms": 680.947998046875
+    "question_ms": 252.7060546875,
+    "generate_ms": 682.3359375
    },
    "test2_evict_B": {
     "pass": true,
@@ -546,8 +546,8 @@
      "n_generated": 3,
      "n_context": 112,
      "n_question": 18,
-     "question_ms": 199.19677734375,
-     "generate_ms": 151.9111328125
+     "question_ms": 197.200927734375,
+     "generate_ms": 146.260009765625
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.7311575412750244,
@@ -556,8 +556,8 @@
      "n_generated": 13,
      "n_context": 471,
      "n_question": 18,
-     "question_ms": 249.69580078125,
-     "generate_ms": 680.4013671875
+     "question_ms": 267.510009765625,
+     "generate_ms": 681.26806640625
     },
     "full_unchanged": true,
     "correct": true,
@@ -568,14 +568,14 @@
      "pass": true,
      "B_tokens_before": 43,
      "B_tokens_after": 43,
-     "prefill_ms": 4096.88720703125,
+     "prefill_ms": 4238.4189453125,
      "scoped_answer": {
       "text": "4471.",
       "n_generated": 3,
       "n_context": 112,
       "n_question": 18,
-      "question_ms": 211.276123046875,
-      "generate_ms": 150.071044921875
+      "question_ms": 206.62890625,
+      "generate_ms": 145.5791015625
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -584,8 +584,8 @@
       "n_generated": 13,
       "n_context": 0,
       "n_question": 18,
-      "question_ms": 256.61279296875,
-      "generate_ms": 693.522216796875
+      "question_ms": 277.7421875,
+      "generate_ms": 679.481689453125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.5175482034683228,
@@ -595,14 +595,14 @@
      "pass": true,
      "B_tokens_before": 43,
      "B_tokens_after": 24,
-     "prefill_ms": 3852.15625,
+     "prefill_ms": 4167.447998046875,
      "scoped_answer": {
       "text": "4471.",
       "n_generated": 3,
       "n_context": 112,
       "n_question": 18,
-      "question_ms": 198.994140625,
-      "generate_ms": 146.43115234375
+      "question_ms": 219.989013671875,
+      "generate_ms": 149.441162109375
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.5221052169799805,
@@ -611,8 +611,8 @@
       "n_generated": 13,
       "n_context": 0,
       "n_question": 18,
-      "question_ms": 254.727294921875,
-      "generate_ms": 691.2421875
+      "question_ms": 290.410888671875,
+      "generate_ms": 768.8232421875
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.0803227424621582,
@@ -626,8 +626,8 @@
     "n_generated": 13,
     "n_context": 0,
     "n_question": 18,
-    "question_ms": 265.653076171875,
-    "generate_ms": 688.039794921875
+    "question_ms": 250.55322265625,
+    "generate_ms": 676.02197265625
    },
    "flash_attn": "auto",
    "pass": true,
@@ -641,22 +641,22 @@
    "B": "Personal protective equipment",
    "n_nodes": 13,
    "n_tokens": 514,
-   "prefill_ms": 4151.84326171875,
+   "prefill_ms": 4094.613037109375,
    "baseline_scoped": {
     "text": "The assembly point is the car park beside the library.",
     "n_generated": 11,
     "n_context": 120,
     "n_question": 18,
-    "question_ms": 260.289794921875,
-    "generate_ms": 521.939208984375
+    "question_ms": 246.42578125,
+    "generate_ms": 521.027099609375
    },
    "baseline_full": {
     "text": "The assembly point is the car park beside the library.",
     "n_generated": 11,
     "n_context": 514,
     "n_question": 18,
-    "question_ms": 265.078125,
-    "generate_ms": 605.224853515625
+    "question_ms": 245.124267578125,
+    "generate_ms": 570.263916015625
    },
    "test2_evict_B": {
     "pass": true,
@@ -670,8 +670,8 @@
      "n_generated": 11,
      "n_context": 120,
      "n_question": 18,
-     "question_ms": 202.576171875,
-     "generate_ms": 550.036865234375
+     "question_ms": 195.89697265625,
+     "generate_ms": 534.8359375
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.5848145484924316,
@@ -680,8 +680,8 @@
      "n_generated": 11,
      "n_context": 444,
      "n_question": 18,
-     "question_ms": 252.81396484375,
-     "generate_ms": 590.253173828125
+     "question_ms": 255.81884765625,
+     "generate_ms": 580.3759765625
     },
     "full_unchanged": true,
     "correct": true,
@@ -692,14 +692,14 @@
      "pass": true,
      "B_tokens_before": 70,
      "B_tokens_after": 70,
-     "prefill_ms": 4177.16015625,
+     "prefill_ms": 4322.365234375,
      "scoped_answer": {
       "text": "The assembly point is the car park beside the library.",
       "n_generated": 11,
       "n_context": 120,
       "n_question": 18,
-      "question_ms": 198.35205078125,
-      "generate_ms": 532.903076171875
+      "question_ms": 202.716796875,
+      "generate_ms": 520.927001953125
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -708,8 +708,8 @@
       "n_generated": 11,
       "n_context": 0,
       "n_question": 18,
-      "question_ms": 255.044921875,
-      "generate_ms": 588.3349609375
+      "question_ms": 266.39208984375,
+      "generate_ms": 561.260986328125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.6239204406738281,
@@ -719,14 +719,14 @@
      "pass": true,
      "B_tokens_before": 70,
      "B_tokens_after": 15,
-     "prefill_ms": 3741.486083984375,
+     "prefill_ms": 3801.9189453125,
      "scoped_answer": {
       "text": "The assembly point is the car park beside the library.",
       "n_generated": 11,
       "n_context": 120,
       "n_question": 18,
-      "question_ms": 208.48291015625,
-      "generate_ms": 532.69921875
+      "question_ms": 194.966796875,
+      "generate_ms": 522.2841796875
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.9535598754882812,
@@ -735,8 +735,8 @@
       "n_generated": 11,
       "n_context": 0,
       "n_question": 18,
-      "question_ms": 244.73291015625,
-      "generate_ms": 559.860107421875
+      "question_ms": 260.0927734375,
+      "generate_ms": 547.177978515625
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.2653732299804688,
@@ -750,8 +750,8 @@
     "n_generated": 11,
     "n_context": 0,
     "n_question": 18,
-    "question_ms": 266.5791015625,
-    "generate_ms": 579.72802734375
+    "question_ms": 261.10302734375,
+    "generate_ms": 564.8896484375
    },
    "flash_attn": "auto",
    "pass": true,
@@ -765,22 +765,22 @@
    "B": "Communication",
    "n_nodes": 14,
    "n_tokens": 499,
-   "prefill_ms": 3960.302978515625,
+   "prefill_ms": 3976.51611328125,
    "baseline_scoped": {
     "text": "Within 10 minutes.",
     "n_generated": 5,
     "n_context": 115,
     "n_question": 18,
-    "question_ms": 257.376220703125,
-    "generate_ms": 236.531005859375
+    "question_ms": 242.547119140625,
+    "generate_ms": 235.614990234375
    },
    "baseline_full": {
     "text": "Within 10 minutes.",
     "n_generated": 5,
     "n_context": 499,
     "n_question": 18,
-    "question_ms": 249.92724609375,
-    "generate_ms": 270.2080078125
+    "question_ms": 240.271728515625,
+    "generate_ms": 262.296142578125
    },
    "test2_evict_B": {
     "pass": true,
@@ -794,8 +794,8 @@
      "n_generated": 5,
      "n_context": 115,
      "n_question": 18,
-     "question_ms": 191.323974609375,
-     "generate_ms": 248.342041015625
+     "question_ms": 222.061767578125,
+     "generate_ms": 257.20703125
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.45990657806396484,
@@ -804,8 +804,8 @@
      "n_generated": 5,
      "n_context": 452,
      "n_question": 18,
-     "question_ms": 258.27197265625,
-     "generate_ms": 269.677978515625
+     "question_ms": 243.250244140625,
+     "generate_ms": 247.282958984375
     },
     "full_unchanged": true,
     "correct": true,
@@ -816,14 +816,14 @@
      "pass": true,
      "B_tokens_before": 47,
      "B_tokens_after": 47,
-     "prefill_ms": 4019.232177734375,
+     "prefill_ms": 3815.9951171875,
      "scoped_answer": {
       "text": "Within 10 minutes.",
       "n_generated": 5,
       "n_context": 115,
       "n_question": 18,
-      "question_ms": 202.76611328125,
-      "generate_ms": 243.3759765625
+      "question_ms": 194.606689453125,
+      "generate_ms": 240.817138671875
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -832,8 +832,8 @@
       "n_generated": 16,
       "n_context": 0,
       "n_question": 18,
-      "question_ms": 258.7109375,
-      "generate_ms": 836.03515625
+      "question_ms": 256.957275390625,
+      "generate_ms": 838.38916015625
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 3.7410314083099365,
@@ -843,14 +843,14 @@
      "pass": true,
      "B_tokens_before": 47,
      "B_tokens_after": 23,
-     "prefill_ms": 3867.2021484375,
+     "prefill_ms": 3693.6708984375,
      "scoped_answer": {
       "text": "Within 10 minutes.",
       "n_generated": 5,
       "n_context": 115,
       "n_question": 18,
-      "question_ms": 200.842041015625,
-      "generate_ms": 247.182861328125
+      "question_ms": 205.26611328125,
+      "generate_ms": 241.27392578125
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.5804054737091064,
@@ -859,8 +859,8 @@
       "n_generated": 16,
       "n_context": 0,
       "n_question": 18,
-      "question_ms": 266.904052734375,
-      "generate_ms": 881.50390625
+      "question_ms": 245.4208984375,
+      "generate_ms": 805.81298828125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 4.114377975463867,
@@ -874,8 +874,8 @@
     "n_generated": 16,
     "n_context": 0,
     "n_question": 18,
-    "question_ms": 265.575927734375,
-    "generate_ms": 841.403076171875
+    "question_ms": 246.237060546875,
+    "generate_ms": 895.385009765625
    },
    "flash_attn": "auto",
    "pass": true,
@@ -889,22 +889,22 @@
    "B": "Compensation",
    "n_nodes": 14,
    "n_tokens": 499,
-   "prefill_ms": 3980.47900390625,
+   "prefill_ms": 4006.1318359375,
    "baseline_scoped": {
     "text": "Two approvals.",
     "n_generated": 3,
     "n_context": 116,
     "n_question": 17,
-    "question_ms": 245.287841796875,
-    "generate_ms": 144.119140625
+    "question_ms": 247.943115234375,
+    "generate_ms": 150.5458984375
    },
    "baseline_full": {
     "text": "Database schema changes need two approvals.",
     "n_generated": 7,
     "n_context": 499,
     "n_question": 17,
-    "question_ms": 236.51025390625,
-    "generate_ms": 369.806884765625
+    "question_ms": 233.598876953125,
+    "generate_ms": 362.97900390625
    },
    "test2_evict_B": {
     "pass": true,
@@ -918,8 +918,8 @@
      "n_generated": 3,
      "n_context": 116,
      "n_question": 17,
-     "question_ms": 187.220947265625,
-     "generate_ms": 147.333740234375
+     "question_ms": 174.790771484375,
+     "generate_ms": 145.903076171875
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.4725041389465332,
@@ -928,8 +928,8 @@
      "n_generated": 7,
      "n_context": 477,
      "n_question": 17,
-     "question_ms": 242.572021484375,
-     "generate_ms": 357.116943359375
+     "question_ms": 229.451904296875,
+     "generate_ms": 375.5400390625
     },
     "full_unchanged": true,
     "correct": true,
@@ -940,14 +940,14 @@
      "pass": true,
      "B_tokens_before": 22,
      "B_tokens_after": 22,
-     "prefill_ms": 3904.300048828125,
+     "prefill_ms": 3827.68603515625,
      "scoped_answer": {
       "text": "Two approvals.",
       "n_generated": 3,
       "n_context": 116,
       "n_question": 17,
-      "question_ms": 195.354736328125,
-      "generate_ms": 151.781982421875
+      "question_ms": 214.415771484375,
+      "generate_ms": 163.990966796875
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -956,8 +956,8 @@
       "n_generated": 15,
       "n_context": 0,
       "n_question": 17,
-      "question_ms": 244.787841796875,
-      "generate_ms": 786.4150390625
+      "question_ms": 247.866943359375,
+      "generate_ms": 777.59716796875
      },
      "flat_control_unchanged": false,
      "flat_control_logits_diff": 3.1765575408935547,
@@ -967,14 +967,14 @@
      "pass": true,
      "B_tokens_before": 22,
      "B_tokens_after": 18,
-     "prefill_ms": 3912.9609375,
+     "prefill_ms": 3840.413818359375,
      "scoped_answer": {
       "text": "Two approvals.",
       "n_generated": 3,
       "n_context": 116,
       "n_question": 17,
-      "question_ms": 195.643798828125,
-      "generate_ms": 153.14208984375
+      "question_ms": 185.6630859375,
+      "generate_ms": 145.630859375
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.5996036529541016,
@@ -983,8 +983,8 @@
       "n_generated": 7,
       "n_context": 0,
       "n_question": 17,
-      "question_ms": 269.6220703125,
-      "generate_ms": 434.486083984375
+      "question_ms": 242.785888671875,
+      "generate_ms": 358.341064453125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 3.037238597869873,
@@ -998,8 +998,8 @@
     "n_generated": 7,
     "n_context": 0,
     "n_question": 17,
-    "question_ms": 249.77783203125,
-    "generate_ms": 366.014892578125
+    "question_ms": 247.72412109375,
+    "generate_ms": 390.260009765625
    },
    "flash_attn": "auto",
    "pass": true,
@@ -1013,22 +1013,22 @@
    "B": "Levain",
    "n_nodes": 12,
    "n_tokens": 524,
-   "prefill_ms": 4661.79296875,
+   "prefill_ms": 3949.63623046875,
    "baseline_scoped": {
     "text": "At 250 °C.",
     "n_generated": 6,
     "n_context": 122,
     "n_question": 16,
-    "question_ms": 232.84716796875,
-    "generate_ms": 295.076904296875
+    "question_ms": 212.961669921875,
+    "generate_ms": 281.6591796875
    },
    "baseline_full": {
     "text": "250 °C.",
     "n_generated": 4,
     "n_context": 524,
     "n_question": 16,
-    "question_ms": 219.859130859375,
-    "generate_ms": 214.06298828125
+    "question_ms": 212.7529296875,
+    "generate_ms": 209.662841796875
    },
    "test2_evict_B": {
     "pass": true,
@@ -1042,8 +1042,8 @@
      "n_generated": 6,
      "n_context": 122,
      "n_question": 16,
-     "question_ms": 172.62109375,
-     "generate_ms": 302.7080078125
+     "question_ms": 155.219970703125,
+     "generate_ms": 297.06396484375
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.5687012672424316,
@@ -1052,8 +1052,8 @@
      "n_generated": 4,
      "n_context": 491,
      "n_question": 16,
-     "question_ms": 227.633056640625,
-     "generate_ms": 209.259033203125
+     "question_ms": 203.038330078125,
+     "generate_ms": 206.462890625
     },
     "full_unchanged": true,
     "correct": true,
@@ -1064,14 +1064,14 @@
      "pass": true,
      "B_tokens_before": 33,
      "B_tokens_after": 33,
-     "prefill_ms": 5027.14990234375,
+     "prefill_ms": 3977.97216796875,
      "scoped_answer": {
       "text": "At 250 °C.",
       "n_generated": 6,
       "n_context": 122,
       "n_question": 16,
-      "question_ms": 186.657958984375,
-      "generate_ms": 289.0
+      "question_ms": 166.51806640625,
+      "generate_ms": 295.59228515625
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -1080,8 +1080,8 @@
       "n_generated": 4,
       "n_context": 0,
       "n_question": 16,
-      "question_ms": 220.47216796875,
-      "generate_ms": 210.514892578125
+      "question_ms": 236.054931640625,
+      "generate_ms": 218.27099609375
      },
      "flat_control_unchanged": false,
      "flat_control_logits_diff": 1.6126856803894043,
@@ -1091,14 +1091,14 @@
      "pass": true,
      "B_tokens_before": 33,
      "B_tokens_after": 26,
-     "prefill_ms": 4404.371826171875,
+     "prefill_ms": 3843.34619140625,
      "scoped_answer": {
       "text": "At 250 °C.",
       "n_generated": 6,
       "n_context": 122,
       "n_question": 16,
-      "question_ms": 185.822265625,
-      "generate_ms": 294.20703125
+      "question_ms": 161.615234375,
+      "generate_ms": 321.5107421875
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.46520715951919556,
@@ -1107,8 +1107,8 @@
       "n_generated": 10,
       "n_context": 0,
       "n_question": 16,
-      "question_ms": 244.0791015625,
-      "generate_ms": 525.905029296875
+      "question_ms": 225.032958984375,
+      "generate_ms": 509.718017578125
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.505892276763916,
@@ -1122,8 +1122,8 @@
     "n_generated": 10,
     "n_context": 0,
     "n_question": 16,
-    "question_ms": 297.958740234375,
-    "generate_ms": 592.56787109375
+    "question_ms": 209.952880859375,
+    "generate_ms": 519.02490234375
    },
    "flash_attn": "auto",
    "pass": true,
@@ -1137,22 +1137,22 @@
    "B": "Equipment",
    "n_nodes": 12,
    "n_tokens": 524,
-   "prefill_ms": 4276.26123046875,
+   "prefill_ms": 4074.639892578125,
    "baseline_scoped": {
     "text": "At least 24 hours.",
     "n_generated": 6,
     "n_context": 106,
     "n_question": 17,
-    "question_ms": 247.098876953125,
-    "generate_ms": 295.634033203125
+    "question_ms": 234.281005859375,
+    "generate_ms": 296.3359375
    },
    "baseline_full": {
     "text": "The loaf should cool for at least 24 hours before slicing.",
     "n_generated": 13,
     "n_context": 524,
     "n_question": 17,
-    "question_ms": 252.878173828125,
-    "generate_ms": 681.3466796875
+    "question_ms": 232.871826171875,
+    "generate_ms": 674.063232421875
    },
    "test2_evict_B": {
     "pass": true,
@@ -1166,8 +1166,8 @@
      "n_generated": 6,
      "n_context": 106,
      "n_question": 17,
-     "question_ms": 186.10986328125,
-     "generate_ms": 297.886962890625
+     "question_ms": 183.999267578125,
+     "generate_ms": 280.851806640625
     },
     "scoped_unchanged": true,
     "scoped_first_logits_diff": 0.6323165893554688,
@@ -1176,8 +1176,8 @@
      "n_generated": 13,
      "n_context": 487,
      "n_question": 17,
-     "question_ms": 247.47119140625,
-     "generate_ms": 688.919677734375
+     "question_ms": 228.80615234375,
+     "generate_ms": 673.841796875
     },
     "full_unchanged": true,
     "correct": true,
@@ -1188,14 +1188,14 @@
      "pass": true,
      "B_tokens_before": 37,
      "B_tokens_after": 37,
-     "prefill_ms": 4328.91015625,
+     "prefill_ms": 4138.22900390625,
      "scoped_answer": {
       "text": "At least 24 hours.",
       "n_generated": 6,
       "n_context": 106,
       "n_question": 17,
-      "question_ms": 195.59814453125,
-      "generate_ms": 294.6220703125
+      "question_ms": 179.9697265625,
+      "generate_ms": 290.46923828125
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.0,
@@ -1204,8 +1204,8 @@
       "n_generated": 13,
       "n_context": 0,
       "n_question": 17,
-      "question_ms": 244.76904296875,
-      "generate_ms": 680.93310546875
+      "question_ms": 238.743896484375,
+      "generate_ms": 750.47412109375
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.7940239906311035,
@@ -1215,14 +1215,14 @@
      "pass": true,
      "B_tokens_before": 37,
      "B_tokens_after": 12,
-     "prefill_ms": 4091.6611328125,
+     "prefill_ms": 3932.640869140625,
      "scoped_answer": {
       "text": "At least 24 hours.",
       "n_generated": 6,
       "n_context": 106,
       "n_question": 17,
-      "question_ms": 195.6328125,
-      "generate_ms": 295.373046875
+      "question_ms": 188.306884765625,
+      "generate_ms": 290.3623046875
      },
      "scoped_unchanged": true,
      "scoped_first_logits_diff": 0.7770347595214844,
@@ -1231,8 +1231,8 @@
       "n_generated": 13,
       "n_context": 0,
       "n_question": 17,
-      "question_ms": 238.40185546875,
-      "generate_ms": 679.06396484375
+      "question_ms": 243.93212890625,
+      "generate_ms": 669.581787109375
      },
      "flat_control_unchanged": true,
      "flat_control_logits_diff": 1.6904287338256836,
@@ -1246,8 +1246,8 @@
     "n_generated": 13,
     "n_context": 0,
     "n_question": 17,
-    "question_ms": 245.59521484375,
-    "generate_ms": 679.73193359375
+    "question_ms": 232.569091796875,
+    "generate_ms": 687.698974609375
    },
    "flash_attn": "auto",
    "pass": true,

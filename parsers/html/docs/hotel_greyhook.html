@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hotel Greyhook – Rooms by the lighthouse</title>
+  <link rel="stylesheet" href="https://fonts.example.net/css2?family=Lora:wght@400;600&display=swap">
+  <link rel="stylesheet" href="/css/site.css">
+  <style>.room{display:flex;gap:16px;margin-bottom:24px}.room img{width:280px;border-radius:6px}.badge{background:#2a9d8f;color:#fff;padding:2px 8px;border-radius:4px}</style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Hotel","name":"Hotel Greyhook","address":{"@type":"PostalAddress","streetAddress":"Lighthouse Road 3","addressLocality":"Port Avelin"},"starRating":{"@type":"Rating","ratingValue":"3"}}</script>
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="/">Hotel Greyhook</a>
+    <nav>
+      <ul class="menu">
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#policies">Policies</a></li>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="/book" class="btn-book">Book now</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="rooms">
+      <h2>Rooms</h2>
+      <div class="room">
+        <img src="/img/harbour-room.jpg" alt="Harbour Room">
+        <div class="room-info"><h3>Harbour Room</h3><p>Double bed, harbour view, 18 m². From 120 crowns per night.</p><span class="badge">Best seller</span></div>
+      </div>
+      <div class="room">
+        <img src="/img/lighthouse-suite.jpg" alt="Lighthouse Suite">
+        <div class="room-info"><h3>Lighthouse Suite</h3><p>King bed, sitting area and a view of Greyhook Lighthouse, 32 m². From 210 crowns per night.</p></div>
+      </div>
+    </section>
+    <section id="policies">
+      <h2>House policies</h2>
+      <ul>
+        <li>Check-in is from 15:00; check-out is by 11:00.</li>
+        <li>Dogs are welcome for 15 crowns per night.</li>
+        <li>Free cancellation up to 48 hours before arrival.</li>
+        <li>Quiet hours are from 22:00 to 07:00.</li>
+      </ul>
+    </section>
+    <section id="amenities">
+      <h2>Amenities</h2>
+      <ul>
+        <li>Breakfast is served from 06:30 to 10:00 in the Lantern Room.</li>
+        <li>The rooftop sauna is open from 07:00 to 22:00.</li>
+        <li>Free bicycles for guests, first come first served.</li>
+      </ul>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Lighthouse Road 3, Port Avelin · Phone +00 555 0142 · reception is open 24 hours.</p>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 Hotel Greyhook · <a href="/imprint">Imprint</a> · <a href="/privacy">Privacy</a></p>
+  </footer>
+  <script>document.querySelector('.btn-book').addEventListener('click',function(){window.gz&&gz('event','book_click')});</script>
+</body>
+</html>
