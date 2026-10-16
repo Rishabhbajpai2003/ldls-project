@@ -14,6 +14,10 @@ Three domains are implemented: **Markdown** (#3), **HTML** (#1) and **XML** (#8)
 | Markdown: parser, 5 documents, parsed trees | [`parsers/markdown/`](parsers/markdown) (`parser.py`, `docs/`, `json/`) |
 | HTML: parser, 5 documents, parsed trees | [`parsers/html/`](parsers/html) |
 | XML: parser, 5 documents, parsed trees | [`parsers/xml/`](parsers/xml) |
+| JSON parser (domain 7) | [`parsers/json_parser.py`](parsers/json_parser.py) |
+| Chat-log parser (domain 12) | [`parsers/chatlog_parser.py`](parsers/chatlog_parser.py) |
+| 5 sample JSON documents and their parsed trees | [`data/json/docs/`](data/json/docs), [`data/json/trees/`](data/json/trees) |
+| 5 sample chat-log documents and their parsed trees | [`data/chatlogs/docs/`](data/chatlogs/docs), [`data/chatlogs/trees/`](data/chatlogs/trees) |
 | Tests (change B / remove B, ask about A), 10 cases per domain | [`tests/run_tests.py`](tests/run_tests.py), `tests/cases_<domain>.json` |
 | Tree statistics and CPU timings | [`tools/report.py`](tools/report.py) |
 | Results from the original machine | [`results/`](results) |
@@ -270,3 +274,26 @@ The driver needs no changes. It validates every JSON file when it loads it.
 ## 8. Sharing this folder
 
 Share the folder **without** `llama.cpp/`, `models/`, `build/` and `.venv/`. They are large and machine-specific, and every person creates them with the setup steps above (`.gitignore` already excludes them).
+
+## 9. Domains 7 (JSON/API) and 12 (chat logs)
+
+Two new parsers follow the same schema/tree.schema.json format as the Markdown parser:
+
+| Domain | Parser | Docs | Tests | Results |
+|---|---|---|---|---|
+| 7: JSON / API responses | parsers/json_parser.py | data/json/docs/ | tests/cases_json.json | results/test_results_json.json |
+| 12: agent/chat logs | parsers/chatlog_parser.py | data/chatlogs/docs/ | tests/cases_chatlogs.json | results/test_results_chatlogs.json |
+
+Both parsers produce domain/trees/ with 5 small documents (200-360 tokens, max 14 nodes each). All tests pass on the pinned Llama-3.2-1B-Instruct CPU build:
+
+- Test 1 (change B, ask about A): 10/10 both domains — same-length edits bit-identical; flat control changed 10/10.
+- Test 2 (remove B, ask about A): 10/10 both domains — identical answers + KV drop every time.
+- Baseline answers correct: 20/20.
+
+Run them with:
+python tests/run_tests.py --cases tests/cases_json.json --docs data/json/json
+python tests/run_tests.py --cases tests/cases_chatlogs.json --docs data/chatlogs/json
+
+Report generator:
+python tools/report.py data/json results/report_json
+python tools/report.py data/chatlogs results/report_chatlogs
