@@ -1,0 +1,27 @@
+doc                  A                    base  T1 tree/flat logit diff  T1 ans  T2 ans  KV MB        answer
+flight_booking.json  turn 8 assistant     ok    0.000 / 1.485            same    same    7.8->6.0     'OX9K2Q'
+flight_booking.json  turn 6 book_flight   ok    0.000 / 1.364            same    same    7.8->7.1     '"Aditya Sai"'
+weather_lookup.json  turn 8 assistant     ok    0.000 / 2.612            same    same    6.7->5.2     'The forecast for tomorrow at 15:00 is partly cloud'
+weather_lookup.json  turn 4 assistant     ok    0.000 / 8.820            same    same    6.7->6.1     'The assistant said the current temperature is 31C.'
+repo_issue.json      turn 8 assistant     ok    0.000 / 1.267            same    same    6.8->5.3     '9917'
+repo_issue.json      turn 6 post_comment  ok    0.000 / 0.944            same    same    6.8->6.2     'Linux'
+shopping_return.json turn 8 assistant     ok    0.000 / 2.762            same    same    6.8->5.3     '2499'
+shopping_return.json turn 6 start_return  ok    0.000 / 3.254            same    same    6.8->6.3     '"lid leaks"'
+restaurant_reserve.j turn 8 assistant     ok    0.000 / 4.411            same    same    6.6->5.4     'T-18'
+restaurant_reserve.j turn 6 reserve_table ok    0.000 / 4.148            same    same    6.6->6.2     '"Aditya"'
+
+{
+ "cases": 10,
+ "baseline_correct": 10,
+ "test1_pass": 10,
+ "test1_same_length_bit_identical": 10,
+ "test1_same_length_flat_control_changed": 10,
+ "test1_free_length_answer_unchanged": 10,
+ "test1_free_length_correct": 10,
+ "test2_pass": 10,
+ "test2_correct": 10,
+ "test2_kv_dropped": 10,
+ "test2_full_scope_unchanged": 6,
+ "test2_full_scope_correct": 7
+}
+results -> /home/palakm/MoEServingSim/aditya/ldls-project/results/test_results_chatlogs.json

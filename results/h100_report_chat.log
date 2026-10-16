@@ -1,0 +1,47 @@
+flight_booking.json: done
+repo_issue.json: done
+restaurant_reserve.json: done
+shopping_return.json: done
+weather_lookup.json: done
+# Report: chatlogs
+
+| Document | Nodes (raw) | Tokens | Depth | Subtree tokens min/med/max | Markup | Prefill flat / tree (ms) | Gen tok/s |
+|---|---|---|---|---|---|---|---|
+| flight_booking.json | 9 (17) | 239 | 2 | 18/34.5/69 | 28% | 1585 / 1458 | 1.2 |
+| repo_issue.json | 9 (17) | 207 | 2 | 17/27/58 | 25% | 227 / 279 | 47.8 |
+| restaurant_reserve.json | 9 (17) | 201 | 2 | 13/29/55 | 29% | 197 / 129 | 119.5 |
+| shopping_return.json | 9 (17) | 207 | 2 | 11/31.5/58 | 27% | 226 / 271 | 74.5 |
+| weather_lookup.json | 9 (17) | 204 | 2 | 11/29/56 | 28% | 184 / 158 | 50.7 |
+
+```json
+{
+ "total": {
+  "docs": 5,
+  "nodes": 45,
+  "nodes_before_merge": 85,
+  "tokens": 1058,
+  "max_depth": 2,
+  "markup_share": 0.27450980392156865,
+  "scoped_question_context_share": 0.2914595681325774,
+  "prefill_flat_tok_s": 820.6003532726758,
+  "prefill_tree_tok_s": 902.7736714086856,
+  "generate_tok_s": 58.7321766528196,
+  "kv_bytes_per_token": 32786.693394333255
+ },
+ "tests": {
+  "cases": 10,
+  "baseline_correct": 10,
+  "test1_pass": 10,
+  "test1_same_length_bit_identical": 10,
+  "test1_same_length_flat_control_changed": 10,
+  "test1_free_length_answer_unchanged": 10,
+  "test1_free_length_correct": 10,
+  "test2_pass": 10,
+  "test2_correct": 10,
+  "test2_kv_dropped": 10,
+  "test2_full_scope_unchanged": 6,
+  "test2_full_scope_correct": 7
+ }
+}
+```
+

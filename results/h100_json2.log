@@ -1,0 +1,27 @@
+doc                  A                    base  T1 tree/flat logit diff  T1 ans  T2 ans  KV MB        answer
+weather_api.json     hourly_forecast[1]   ok    0.000 / 2.431            same    same    11.8->10.4   '"temp_c": 31'
+weather_api.json     current              ok    0.000 / 2.738            same    same    11.8->8.7    '"temp_c": 31'
+github_repo.json     stats                ok    0.000 / 2.444            same    same    9.6->6.1     '"stats": {\n"forks": 41,\n"open_issues": 17,\n"stars"'
+github_repo.json     releases[0]          ok    0.000 / 2.007            same    same    9.6->9.0     '"v3.0.0"'
+flight_search.json   policies             ok    0.000 / 2.584            same    same    8.2->6.8     '"baggage": "15kg check-in included"'
+flight_search.json   inbound              ok    0.000 / 4.250            same    same    8.2->6.0     '"flight": "OX-214"'
+product_catalog.json shipping             ok    0.000 / 1.541            same    same    7.5->5.3     '"delivery_days": 3'
+product_catalog.json product              ok    0.000 / 4.579            same    same    7.5->6.7     '"Orbit"'
+movie_db.json        crew                 ok    0.000 / 1.726            same    same    6.9->4.8     '"director": "Meera Krishnan"'
+movie_db.json        ratings              ok    0.000 / 4.198            same    same    6.9->5.8     '8.1'
+
+{
+ "cases": 10,
+ "baseline_correct": 10,
+ "test1_pass": 10,
+ "test1_same_length_bit_identical": 10,
+ "test1_same_length_flat_control_changed": 10,
+ "test1_free_length_answer_unchanged": 10,
+ "test1_free_length_correct": 10,
+ "test2_pass": 10,
+ "test2_correct": 10,
+ "test2_kv_dropped": 10,
+ "test2_full_scope_unchanged": 7,
+ "test2_full_scope_correct": 8
+}
+results -> /home/palakm/MoEServingSim/aditya/ldls-project/results/test_results_json.json

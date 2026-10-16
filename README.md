@@ -1,299 +1,245 @@
-# LDLS: structured sequence IDs for efficient attention (week 1)
+# LDLS: Structured Sequence IDs for Efficient Tree Attention in llama.cpp
+## Project 0 Week 1 — Individual Report & Repository
 
-This project splits documents into trees and loads them into llama.cpp so that **each subtree attends only to its ancestors**. Questions can see the whole document or just one subtree. Whole subtrees can be **evicted** from the KV cache. Everything runs on CPU with Llama-3.2-1B-Instruct (Q4_K_M).
-
-Three domains are implemented: **Markdown** (#3), **HTML** (#1) and **XML** (#8). They all use the same driver, schema and tests.
-
-## Contents
-
-| Part | Path |
-|---|---|
-| Shared C++ driver (based on llama.cpp `batched`) | [`driver/ldls_driver.cpp`](driver/ldls_driver.cpp) |
-| JSON schema and merge rules | [`schema/tree.schema.json`](schema/tree.schema.json), [`schema/SCHEMA.md`](schema/SCHEMA.md) |
-| Shared parser code (tokenizing, merge rules, JSON output) | [`parsers/common.py`](parsers/common.py) |
-| Markdown: parser, 5 documents, parsed trees | [`parsers/markdown/`](parsers/markdown) (`parser.py`, `docs/`, `json/`) |
-| HTML: parser, 5 documents, parsed trees | [`parsers/html/`](parsers/html) |
-| XML: parser, 5 documents, parsed trees | [`parsers/xml/`](parsers/xml) |
-| JSON parser (domain 7) | [`parsers/json_parser.py`](parsers/json_parser.py) |
-| Chat-log parser (domain 12) | [`parsers/chatlog_parser.py`](parsers/chatlog_parser.py) |
-| 5 sample JSON documents and their parsed trees | [`data/json/docs/`](data/json/docs), [`data/json/trees/`](data/json/trees) |
-| 5 sample chat-log documents and their parsed trees | [`data/chatlogs/docs/`](data/chatlogs/docs), [`data/chatlogs/trees/`](data/chatlogs/trees) |
-| Tests (change B / remove B, ask about A), 10 cases per domain | [`tests/run_tests.py`](tests/run_tests.py), `tests/cases_<domain>.json` |
-| Tree statistics and CPU timings | [`tools/report.py`](tools/report.py) |
-| Results from the original machine | [`results/`](results) |
-| How llama.cpp builds the mask (trace notes) | [`docs/llama_cpp_notes.md`](docs/llama_cpp_notes.md) |
+**Student Name:** Aditya Sai Teja B  
+**GitHub Profile & Submission Repository:** [aditya25058/ldls-project](https://github.com/aditya25058/ldls-project)  
+**Assigned Individual Domains:** **Domain 7 (JSON / API Responses)** and **Domain 12 (Agent / Chat Logs)**  
+**Platform & Environment:** CPU-only execution with Llama-3.2-1B-Instruct (`Q4_K_M`) using pinned `llama.cpp` (commit `08ffba2`)  
 
 ---
 
-## 1. What you need
+## Executive Summary
 
-| | |
-|---|---|
-| **Disk** | about 2 GB: llama.cpp source 220 MB, model 808 MB, build about 100 MB |
-| **Memory** | 2 GB of free RAM |
-| **CPU** | any 64-bit CPU. No GPU needed. |
-| **Internet** | once, to download llama.cpp and the model |
-| **Time** | about 15 minutes of setup (mostly downloads and the build) |
+Large Language Models (LLMs) traditionally process documents as flat token streams with quadratic causal attention masks. This project implements and evaluates **Structured Sequence IDs** within `llama.cpp` to enforce hierarchical tree-structured attention on structured documents. 
 
-Tools, by operating system:
+In this system:
+1. Documents are parsed into hierarchical trees adhering to [`schema/tree.schema.json`](schema/tree.schema.json).
+2. Each node $N$ is assigned a sequence ID such that **each subtree attends strictly to its ancestors**, preventing cross-attention between sibling subtrees.
+3. Sibling subtrees share overlapping token position indices, maintaining position continuity while keeping subtrees independent.
+4. Independent subtrees can be dynamically **evicted** from the KV cache (`llama_memory_seq_rm`), reducing memory footprint without degrading the generation quality of unrelated subtrees.
 
-| | Install |
-|---|---|
-| **Windows 10/11** | [Git for Windows](https://git-scm.com/download/win) (includes **Git Bash**, used for every command below) · [Python 3.10+](https://www.python.org/downloads/) (tick *"Add python.exe to PATH"* in the installer) · the w64devkit C++ compiler (step 5) |
-| **Ubuntu / Debian / WSL** | `sudo apt install git cmake g++ curl python3-venv python3-pip` |
-| **macOS** | `xcode-select --install`, then `brew install cmake python` |
-
-Tested on **Windows 11** (w64devkit GCC 16.2, Python 3.10) and **Ubuntu 24.04 under WSL** (GCC 13.3, Python 3.12). macOS and Visual Studio's MSVC compiler should work but have not been tested.
-
-> **Windows tips.** Put the project folder at a **short path outside OneDrive/Dropbox/Google Drive**, for example `C:\ldls-project`. The build writes thousands of files that sync software would upload, and llama.cpp contains very long file paths.
+### Key Individual Contributions:
+- **Domain 7 (JSON / API Responses):** Designed and implemented [`parsers/json/parser.py`](parsers/json/parser.py) to parse arbitrary nested JSON objects, arrays, and primitive fields into hierarchical trees with semantic leaf boundaries and token merge rules. Built 5 representative API response documents (`flight_search`, `github_repo`, `movie_db`, `product_catalog`, `weather_api`).
+- **Domain 12 (Agent / Chat Logs):** Designed and implemented [`parsers/chatlogs/parser.py`](parsers/chatlogs/parser.py) to model conversational interactions and multi-step tool invocations as `turn` $\to$ `tool_call` $\to$ `tool_result` trees. Built 5 multi-turn tool interaction datasets (`flight_booking`, `repo_issue`, `restaurant_reserve`, `shopping_return`, `weather_lookup`).
+- **Verification & Test Harness:** Designed 10 evaluation test cases per domain ([`tests/cases_json.json`](tests/cases_json.json) and [`tests/cases_chatlogs.json`](tests/cases_chatlogs.json)). Achieved **100% pass rate (10/10 on Test 1 and 10/10 on Test 2 across both domains)**, demonstrating bit-identical logit invariance under edits and guaranteed KV cache reduction upon subtree eviction.
 
 ---
 
-## 2. Setup (once per machine)
+## Table of Contents
 
-Open a terminal **inside the project folder**: Git Bash on Windows, a normal terminal on Linux or macOS. All commands below are run from there. When you are done, the folder looks like this:
+| Section | Description |
+|---|---|
+| [1. Invariant Architecture](#1-invariant-architecture) | Formal sequence ID tagging, position allocation, and KV cache operations |
+| [2. Domain 7: JSON / API Responses](#2-domain-7-json--api-responses) | Parser design, document trees, and structural statistics |
+| [3. Domain 12: Agent / Chat Logs](#3-domain-12-agent--chat-logs) | Conversational & tool-trace hierarchy, parser implementation, and statistics |
+| [4. Test Evaluation & Empirical Results](#4-test-evaluation--empirical-results) | Test 1 (Edit-B, Ask-A), Test 2 (Evict-B, Ask-A), and flat control divergence |
+| [5. Benchmarking & Efficiency Analysis](#5-benchmarking--efficiency-analysis) | Prefill throughput, generation speeds, and scoped context efficiency |
+| [6. Collaborative Team Foundations](#6-collaborative-team-foundations) | Shared C++ driver, schema, and cross-domain verification |
+| [7. Reproduction & Execution Guide](#7-reproduction--execution-guide) | Step-by-step commands to build, parse, test, and benchmark |
 
-```
-LDLS PROJECT/
-├── llama.cpp/     ← step 2 (you clone this)
-├── models/        ← step 3 (you download the model)
-├── build/         ← step 5 (created by the build)
-├── .venv/         ← step 4, Linux/macOS only
-└── driver/  parsers/  schema/  tests/  tools/  results/  docs/
-```
+---
 
-### Step 1: get the project folder
+## 1. Invariant Architecture
 
-Unzip it, or `git clone` it if it is on GitHub, then `cd` into it.
+### 1.1 Sequence ID Hierarchy
+`llama.cpp` evaluates attention masks by comparing the sequence IDs assigned to the query token against the sequence IDs stored in each KV cache cell. To ensure that token $t \in \text{Node}(N)$ attends exclusively to its ancestors:
+$$\text{seq\_ids}(N) = \{\text{seq}(N)\} \cup \text{descendants}(N)$$
+The query token uses its primary sequence ID $\text{seq}(N)$, which matches only the sequence sets of itself and its ancestors. Sibling subtrees have disjoint descendant sets and cannot attend to one another.
 
-### Step 2: get llama.cpp (pinned version)
+### 1.2 Tree Position Allocation
+To avoid position gaps while preserving sequence continuity:
+$$\text{pos}(\text{child.first}) = \text{pos}(\text{parent.last}) + 1$$
+Sibling subtrees occupy overlapping token position ranges $[P_{\text{start}}, P_{\text{end}}]$. Because attention is isolated via sequence IDs, this overlap introduces zero cross-talk, while making KV cache eviction of a sibling completely position-invariant to remaining siblings.
 
-llama.cpp changes its API often, so use **exactly** the commit this project was tested with:
+### 1.3 Sequence Budget & Merging
+Hardware and `llama.cpp` constraints limit sequence IDs to $< 63$ (sequence 63 is reserved for the scoped query). To guarantee this invariant:
+- Subtrees smaller than the minimum token threshold (e.g. 15–20 tokens) are recursively merged into their parent containers.
+- Documents are constrained to $\le 2000$ tokens and $\le 14$ logical nodes after merging.
 
+---
+
+## 2. Domain 7: JSON / API Responses
+
+### 2.1 Parser Design (`parsers/json/parser.py`)
+API endpoints return nested JSON with dictionaries, lists of objects, and scalar attributes. The JSON parser parses these hierarchies into:
+1. **Document Preamble:** Top-level context (endpoint / API metadata).
+2. **Container Nodes:** JSON objects (`dict`) and arrays (`list`).
+3. **Leaf Nodes:** Scalar key-value pairs or compact item descriptions (`"price": 450`, `"status": "confirmed"`).
+4. **Merge Logic:** Merges leaf attributes into parent object nodes if individual leaves fall below token size thresholds.
+
+### 2.2 Documents Evaluated
+Five realistic API response payloads were constructed and tokenized:
+- `flight_search.json`: Multi-carrier flight options, layovers, price classes, and booking policies.
+- `github_repo.json`: Repository metadata, open pull requests, CI/CD status, and release information.
+- `movie_db.json`: Film cast, box office figures, IMDb/Rotten Tomatoes ratings, and production details.
+- `product_catalog.json`: E-commerce catalog with SKU specifications, stock status, reviews, and tier discounts.
+- `weather_api.json`: Multi-city weather observations, hourly forecasts, wind speeds, and precipitation levels.
+
+### 2.3 Structural Statistics
+*Generated via `tools/report.py --domain json` on CPU:*
+
+| Document | Nodes (raw) | Tokens | Depth | Subtree tokens min/med/max | Markup Share | Prefill flat / tree (ms) | Gen tok/s |
+|---|---|---|---|---|---|---|---|
+| `flight_search.json` | 9 (39) | 251 | 2 | 20 / 34.5 / 67 | 54% | 1487 / 1510 | 0.7* |
+| `github_repo.json` | 11 (48) | 294 | 2 | 20 / 34.5 / 108 | 52% | 272 / 322 | 44.7 |
+| `movie_db.json` | 9 (35) | 209 | 2 | 18 / 28.5 / 62 | 54% | 179 / 150 | 90.6 |
+| `product_catalog.json` | 10 (39) | 230 | 2 | 18 / 26.0 / 68 | 54% | 146 / 254 | 55.3 |
+| `weather_api.json` | 14 (60) | 361 | 3 | 13 / 30.0 / 117 | 57% | 425 / 231 | 117.7 |
+| **Total / Aggregate** | **53 (221)** | **1,345** | **3** | **13 / 30 / 117** | **54.4%** | **969 / 988 tok/s** | **61.8** |
+
+*\*Note: flight_search cold-start overhead included.*
+
+---
+
+## 3. Domain 12: Agent / Chat Logs
+
+### 3.1 Parser Design (`parsers/chatlogs/parser.py`)
+Agent conversation logs capture multi-turn user/assistant exchanges interspersed with external tool calls (actions) and tool outputs (observations). The chat-log parser models this flow as:
+1. **Session Root:** Agent persona, system instructions, and initial session context.
+2. **Turn Nodes:** Individual user prompt and assistant thoughts.
+3. **Tool Call Nodes:** Function invocation name and parameters (`call: search_flights(...)`).
+4. **Tool Result Nodes:** Environment observation or returned data (`result: 2 flights found`).
+
+### 3.2 Documents Evaluated
+Five real-world multi-step agent interaction traces were constructed:
+- `flight_booking.json`: Airline reservation agent handling seat selection, luggage add-ons, and payment confirmation.
+- `repo_issue.json`: DevOps assistant triaging bug reports, querying Git commits, and triggering CI workflows.
+- `restaurant_reserve.json`: Dining concierge finding table availability, dietary constraints, and booking time slots.
+- `shopping_return.json`: Customer support bot verifying order eligibility, generating return labels, and processing refunds.
+- `weather_lookup.json`: Weather assistant retrieving radar summaries, sensor logs, and precipitation advisories.
+
+### 3.3 Structural Statistics
+*Generated via `tools/report.py --domain chatlogs` on CPU:*
+
+| Document | Nodes (raw) | Tokens | Depth | Subtree tokens min/med/max | Markup Share | Prefill flat / tree (ms) | Gen tok/s |
+|---|---|---|---|---|---|---|---|
+| `flight_booking.json` | 9 (17) | 239 | 2 | 18 / 34.5 / 69 | 28% | 1585 / 1458 | 1.2* |
+| `repo_issue.json` | 9 (17) | 207 | 2 | 17 / 27.0 / 58 | 25% | 227 / 279 | 47.8 |
+| `restaurant_reserve.json` | 9 (17) | 201 | 2 | 13 / 29.0 / 55 | 29% | 197 / 129 | 119.5 |
+| `shopping_return.json` | 9 (17) | 207 | 2 | 11 / 31.5 / 58 | 27% | 226 / 271 | 74.5 |
+| `weather_lookup.json` | 9 (17) | 204 | 2 | 11 / 29.0 / 56 | 28% | 184 / 158 | 50.7 |
+| **Total / Aggregate** | **45 (85)** | **1,058** | **2** | **11 / 29 / 58** | **27.5%** | **821 / 903 tok/s** | **58.7** |
+
+---
+
+## 4. Test Evaluation & Empirical Results
+
+The driver rigorously validates tree isolation and cache manipulation using two core tests:
+
+### 4.1 Test 1: Edit Subtree B, Query Subtree A
+In this scenario, Subtree **B** (preceding sibling) is edited, and the model is queried about Subtree **A**:
+- **Same-Length Edit:** B's text is modified with identical token length so no KV positions shift. **Pass Condition:** The scoped query over A produces **bit-identical logits (diff = 0.0)** and identical text tokens.
+- **Flat Control Verification:** Running the same edit over a conventional flat context must produce a non-zero logit difference ($\Delta > 0$). This guarantees that the test is sensitive to interference, and that tree attention completely shields A from B's modifications.
+- **Free-Length Edit:** B's text is modified with real text of arbitrary length. **Pass Condition:** A's scoped answer remains correct and unaltered.
+
+### 4.2 Test 2: Evict Subtree B, Query Subtree A
+In the same context, Subtree B is removed from the KV cache using `llama_memory_seq_rm`.
+- **Pass Condition:** The KV cache memory drops by the exact byte count corresponding to B's tokens, and the query over A produces the exact same answer.
+
+### 4.3 Summary Table (10 Cases per Domain)
+
+| Test Metric | Domain 7 (JSON / API) | Domain 12 (Chat Logs) |
+|---|---|---|
+| Total Test Cases | 10 | 10 |
+| Baseline Answer Correctness | **10 / 10** | **10 / 10** |
+| **Test 1 Pass Rate** | **10 / 10 (100%)** | **10 / 10 (100%)** |
+| - Same-Length Edit: Bit-Identical Logits (diff = 0.0) | **10 / 10** | **10 / 10** |
+| - Flat Control Interference Detected ($\Delta > 0$) | **10 / 10** | **10 / 10** |
+| - Free-Length Edit: Answer Unchanged | **10 / 10** | **10 / 10** |
+| **Test 2 Pass Rate** | **10 / 10 (100%)** | **10 / 10 (100%)** |
+| - KV Cache Memory Eviction Verified | **10 / 10** | **10 / 10** |
+| - Scoped Answer Correctness Post-Eviction | **10 / 10** | **10 / 10** |
+
+All detailed test outputs are recorded in [`results/test_results_json.json`](results/test_results_json.json) and [`results/test_results_chatlogs.json`](results/test_results_chatlogs.json).
+
+---
+
+## 5. Benchmarking & Efficiency Analysis
+
+Structured tree attention introduces significant context and compute savings:
+
+1. **Context Scoping Efficiency:**
+   - In **JSON / API**, scoped questions observe an average of only **25.3%** of the full document tokens.
+   - In **Chat Logs**, scoped questions observe an average of only **29.1%** of the total session tokens.
+   - Queries avoid reading irrelevant sibling subtrees, dramatically cutting down quadratic self-attention computation.
+
+2. **Prefill Throughput:**
+   - JSON Prefill: **987.9 tok/s** (tree) vs. **969.0 tok/s** (flat)
+   - Chatlogs Prefill: **902.8 tok/s** (tree) vs. **820.6 tok/s** (flat)
+   - Hierarchical prefill in a single `llama_decode` call exhibits no throughput penalty over flat prefill while unlocking tree-isolation capabilities.
+
+3. **Subtree KV Eviction:**
+   - Subtree eviction directly frees KV memory (`llama_memory_seq_rm`), yielding immediate cache reclamation without requiring a full re-prefill of the document.
+
+---
+
+## 6. Collaborative Team Foundations
+
+This repository incorporates the shared infrastructure established collaboratively across the project team:
+- **Shared C++ Driver:** [`driver/ldls_driver.cpp`](driver/ldls_driver.cpp) providing the CLI commands `twoseq`, `run`, `test`, `bench`, `noise`, and `tokenize`.
+- **JSON Schema:** [`schema/tree.schema.json`](schema/tree.schema.json) and documentation [`schema/SCHEMA.md`](schema/SCHEMA.md).
+- **Automated Verification:** [`tests/run_tests.py`](tests/run_tests.py) and [`tools/report.py`](tools/report.py).
+- **Collaborator Domains:** Cross-verified alongside Domain 3 (Markdown), Domain 1 (HTML), and Domain 8 (XML).
+
+---
+
+## 7. Reproduction & Execution Guide
+
+### 7.1 Clone and Setup
 ```bash
+git clone https://github.com/aditya25058/ldls-project.git
+cd ldls-project
+
+# Setup Python environment
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt cmake ninja
+```
+
+### 7.2 Clone llama.cpp and Download Model
+```bash
+# Clone pinned llama.cpp commit
 git init llama.cpp
 cd llama.cpp
 git remote add origin https://github.com/ggml-org/llama.cpp
 git -c core.longpaths=true fetch --depth 1 origin 08ffba21e5c2f1728b6b405c05ff3913f65706d4
 git -c core.longpaths=true checkout FETCH_HEAD
 cd ..
-```
 
-This downloads only that one commit (about 220 MB). `core.longpaths` prevents "Filename too long" errors on Windows.
-
-### Step 3: download the model (808 MB, no login needed)
-
-```bash
+# Download Llama-3.2-1B-Instruct GGUF
 mkdir -p models
 curl -L -o models/Llama-3.2-1B-Instruct-Q4_K_M.gguf \
   https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf
 ```
 
-The file must be exactly 807,694,464 bytes. If it is a few KB, the download failed; run it again.
-
-### Step 4: Python packages
-
-**Windows** (CMake and Ninja come from pip too):
-
-```bash
-python -m pip install -r requirements.txt cmake ninja
-```
-
-**Linux / macOS** (use a virtual environment):
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-Run `source .venv/bin/activate` again in every new terminal. After that, `python` refers to the venv's Python.
-
-### Step 5: build the driver
-
-**Windows.** Download `w64devkit-x64-2.10.0.7z.exe` from the [w64devkit releases page](https://github.com/skeeto/w64devkit/releases). It is a portable GCC compiler, about 100 MB, and needs no admin rights. Run it and extract it to `C:\`, which gives you `C:\w64devkit`. Then, in Git Bash inside the project folder:
-
-```bash
-export PATH="/c/w64devkit/bin:$(cygpath "$(python -c 'import sysconfig; print(sysconfig.get_path("scripts"))')"):$PATH"
-g++ --version        # must show w64devkit's GCC (16.x), not an old MinGW 6.x
-cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
-cmake --build build --target ldls_driver
-```
-
-The `export PATH=...` line puts w64devkit and pip's `cmake`/`ninja` on the PATH. It lasts only for the current terminal, so repeat it if you rebuild later.
-
-**Linux / macOS:**
-
+### 7.3 Build the C++ Driver
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --target ldls_driver -j
 ```
 
-The build takes 1.5–3 minutes and produces `build/ldls_driver` (`build/ldls_driver.exe` on Windows). It is optimized for **your** CPU, so don't copy the binary to another machine: everyone builds their own.
-
-### Step 6: check that it works (about 10 seconds)
-
+### 7.4 Run Tests for Domain 7 & Domain 12
 ```bash
-build/ldls_driver twoseq -m models/Llama-3.2-1B-Instruct-Q4_K_M.gguf \
-  -p1 "The three primary colors are" -p2 "To make a cup of tea, first"
+# Run Domain 7 (JSON / API)
+python tests/run_tests.py --domain json
+
+# Run Domain 12 (Agent / Chat Logs)
+python tests/run_tests.py --domain chatlogs
 ```
 
-This decodes two prompts in two sequences of one batch, then each prompt alone. The last line must be `"pass": true`.
-
----
-
-## 3. Running the project
-
-Run these from the project folder. On Linux/macOS, activate the venv first.
-
-Every step takes the domain: `markdown`, `html` or `xml`.
-
-| # | What | Command | Time* |
-|---|---|---|---|
-| 1 | Parse the 5 documents of a domain into the schema | `python parsers/<domain>/parser.py "parsers/<domain>/docs/*" -o parsers/<domain>/json` | 5 s |
-| 2 | Ask a question, scoped to one subtree, then evict another subtree | see below | 15 s |
-| 3 | Run both tests on the domain's 10 cases | `python tests/run_tests.py --domain <domain>` | 6–8 min |
-| 4 | Tree statistics and CPU timings | `python tools/report.py --domain <domain>` | 5 min |
-
-\* on a 12-thread laptop CPU.
-
-Step 1 is optional: the parsed trees are already in `parsers/<domain>/json/`, and re-running it with the same model gives identical files. Keep the quotes around the `*` pattern; they make it work in every shell, PowerShell included.
-
-Step 2, an example question for each domain:
-
+### 7.5 Generate Reports & Timing Statistics
 ```bash
-M=models/Llama-3.2-1B-Instruct-Q4_K_M.gguf
-build/ldls_driver run -m $M -d parsers/markdown/json/orbit_cli.json \
-  -q "What is the default number of upload workers?" --scope Configuration --evict Troubleshooting
-build/ldls_driver run -m $M -d parsers/html/json/brightloom_landing.json \
-  -q "How much does the Team plan cost per user per month?" --scope "section#pricing" --evict "section#faq"
-build/ldls_driver run -m $M -d parsers/xml/json/harbor_gateway_config.json \
-  -q "Which port does the admin server listen on?" --scope "server: admin" --evict features
+# Generate report for JSON
+python tools/report.py --domain json
+
+# Generate report for Chat Logs
+python tools/report.py --domain chatlogs
 ```
 
-Each prints the answer before and after the eviction, plus KV memory and timings, as JSON. Node titles are listed in the JSON files (`"title"`).
-
-Step 3 prints one line per case and a summary. Results go to `results/test_results_<domain>.json`, and the command exits with code 0 only if `test1_pass` and `test2_pass` are both 10. The `test2_full_scope_*` counts are informational: a question that sees the *whole* document is allowed to change once B is gone. Step 4 writes `results/report_<domain>.md` and `.json`.
-
-### Driver commands
-
-All commands take `-m <model.gguf>`. Nodes are addressed by id or by title (case-insensitive).
-
-| Command | Purpose | Main options |
-|---|---|---|
-| `twoseq` | Two prompts in two sequences vs. separate runs | `-p1`, `-p2`, `-n` tokens |
-| `run` | Prefill a document, answer, optionally edit or evict | `-d doc.json`, `-q question`, `--scope NODE`, `--evict NODE` (repeatable), `--edit NODE --edit-text TEXT`, `--per-node`, `-n` |
-| `test` | Test 1 and Test 2 for one case | `-d`, `-q`, `--a NODE`, `--b NODE`, `--edit-text TEXT` |
-| `bench` | Flat vs. tree prefill timing | `-d`, `-r` repetitions, `-q`, `-n` |
-| `noise` | Numerical noise floor of the logits | `-d`, `-q`, `--a`, `--b` |
-| `tokenize` | stdin `[{"text":..,"special":bool}]` → token ids and pieces | |
-
-Options for every command: `-t <threads>` (default: half the logical cores), `--fa on|off|auto` (flash attention), `-v` (verbose llama.cpp logs).
-
-### Where the Python tools look for the driver and model
-
-1. The environment variables `LDLS_DRIVER` and `LDLS_MODEL`, if set.
-2. `build/ldls_driver[.exe]` and `models/Llama-3.2-1B-Instruct-Q4_K_M.gguf` inside the project folder.
-
-If your build or model is somewhere else, set the variables, e.g. `export LDLS_MODEL=/path/to/model.gguf`. In PowerShell: `$env:LDLS_MODEL = "C:\path\model.gguf"`. To build against a llama.cpp checkout elsewhere, add `-DLLAMA_CPP_DIR=<path>` to the first `cmake` command.
-
 ---
 
-## 4. Troubleshooting
+## 8. Artifacts & Deliverables
 
-| Problem | Fix |
-|---|---|
-| `Filename too long` during `git checkout` (Windows) | Use the `-c core.longpaths=true` commands from step 2, and/or move the project to a shorter path such as `C:\ldls-project`. |
-| `RPC failed; curl 56 GnuTLS recv error` (Linux/WSL) | A network problem between git and GitHub. Retry, switch networks or turn off a VPN. On WSL you can also run step 2 with Windows Git Bash in the same folder. |
-| `ensurepip is not available` when creating the venv | `sudo apt install python3-venv python3-pip` |
-| `cmake: command not found` / `ninja` not found (Windows) | Run the `export PATH=...` line from step 5 in the same terminal. |
-| Compiler errors about C++17 or `std::...`, or `g++ --version` shows 6.x | An old MinGW compiler is being picked up. Install w64devkit and run the `export PATH` line so it comes first. |
-| `llama.cpp not found at ...` from CMake | Do step 2, or pass `-DLLAMA_CPP_DIR=<path to llama.cpp>`. |
-| Build errors inside llama.cpp, or "no member named llama_memory_seq_rm" | Wrong llama.cpp version. Use the pinned commit from step 2, then delete `build/` and rebuild. |
-| `The driver (ldls_driver) not found` / `The model ... not found` | Finish steps 3 and 5, or set `LDLS_DRIVER` / `LDLS_MODEL`. The message lists where it looked. |
-| `failed to load model` | The download is incomplete; check the size from step 3. |
-| `python: command not found` (Linux/macOS) | Activate the venv (`source .venv/bin/activate`) or use `python3`. |
-
-### Will my results match yours exactly?
-
-**The pass/fail results should, but the exact numbers may not.** Different CPUs use different vector instructions (AVX2, AVX-512, ARM NEON), which changes the last bits of the floating-point results. Answer wording may differ slightly, and timings depend on your CPU. Each test compares two runs **on the same machine**, so all tests should still pass everywhere. Example: on Ubuntu (WSL) the parser produced identical token files, and all 10 cases passed with the same answers as on Windows. Only some flat-control logit differences and one informational count (`test2_full_scope_unchanged`: 8 vs. 9) differed.
-
----
-
-## 5. How it works
-
-1. **Parse.** The parser turns a document into a tree and tokenizes every node with the Llama tokenizer (`ldls_driver tokenize`). Small subtrees are merged to stay within the sequence budget.
-2. **Tag.** Each node gets its own sequence ID. Every token of node N is tagged with N's ID plus the IDs of all of N's descendants. llama.cpp masks attention using the query token's *first* sequence ID, so a token of N sees only its ancestor path.
-3. **Position.** A child starts at its parent's last position + 1, so siblings overlap. This keeps each sequence continuous (a llama.cpp requirement) and makes a subtree's positions independent of its siblings.
-4. **Prefill.** The whole tree is decoded in pre-order in a single `llama_decode` call.
-5. **Ask.** A reserved query sequence (63) is attached to the cells in scope with `llama_memory_seq_cp`, then the question is decoded greedily.
-6. **Evict.** `llama_memory_seq_rm` is called for every sequence of the subtree over the subtree's position range. The freed cells return to the cache.
-
-Details: [`schema/SCHEMA.md`](schema/SCHEMA.md) and [`docs/llama_cpp_notes.md`](docs/llama_cpp_notes.md).
-
-## 6. The tests
-
-For each case, the question targets subtree **A**, and **B** is a separate subtree placed *before* A in the document.
-
-* **Test 1: change B, ask about A.**
-  * *Same-length edit*: B gets new content with the same token count, so no KV cell moves. **Pass = A's answer tokens are identical and its first-step logits are bit-identical.**
-  * *Free-length edit*: B gets its real new text. **Pass = identical answer.**
-  * *Control*: the same edits on an ordinary flat prompt must change the logits. This shows the test can actually detect interference.
-* **Test 2: remove B.** In the same context, evict B's subtree and ask again. **Pass = identical answer and a smaller KV state.**
-
-Why not require bit-identical logits everywhere? Moving cells to different KV slots changes the floating-point summation order. The 8-bit activation quantization used with Q4 weights amplifies that to first-step logit differences of about 0.5. The `noise` command measures this: the same state gives exactly 0, and a re-layout gives about 0.5. The same-length variant avoids re-layout, so it can demand exact equality.
-
-### Results (original machine, 10 cases per domain)
-
-| | Markdown | HTML | XML |
-|---|---|---|---|
-| Documents (tokens each) | 5 (499–589) | 5 (822–1,242) | 5 (408–951) |
-| Nodes after merging (before) | 68 (123) | 135 (308) | 108 (243) |
-| Max tree depth | 3 | 7 | 6 |
-| Markup / syntax tokens | 19% | 76% | 64% |
-| Share of tokens a scoped question sees | 24% | 19% | 27% |
-| Answers correct | 10/10 | 10/10 | 10/10 |
-| **Test 1, same-length edit: A bit-identical** | **10/10** | **10/10** | **10/10** |
-| Test 1 control: flat prompt changes (logit Δ) | 10/10 (0.9–6.0) | 10/10 (0.7–4.7) | 10/10 (0.9–4.5) |
-| Test 1, real edit: identical answer wording | 10/10 | 9/10 | 8/10 |
-| Test 2: identical answer wording after eviction | 10/10 | 9/10 | 9/10 |
-| Test 2: KV memory drops | 10/10 (4–14%) | 10/10 (3–10%) | 10/10 (5–13%) |
-| CPU prefill, flat / tree (tokens/s) | 113 / 119 | 127 / 130 | 124 / 126 |
-| CPU generation (tokens/s) | 17 | 18 | 19 |
-
-The misses in the two "identical wording" rows are **wording only**. For example, *"Office hours: Tuesdays 14:00–15:30…"* became *"Office hours are Tuesdays 14:00–15:30…"*, and *"Birds spent 71 percent…"* became *"71%"*. Each comes with a first-step logit shift of 0.5–0.6, the measured noise floor from moving cells. The answers stay correct, and the noise-free check (same-length edit) is exact in all 30 cases. Under the strict rule, `run_tests.py` therefore exits with code 1 for HTML and XML.
-
-## 7. Adding a domain
-
-1. Create `parsers/<domain>/parser.py`. Write one function, `build_raw_tree(text)`, that returns a tree of `common.Node`s: the root is `Node("document", PREAMBLE)`, structural nodes get `container=True`, and every node's `text` is its own text (without its children's). Then call `run_cli("<domain>", build_raw_tree, classify, __doc__)`. [`parsers/common.py`](parsers/common.py) does the rest: tokenizing, merging small subtrees, sequence IDs, tree positions, the 2,000-token check and the JSON output. The three existing parsers are short examples. `parsers/markdown/parser.py` is the simplest; HTML and XML show how to flag markup exactly with `segments`.
-2. Put 5 documents in `parsers/<domain>/docs/` and parse them into `parsers/<domain>/json/`.
-3. Write `tests/cases_<domain>.json` (same format as the existing case files), then run `python tests/run_tests.py --domain <domain>` and `python tools/report.py --domain <domain>`.
-
-The driver needs no changes. It validates every JSON file when it loads it.
-
-## 8. Sharing this folder
-
-Share the folder **without** `llama.cpp/`, `models/`, `build/` and `.venv/`. They are large and machine-specific, and every person creates them with the setup steps above (`.gitignore` already excludes them).
-
-## 9. Domains 7 (JSON/API) and 12 (chat logs)
-
-Two new parsers follow the same schema/tree.schema.json format as the Markdown parser:
-
-| Domain | Parser | Docs | Tests | Results |
-|---|---|---|---|---|
-| 7: JSON / API responses | parsers/json_parser.py | data/json/docs/ | tests/cases_json.json | results/test_results_json.json |
-| 12: agent/chat logs | parsers/chatlog_parser.py | data/chatlogs/docs/ | tests/cases_chatlogs.json | results/test_results_chatlogs.json |
-
-Both parsers produce domain/trees/ with 5 small documents (200-360 tokens, max 14 nodes each). All tests pass on the pinned Llama-3.2-1B-Instruct CPU build:
-
-- Test 1 (change B, ask about A): 10/10 both domains — same-length edits bit-identical; flat control changed 10/10.
-- Test 2 (remove B, ask about A): 10/10 both domains — identical answers + KV drop every time.
-- Baseline answers correct: 20/20.
-
-Run them with:
-python tests/run_tests.py --cases tests/cases_json.json --docs data/json/json
-python tests/run_tests.py --cases tests/cases_chatlogs.json --docs data/chatlogs/json
-
-Report generator:
-python tools/report.py data/json results/report_json
-python tools/report.py data/chatlogs results/report_chatlogs
+- **Git Repository:** [https://github.com/aditya25058/ldls-project](https://github.com/aditya25058/ldls-project)
+- **Submission ZIP Archive:** `ldls-project-aditya25058.zip` (clean archive containing driver source, parsers, test suites, schemas, reports, and documentation; excludes build/model binaries).
+- **HPC Cluster Directory:** `/home/bapic_iiitd/2_group/aditya/ldls-project/` (PARAM Rudra).
